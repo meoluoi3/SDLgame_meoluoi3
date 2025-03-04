@@ -132,14 +132,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="graphics.cpp" />
+    <ClCompile Include="draw.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="stage.cpp" />
+    <ClCompile Include="struct.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="allsource.h" />
     <ClInclude Include="defs.h" />
-    <ClInclude Include="graphics.h" />
+    <ClInclude Include="draw.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="struct.h" />
   </ItemGroup>

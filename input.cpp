@@ -1,104 +1,47 @@
-#include "Allsource.h"
+#include <SDL.h>
+#include <SDL_image.h>
+#include <stdio.h>
 
-Graphics app;
-Entities player;
+#include "input.h"
+#include "struct.h"
 
-
-void waitUntilQuitClicked()
+//IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
+extern App app;
+void doInput() // Check for input
 {
-	SDL_Event e;
-	while (true) {
-		if (SDL_PollEvent(&e) != 0 && e.type == SDL_QUIT)
-			return;
-		SDL_Delay(100);
+	SDL_Event event;
+
+	while (SDL_PollEvent(&event))
+	{
+		switch (event.type)
+		{
+		case SDL_QUIT:
+			exit(0);
+			break;
+
+		case SDL_KEYDOWN:
+			doKeyDown(&event.key);
+			break;
+
+		case SDL_KEYUP:
+			doKeyUp(&event.key);
+			break;
+		}
 	}
 }
 
-void doInput(void)
+void doKeyUp(SDL_KeyboardEvent* event)
 {
-    SDL_Event event;
-
-    while (SDL_PollEvent(&event))
-    {
-        switch (event.type)
-        {
-        case SDL_QUIT:
-            exit(0);
-            break;
-
-        case SDL_KEYDOWN:
-            doKeyDown(&event.key);
-            break;
-
-        case SDL_KEYUP:
-            doKeyUp(&event.key);
-            break;
-
-        default:
-            break;
-        }
-    }
+	if (event->repeat == 0 && event->keysym.scancode < MAX_KEYBOARD_KEYS)
+	{
+		app.keyboard[event->keysym.scancode] = 0;
+	}
 }
-
-
 
 void doKeyDown(SDL_KeyboardEvent* event)
 {
-    if (event->repeat == 0)
-    {
-        if (event->keysym.scancode == SDL_SCANCODE_UP)
-        {
-            app.up = 1;
-        }
-
-        if (event->keysym.scancode == SDL_SCANCODE_DOWN)
-        {
-            app.down = 1;
-        }
-
-        if (event->keysym.scancode == SDL_SCANCODE_LEFT)
-        {
-            app.left = 1;
-        }
-
-        if (event->keysym.scancode == SDL_SCANCODE_RIGHT)
-        {
-            app.right = 1;
-        }
-        if (event->keysym.scancode == SDL_SCANCODE_LCTRL)
-        {
-            app.fire = 1;
-        }
-    }
-}
-
-
-void doKeyUp(SDL_KeyboardEvent* event)
-{
-	if (event->repeat == 0)
+	if (event->repeat == 0 && event->keysym.scancode < MAX_KEYBOARD_KEYS)
 	{
-		if (event->keysym.scancode == SDL_SCANCODE_UP)
-		{
-			app.up = 0;
-		}
-
-		if (event->keysym.scancode == SDL_SCANCODE_DOWN)
-		{
-			app.down = 0;
-		}
-
-		if (event->keysym.scancode == SDL_SCANCODE_LEFT)
-		{
-			app.left = 0;
-		}
-
-		if (event->keysym.scancode == SDL_SCANCODE_RIGHT)
-		{
-			app.right = 0;
-		}
-        if (event->keysym.scancode == SDL_SCANCODE_LCTRL)
-        {
-            app.fire = 0;
-        }
+		app.keyboard[event->keysym.scancode] = 1;
 	}
 }

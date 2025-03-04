@@ -11,20 +11,28 @@
       "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:input.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|I:\\SDL Project\\SDLgame\\struct.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:struct.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|I:\\SDL Project\\SDLgame\\input.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:input.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|I:\\SDL Project\\SDLgame\\graphics.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:graphics.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|I:\\SDL Project\\SDLgame\\struct.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:struct.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|I:\\SDL Project\\SDLgame\\graphics.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:graphics.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|I:\\SDL Project\\SDLgame\\draw.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:draw.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|I:\\SDL Project\\SDLgame\\defs.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:defs.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|I:\\SDL Project\\SDLgame\\draw.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:draw.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|I:\\SDL Project\\SDLgame\\struct.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:struct.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|I:\\SDL Project\\SDLgame\\allsource.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -48,10 +56,50 @@
               "RelativeDocumentMoniker": "main.cpp",
               "ToolTip": "I:\\SDL Project\\SDLgame\\main.cpp*",
               "RelativeToolTip": "main.cpp*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAARAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAmwDQAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-02T14:32:32.725Z",
               "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "defs.h",
+              "DocumentMoniker": "I:\\SDL Project\\SDLgame\\defs.h",
+              "RelativeDocumentMoniker": "defs.h",
+              "ToolTip": "I:\\SDL Project\\SDLgame\\defs.h",
+              "RelativeToolTip": "defs.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-04T06:13:57.013Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "draw.cpp",
+              "DocumentMoniker": "I:\\SDL Project\\SDLgame\\draw.cpp",
+              "RelativeDocumentMoniker": "draw.cpp",
+              "ToolTip": "I:\\SDL Project\\SDLgame\\draw.cpp",
+              "RelativeToolTip": "draw.cpp",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAowBoAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-04T07:29:54.766Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "draw.h",
+              "DocumentMoniker": "I:\\SDL Project\\SDLgame\\draw.h",
+              "RelativeDocumentMoniker": "draw.h",
+              "ToolTip": "I:\\SDL Project\\SDLgame\\draw.h",
+              "RelativeToolTip": "draw.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-04T07:30:52.413Z",
               "EditorCaption": ""
             },
             {
@@ -62,75 +110,59 @@
               "RelativeDocumentMoniker": "input.cpp",
               "ToolTip": "I:\\SDL Project\\SDLgame\\input.cpp",
               "RelativeToolTip": "input.cpp",
-              "ViewState": "AgIAAEcAAAAAAAAAAAAQwF0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABoAAAAAAAAAAAAwwDcAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-03-03T11:10:20.057Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "graphics.cpp",
-              "DocumentMoniker": "I:\\SDL Project\\SDLgame\\graphics.cpp",
-              "RelativeDocumentMoniker": "graphics.cpp",
-              "ToolTip": "I:\\SDL Project\\SDLgame\\graphics.cpp",
-              "RelativeToolTip": "graphics.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAoAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-03-03T04:52:13.389Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "allsource.h",
-              "DocumentMoniker": "I:\\SDL Project\\SDLgame\\allsource.h",
-              "RelativeDocumentMoniker": "allsource.h",
-              "ToolTip": "I:\\SDL Project\\SDLgame\\allsource.h",
-              "RelativeToolTip": "allsource.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-03T13:58:59.393Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "input.h",
-              "DocumentMoniker": "I:\\SDL Project\\SDLgame\\input.h",
-              "RelativeDocumentMoniker": "input.h",
-              "ToolTip": "I:\\SDL Project\\SDLgame\\input.h",
-              "RelativeToolTip": "input.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-03T11:10:18.661Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "graphics.h",
-              "DocumentMoniker": "I:\\SDL Project\\SDLgame\\graphics.h",
-              "RelativeDocumentMoniker": "graphics.h",
-              "ToolTip": "I:\\SDL Project\\SDLgame\\graphics.h",
-              "RelativeToolTip": "graphics.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-03T04:15:27.725Z",
+              "WhenOpened": "2025-03-04T07:28:49.206Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "input.h",
+              "DocumentMoniker": "I:\\SDL Project\\SDLgame\\input.h",
+              "RelativeDocumentMoniker": "input.h",
+              "ToolTip": "I:\\SDL Project\\SDLgame\\input.h",
+              "RelativeToolTip": "input.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-04T07:28:13.373Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "allsource.h",
+              "DocumentMoniker": "I:\\SDL Project\\SDLgame\\allsource.h",
+              "RelativeDocumentMoniker": "allsource.h",
+              "ToolTip": "I:\\SDL Project\\SDLgame\\allsource.h",
+              "RelativeToolTip": "allsource.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-03T13:58:59.393Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "struct.cpp",
+              "DocumentMoniker": "I:\\SDL Project\\SDLgame\\struct.cpp",
+              "RelativeDocumentMoniker": "struct.cpp",
+              "ToolTip": "I:\\SDL Project\\SDLgame\\struct.cpp",
+              "RelativeToolTip": "struct.cpp",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAIwAcAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-04T06:25:25.043Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "struct.h",
               "DocumentMoniker": "I:\\SDL Project\\SDLgame\\struct.h",
               "RelativeDocumentMoniker": "struct.h",
-              "ToolTip": "I:\\SDL Project\\SDLgame\\struct.h*",
-              "RelativeToolTip": "struct.h*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAGAAAAAAAAAA==",
+              "ToolTip": "I:\\SDL Project\\SDLgame\\struct.h",
+              "RelativeToolTip": "struct.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-03-03T08:51:24.472Z",
               "EditorCaption": ""

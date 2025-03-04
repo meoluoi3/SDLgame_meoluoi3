@@ -1,8 +1,8 @@
-#ifndef _DEFS__H
-#define _DEFS__H
+#ifndef DEFS
+#define DEFS
 
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 600;
-#define WINDOW_TITLE "Bye Bye world"
+#define SCREEN_WIDTH   1280
+#define SCREEN_HEIGHT  720
 
-#endif
+#define MAX_KEYBOARD_KEYS  350
+#endif // DEFS
