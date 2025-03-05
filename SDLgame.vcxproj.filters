@@ -47,5 +47,8 @@
     <ClInclude Include="allsource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="stage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

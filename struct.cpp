@@ -7,6 +7,7 @@
 extern App app;
 extern Stage stage;
 extern Entity* player;
+SDL_Texture* bulletTexture = NULL;
 void initSDL(void) // Initialize SDL
 {
 
@@ -18,7 +19,7 @@ void initSDL(void) // Initialize SDL
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {
-        printf("Couldn't initialize SDL: %s\n", SDL_GetError());
+        SDL_Log("Couldn't initialize SDL: %s\n", SDL_GetError());
         exit(1);
     }
 
@@ -26,7 +27,7 @@ void initSDL(void) // Initialize SDL
 
     if (!app.window)
     {
-        printf("Failed to open %d x %d window: %s\n", SCREEN_WIDTH, SCREEN_HEIGHT, SDL_GetError());
+        SDL_Log("Failed to open %d x %d window: %s\n", SCREEN_WIDTH, SCREEN_HEIGHT, SDL_GetError());
         exit(1);
     }
 
@@ -36,14 +37,14 @@ void initSDL(void) // Initialize SDL
 
     if (!app.renderer)
     {
-        printf("Failed to create renderer: %s\n", SDL_GetError());
+        SDL_Log("Failed to create renderer: %s\n", SDL_GetError());
         exit(1);
     }
 }
 
 void initStage(void) // Initialize the stage
 {
-    SDL_Texture* bulletTexture = NULL;
+    
     app.delegate.logic = logic;
     app.delegate.draw = draw;
 
@@ -53,17 +54,29 @@ void initStage(void) // Initialize the stage
 
     initPlayer();
 
-    bulletTexture = loadTexture("gfx/playerBullet.png",app.renderer);
+    bulletTexture = loadTexture("img/bullet_klee.png");
 }
 
-static void logic(void)
+ void initPlayer()
+{
+    player = new Entity;
+    stage.fighterTail->next = player;
+    stage.fighterTail = player;
+
+    player->x = 100;
+    player->y = 100;
+    player->texture = loadTexture("img/4.png");
+    SDL_QueryTexture(player->texture, NULL, NULL, &player->w, &player->h);
+}
+
+ void logic(void)
 {
     doPlayer();
 
     doBullets();
 }
 
-static void doPlayer(void)
+ void doPlayer(void)
 {
     player->dx = player->dy = 0;
 
@@ -96,13 +109,13 @@ static void doPlayer(void)
     {
         fireBullet();
     }
-
-    static void fireBullet(void)
+}
+     void fireBullet(void)
     {
-        Entity* bullet;
+        Entity* bullet = new Entity;
 
-        bullet = malloc(sizeof(Entity));
-        memset(bullet, 0, sizeof(Entity));
+        
+        
         stage.bulletTail->next = bullet;
         stage.bulletTail = bullet;
 
@@ -117,6 +130,52 @@ static void doPlayer(void)
 
         player->reload = 8;
     }
-    player->x += player->dx;
-    player->y += player->dy;
-}
+    
+     void doBullets(void)
+    {
+        Entity* b, * prev;
+
+        prev = &stage.bulletHead;
+
+        for (b = stage.bulletHead.next; b != NULL; b = b->next)
+        {
+            b->x += b->dx;
+            b->y += b->dy;
+
+            if (b->x > SCREEN_WIDTH)
+            {
+                if (b == stage.bulletTail)
+                {
+                    stage.bulletTail = prev;
+                }
+
+                prev->next = b->next;
+                delete b;
+                b = prev;
+            }
+
+            prev = b;
+        }
+    }
+
+     void draw(void)
+    {
+        drawPlayer();
+
+        drawBullets();
+    }
+
+     void drawPlayer(void)
+    {
+        blit(player->texture, player->x, player->y,1.0);
+    }
+
+    static void drawBullets(void)
+    {
+        Entity* b;
+
+        for (b = stage.bulletHead.next; b != NULL; b = b->next)
+        {
+            blit(b->texture, b->x, b->y,1.0);
+        }
+    }

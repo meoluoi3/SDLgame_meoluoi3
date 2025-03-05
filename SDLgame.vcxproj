@@ -143,6 +143,7 @@
     <ClInclude Include="defs.h" />
     <ClInclude Include="draw.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="stage.h" />
     <ClInclude Include="struct.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,3 +1,15 @@
-﻿  main.cpp
-I:\SDL Project\SDLgame\main.cpp(76,54): warning C4305: 'argument': truncation from 'double' to 'float'
+﻿  draw.cpp
+I:\SDL Project\SDLgame\draw.cpp(41,12): warning C4244: '*=': conversion from 'float' to 'int', possible loss of data
+I:\SDL Project\SDLgame\draw.cpp(42,12): warning C4244: '*=': conversion from 'float' to 'int', possible loss of data
+  input.cpp
+  main.cpp
+  stage.cpp
+I:\SDL Project\SDLgame\stage.cpp(10,15): warning C4244: '=': conversion from 'float' to 'long', possible loss of data
+I:\SDL Project\SDLgame\stage.cpp(25,19): warning C4305: '+=': truncation from 'double' to 'float'
+  struct.cpp
+I:\SDL Project\SDLgame\struct.cpp(170,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+I:\SDL Project\SDLgame\struct.cpp(170,37): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+I:\SDL Project\SDLgame\struct.cpp(179,37): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+I:\SDL Project\SDLgame\struct.cpp(179,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
   SDLgame.vcxproj -> I:\SDL Project\SDLgame\x64\Debug\SDLgame.exe

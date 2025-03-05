@@ -3,6 +3,8 @@
 #include "draw.h"
 #include "struct.h"
 extern App app;
+extern Stage stage;
+extern Entity* player;
 void prepareScene(void) // Clear the window and make it all blue
 {
     SDL_SetRenderDrawColor(app.renderer, 96, 128, 255, 255);
@@ -14,9 +16,9 @@ void presentScene(void) // Draw everything to the window
     SDL_RenderPresent(app.renderer);
 }
 
-SDL_Texture* loadTexture(const char* filename, SDL_Renderer* renderer) // Load an image from file
+SDL_Texture* loadTexture(const char* filename) // Load an image from file
 {
-    SDL_Texture* texture = IMG_LoadTexture(renderer, filename);
+    SDL_Texture* texture = IMG_LoadTexture(app.renderer, filename);
     if (!texture) {
         SDL_Log("Failed to load texture: %s", IMG_GetError());
     }

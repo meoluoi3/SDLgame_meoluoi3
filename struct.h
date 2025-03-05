@@ -1,44 +1,50 @@
 #pragma once
 #include "defs.h"
+struct Delegate {
+    void (*logic)(void);
+    void (*draw)(void);
+
+    Delegate() : logic(nullptr), draw(nullptr) {}
+};
 
 struct App {
     SDL_Renderer* renderer;
     SDL_Window* window;
     Delegate delegate;
     int keyboard[MAX_KEYBOARD_KEYS];
+
+    App() : renderer(nullptr), window(nullptr), keyboard{} {}
 };
 
 struct Entity {
-    float x;
-    float y;
-    int w;
-    int h;
-    float dx;
-    float dy;
-    int health;
-    int reload;
+    float x, y, dx, dy;
+    int w, h, health, reload;
     SDL_Texture* texture;
     Entity* next;
-};
 
-struct Delegate{
-    void (*logic)(void);
-    void (*draw)(void);
+    Entity()
+        : x(0), y(0), dx(0), dy(0), w(0), h(0), health(1), reload(0), texture(nullptr), next(nullptr) {
+    }
 };
 
 struct Stage {
-    Entity fighterHead, * fighterTail;
-    Entity bulletHead, * bulletTail;
+    Entity fighterHead;
+    Entity* fighterTail;
+    Entity bulletHead;
+    Entity* bulletTail;
+
+    Stage() : fighterTail(&fighterHead), bulletTail(&bulletHead) {}
 };
 
+void initPlayer();
 void initSDL(void);
 void initStage(void);
-static void initPlayer();
-static void logic(void);
-static void draw(void);
-static void doPlayer(void);
-static void doBullets(void);
-static void fireBullet(void);
+
+void logic(void);
+void draw(void);
+void doPlayer(void);
+void doBullets(void);
+void fireBullet(void);
 
 
 
