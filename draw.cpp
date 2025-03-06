@@ -13,7 +13,7 @@ void prepareScene(void) // Clear the window and make it all blue
 
 void presentScene(void) // Draw everything to the window
 {
-    SDL_RenderPresent(app.renderer);
+   SDL_RenderPresent(app.renderer);
 }
 
 SDL_Texture* loadTexture(const char* filename) // Load an image from file

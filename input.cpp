@@ -5,12 +5,15 @@
 #include "input.h"
 #include "struct.h"
 
+#include "iostream"
+#include <iostream>
+
 //IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
 extern App app;
 void doInput() // Check for input
 {
 	SDL_Event event;
-
+	
 	while (SDL_PollEvent(&event))
 	{
 		switch (event.type)
@@ -21,6 +24,7 @@ void doInput() // Check for input
 
 		case SDL_KEYDOWN:
 			doKeyDown(&event.key);
+
 			break;
 
 		case SDL_KEYUP:

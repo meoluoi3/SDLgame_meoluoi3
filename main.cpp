@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
 
     initSDL();
     initStage();
-    initPlayer();
+    //initPlayer();
 
     then = SDL_GetTicks();
     remainder = 0;
@@ -33,6 +33,7 @@ int main(int argc, char* argv[]) {
         presentScene();
         capFrameRate(&then, &remainder);
     }
+    
 
     delete player;
     return 0;

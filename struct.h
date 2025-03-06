@@ -41,10 +41,17 @@ void initSDL(void);
 void initStage(void);
 
 void logic(void);
-void draw(void);
+void draw(void);    
 void doPlayer(void);
 void doBullets(void);
 void fireBullet(void);
+
+void drawPlayer(void);
+void drawBullets(void);
+
+void drawFighters(void);
+void doFighters(void);
+void spawnEnemies(void);
 
 
 

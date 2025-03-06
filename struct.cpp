@@ -4,10 +4,13 @@
 #include <stdio.h>
 #include "defs.h"
 #include "draw.h"
+#include "bits/stdc++.h"
 extern App app;
 extern Stage stage;
 extern Entity* player;
 SDL_Texture* bulletTexture = NULL;
+SDL_Texture* enemyTexture = NULL;
+int enemySpawnTimer = 0;
 void initSDL(void) // Initialize SDL
 {
 
@@ -55,6 +58,9 @@ void initStage(void) // Initialize the stage
     initPlayer();
 
     bulletTexture = loadTexture("img/bullet_klee.png");
+    enemyTexture = loadTexture("img/enemy.png");
+
+    
 }
 
  void initPlayer()
@@ -70,11 +76,26 @@ void initStage(void) // Initialize the stage
 }
 
  void logic(void)
-{
-    doPlayer();
+ {
+     doPlayer();
 
-    doBullets();
-}
+     doFighters();
+
+     doBullets();
+
+     spawnEnemies();
+ }
+
+ void draw(void)
+ {
+    //drawPlayer();
+
+     drawFighters();
+
+     
+     
+     drawBullets();
+ }
 
  void doPlayer(void)
 {
@@ -109,8 +130,12 @@ void initStage(void) // Initialize the stage
     {
         fireBullet();
     }
-}
-     void fireBullet(void)
+
+    player->x += player->dx;
+    player->y += player->dy;
+
+}   
+ void fireBullet(void)
     {
         Entity* bullet = new Entity;
 
@@ -119,8 +144,8 @@ void initStage(void) // Initialize the stage
         stage.bulletTail->next = bullet;
         stage.bulletTail = bullet;
 
-        bullet->x = player->x;
-        bullet->y = player->y;
+        bullet->x = player->x + 50;
+        bullet->y = player->y + 200;
         bullet->dx = PLAYER_BULLET_SPEED;
         bullet->health = 1;
         bullet->texture = bulletTexture;
@@ -131,7 +156,7 @@ void initStage(void) // Initialize the stage
         player->reload = 8;
     }
     
-     void doBullets(void)
+ void doBullets(void)
     {
         Entity* b, * prev;
 
@@ -158,24 +183,77 @@ void initStage(void) // Initialize the stage
         }
     }
 
-     void draw(void)
-    {
-        drawPlayer();
 
-        drawBullets();
-    }
 
-     void drawPlayer(void)
+void drawPlayer(void)
     {
         blit(player->texture, player->x, player->y,1.0);
     }
 
-    static void drawBullets(void)
+void drawBullets(void)
     {
         Entity* b;
 
         for (b = stage.bulletHead.next; b != NULL; b = b->next)
         {
-            blit(b->texture, b->x, b->y,1.0);
+            blit(b->texture, b->x, b->y,0.3);
+        }
+    }
+
+void drawFighters(void) //drawing player and enemies into the game
+    {
+        Entity* e;
+
+        for (e = stage.fighterHead.next; e != NULL; e = e->next)
+        {
+           if(e != player) blit(e->texture, e->x, e->y,0.2); // enemies
+           else blit(e->texture, e->x, e->y, 1); //player
+        }
+    }
+
+void doFighters(void)
+    {
+        Entity* e, * prev;
+
+        prev = &stage.fighterHead;
+
+        for (e = stage.fighterHead.next; e != NULL; e = e->next)
+        {
+            e->x += e->dx;
+            e->y += e->dy;
+
+            if (e != player && e->x < -e->w)
+            {
+                if (e == stage.fighterTail)
+                {
+                    stage.fighterTail = prev;
+                }
+
+                prev->next = e->next;
+                delete e;
+                e = prev;
+            }
+
+            prev = e;
+        }
+    }
+void spawnEnemies(void)
+    {
+        Entity* enemy;
+
+        if (--enemySpawnTimer <= 0)
+        {
+            Entity* enemy = new Entity;
+            stage.fighterTail->next = enemy;
+            stage.fighterTail = enemy;
+
+            enemy->x = SCREEN_WIDTH;
+            enemy->y = int(rand()) % SCREEN_HEIGHT;
+            enemy->texture = enemyTexture;
+            SDL_QueryTexture(enemy->texture, NULL, NULL, &enemy->w, &enemy->h);
+
+            enemy->dx = -(2 + (rand() % 4));
+
+            enemySpawnTimer = 30 + (rand() % 60);
         }
     }

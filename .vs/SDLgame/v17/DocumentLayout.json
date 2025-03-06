@@ -1,50 +1,50 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "I:\\SDL Project\\SDLgame\\",
+  "WorkspaceRootPath": "C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|I:\\SDL Project\\SDLgame\\struct.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\struct.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:struct.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|I:\\SDL Project\\SDLgame\\defs.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:defs.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|I:\\SDL Project\\SDLgame\\Stage.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:Stage.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|I:\\SDL Project\\SDLgame\\draw.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\draw.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:draw.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|I:\\SDL Project\\SDLgame\\input.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:input.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|I:\\SDL Project\\SDLgame\\draw.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:draw.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|I:\\SDL Project\\SDLgame\\struct.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:struct.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|I:\\SDL Project\\SDLgame\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|I:\\SDL Project\\SDLgame\\stage.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\allsource.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:allsource.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\struct.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:struct.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\stage.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:stage.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|I:\\SDL Project\\SDLgame\\input.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:input.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\input.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:input.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|I:\\SDL Project\\SDLgame\\allsource.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:allsource.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\defs.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:defs.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\Stage.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:Stage.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\draw.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:draw.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\input.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C182D85E-A645-49AD-89EE-1C10EA7EABBF}|SDLgame.vcxproj|solutionrelative:input.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,52 +58,55 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "main.cpp",
-              "DocumentMoniker": "I:\\SDL Project\\SDLgame\\main.cpp",
+              "DocumentMoniker": "C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\main.cpp",
               "RelativeDocumentMoniker": "main.cpp",
-              "ToolTip": "I:\\SDL Project\\SDLgame\\main.cpp",
+              "ToolTip": "C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AgIAAA0AAAAAAAAAAAASwCEAAAANAAAAAAAAAA==",
+              "ViewState": "AQIAAAcAAAAAAAAAAAA/wBQAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-02T14:32:32.725Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 5,
               "Title": "stage.cpp",
-              "DocumentMoniker": "I:\\SDL Project\\SDLgame\\stage.cpp",
+              "DocumentMoniker": "C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\stage.cpp",
               "RelativeDocumentMoniker": "stage.cpp",
-              "ToolTip": "I:\\SDL Project\\SDLgame\\stage.cpp",
+              "ToolTip": "C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\stage.cpp",
               "RelativeToolTip": "stage.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBoAAAAbAAAAAAAAAA==",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-05T13:51:08.126Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "draw.cpp",
-              "DocumentMoniker": "I:\\SDL Project\\SDLgame\\draw.cpp",
+              "DocumentMoniker": "C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\draw.cpp",
               "RelativeDocumentMoniker": "draw.cpp",
-              "ToolTip": "I:\\SDL Project\\SDLgame\\draw.cpp",
+              "ToolTip": "C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\draw.cpp",
               "RelativeToolTip": "draw.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAPAAAAAAAAAA==",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-05T13:40:36.515Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "input.cpp",
-              "DocumentMoniker": "I:\\SDL Project\\SDLgame\\input.cpp",
+              "DocumentMoniker": "C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\input.cpp",
               "RelativeDocumentMoniker": "input.cpp",
-              "ToolTip": "I:\\SDL Project\\SDLgame\\input.cpp",
+              "ToolTip": "C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\input.cpp",
               "RelativeToolTip": "input.cpp",
-              "ViewState": "AgIAABEAAAAAAAAAAAAIwCYAAAABAAAAAAAAAA==",
+              "ViewState": "AQIAABIAAAAAAAAAAAAQwCgAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-04T07:28:49.206Z",
               "IsPinned": true
@@ -112,11 +115,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "struct.cpp",
-              "DocumentMoniker": "I:\\SDL Project\\SDLgame\\struct.cpp",
+              "DocumentMoniker": "C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\struct.cpp",
               "RelativeDocumentMoniker": "struct.cpp",
-              "ToolTip": "I:\\SDL Project\\SDLgame\\struct.cpp",
-              "RelativeToolTip": "struct.cpp",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAQwJkAAAAZAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\struct.cpp*",
+              "RelativeToolTip": "struct.cpp*",
+              "ViewState": "AQIAAFwAAAAAAAAAAAAAwNMAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-04T06:25:25.043Z",
               "IsPinned": true,
@@ -124,47 +127,47 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "stage.h",
-              "DocumentMoniker": "I:\\SDL Project\\SDLgame\\stage.h",
+              "DocumentMoniker": "C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\stage.h",
               "RelativeDocumentMoniker": "stage.h",
-              "ToolTip": "I:\\SDL Project\\SDLgame\\stage.h",
+              "ToolTip": "C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\stage.h",
               "RelativeToolTip": "stage.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-03-05T13:52:15.985Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "draw.h",
-              "DocumentMoniker": "I:\\SDL Project\\SDLgame\\draw.h",
+              "DocumentMoniker": "C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\draw.h",
               "RelativeDocumentMoniker": "draw.h",
-              "ToolTip": "I:\\SDL Project\\SDLgame\\draw.h",
+              "ToolTip": "C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\draw.h",
               "RelativeToolTip": "draw.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAXAAAAAAAAAA==",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-03-04T07:30:52.413Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "defs.h",
-              "DocumentMoniker": "I:\\SDL Project\\SDLgame\\defs.h",
+              "DocumentMoniker": "C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\defs.h",
               "RelativeDocumentMoniker": "defs.h",
-              "ToolTip": "I:\\SDL Project\\SDLgame\\defs.h",
+              "ToolTip": "C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\defs.h",
               "RelativeToolTip": "defs.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAWAAAAAAAAAA==",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-03-04T06:13:57.013Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "input.h",
-              "DocumentMoniker": "I:\\SDL Project\\SDLgame\\input.h",
+              "DocumentMoniker": "C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\input.h",
               "RelativeDocumentMoniker": "input.h",
-              "ToolTip": "I:\\SDL Project\\SDLgame\\input.h",
+              "ToolTip": "C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\input.h",
               "RelativeToolTip": "input.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
@@ -172,27 +175,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 3,
               "Title": "allsource.h",
-              "DocumentMoniker": "I:\\SDL Project\\SDLgame\\allsource.h",
+              "DocumentMoniker": "C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\allsource.h",
               "RelativeDocumentMoniker": "allsource.h",
-              "ToolTip": "I:\\SDL Project\\SDLgame\\allsource.h",
+              "ToolTip": "C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\allsource.h",
               "RelativeToolTip": "allsource.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAwAAAAAAAAAAAAAAA==",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-03T13:58:59.393Z"
+              "WhenOpened": "2025-03-03T13:58:59.393Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "struct.h",
-              "DocumentMoniker": "I:\\SDL Project\\SDLgame\\struct.h",
+              "DocumentMoniker": "C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\struct.h",
               "RelativeDocumentMoniker": "struct.h",
-              "ToolTip": "I:\\SDL Project\\SDLgame\\struct.h",
+              "ToolTip": "C:\\Users\\ACER\\source\\repos\\SDLgame_meoluoi3\\struct.h",
               "RelativeToolTip": "struct.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAYAAAAAAAAAA==",
+              "ViewState": "AQIAACQAAAAAAAAAAAASwDUAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-03T08:51:24.472Z"
+              "WhenOpened": "2025-03-03T08:51:24.472Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
             }
           ]
         }

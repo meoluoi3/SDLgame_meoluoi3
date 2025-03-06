@@ -71,8 +71,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>I:\SDL SOURCE VS\SDL2_ttf-2.22.0\include;I:\SDL SOURCE VS\SDL2_mixer-2.8.0\include;I:\SDL SOURCE VS\SDL2_image-2.8.2\include;I:\SDL SOURCE VS\SDL2-2.28.5\include;$(IncludePath)</IncludePath>
-    <LibraryPath>I:\SDL SOURCE VS\SDL2_ttf-2.22.0\lib\x64;I:\SDL SOURCE VS\SDL2_mixer-2.8.0\lib\x64;I:\SDL SOURCE VS\SDL2_image-2.8.2\lib\x64;I:\SDL SOURCE VS\SDL2-2.28.5\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\SDL2 SOURCE VC\SDL2_mixer-devel-2.8.0-VC\SDL2_mixer-2.8.0\include;C:\SDL2 SOURCE VC\SDL2_ttf-devel-2.22.0-VC\SDL2_ttf-2.22.0\include;C:\SDL2 SOURCE VC\SDL2_image-devel-2.8.2-VC\SDL2_image-2.8.2\include;C:\SDL2 SOURCE VC\SDL2-devel-2.28.5-VC%281%29\SDL2-2.28.5\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\SDL2 SOURCE VC\SDL2_ttf-devel-2.22.0-VC\SDL2_ttf-2.22.0\lib\x64;C:\SDL2 SOURCE VC\SDL2_mixer-devel-2.8.0-VC\SDL2_mixer-2.8.0\lib\x64;C:\SDL2 SOURCE VC\SDL2_image-devel-2.8.2-VC\SDL2_image-2.8.2\lib\x64;C:\SDL2 SOURCE VC\SDL2-devel-2.28.5-VC%281%29\SDL2-2.28.5\lib\x64;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\SDL2 SOURCE VC\SDL2_mixer-devel-2.8.0-VC\SDL2_mixer-2.8.0\include;C:\SDL2 SOURCE VC\SDL2_ttf-devel-2.22.0-VC\SDL2_ttf-2.22.0\include;C:\SDL2 SOURCE VC\SDL2_image-devel-2.8.2-VC\SDL2_image-2.8.2\include;C:\SDL2 SOURCE VC\SDL2-devel-2.28.5-VC%281%29\SDL2-2.28.5\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\SDL2 SOURCE VC\SDL2_ttf-devel-2.22.0-VC\SDL2_ttf-2.22.0\lib\x64;C:\SDL2 SOURCE VC\SDL2_mixer-devel-2.8.0-VC\SDL2_mixer-2.8.0\lib\x64;C:\SDL2 SOURCE VC\SDL2_image-devel-2.8.2-VC\SDL2_image-2.8.2\lib\x64;C:\SDL2 SOURCE VC\SDL2-devel-2.28.5-VC%281%29\SDL2-2.28.5\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -84,6 +88,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -112,7 +117,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2test.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
