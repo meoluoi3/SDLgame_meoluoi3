@@ -26,7 +26,7 @@ SDL_Texture* loadTexture(const char* filename) // Load an image from file
 }
 
 
-void blit(SDL_Texture* texture, int x, int y,float scale) //draw an image to the screen (specific coordinate)
+void blit(SDL_Texture* texture, int x, int y) //draw an image to the screen (specific coordinate)
 {
 	SDL_Rect dest;
     if (!texture) {
@@ -37,8 +37,28 @@ void blit(SDL_Texture* texture, int x, int y,float scale) //draw an image to the
     dest.y = y;
     
     SDL_QueryTexture(texture, NULL, NULL, &dest.w, &dest.h);
-
-	dest.w *= scale;
-	dest.h *= scale;
     SDL_RenderCopy(app.renderer, texture, NULL, &dest);
+}
+
+
+void drawBullets(void)
+{
+    Entity* b;
+
+    for (b = stage.bulletHead.next; b != NULL; b = b->next)
+    {
+        blit(b->texture, b->x, b->y);
+    }
+    SDL_Delay(20);
+
+}
+void drawFighters(void) //drawing player and enemies into the game
+{
+    Entity* e;
+
+    for (e = stage.fighterHead.next; e != NULL; e = e->next)
+    {
+        if (e != player) blit(e->texture, e->x, e->y); // enemies
+        else blit(e->texture, e->x, e->y); //player
+    }
 }

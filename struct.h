@@ -11,14 +11,14 @@ struct App {
     SDL_Renderer* renderer;
     SDL_Window* window;
     Delegate delegate;
-    int keyboard[MAX_KEYBOARD_KEYS];
+    int keyboard[MAX_KEYBOARD_KEYS]; // array of keyboard keys
 
     App() : renderer(nullptr), window(nullptr), keyboard{} {}
 };
 
 struct Entity {
     float x, y, dx, dy;
-    int w, h, health, reload;
+    int w, h, health, reload, side;
     SDL_Texture* texture;
     Entity* next;
 
@@ -46,12 +46,15 @@ void doPlayer(void);
 void doBullets(void);
 void fireBullet(void);
 
-void drawPlayer(void);
-void drawBullets(void);
 
-void drawFighters(void);
+
+
 void doFighters(void);
 void spawnEnemies(void);
+void resetStage(void);
+void doEnemies(void);
+void fireAlienBullet(Entity* e);
+void clipPlayer(void);
 
 
 
