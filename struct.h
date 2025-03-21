@@ -1,0 +1,58 @@
+#pragma once
+#include "defs.h"
+
+struct Delegate {
+    void (*logic)(void);
+    void (*draw)(void);
+
+    Delegate() : logic(nullptr), draw(nullptr) {}
+};
+
+struct App {
+    SDL_Renderer* renderer;
+    SDL_Window* window;
+    Delegate delegate;
+    int keyboard[MAX_KEYBOARD_KEYS];
+
+    App() : renderer(nullptr), window(nullptr), keyboard{} {}
+};
+
+struct Entity {
+    float x, y, dx, dy;
+    int w, h, health, reload, side;
+    SDL_Texture* texture;
+    Entity* next;
+
+    Entity() : x(0), y(0), dx(0), dy(0), w(0), h(0), health(1), reload(0), side(0), texture(nullptr), next(nullptr) {}
+};
+
+struct Stage {
+    Entity fighterHead;
+    Entity* fighterTail;
+    Entity bulletHead;
+    Entity* bulletTail;
+
+    Stage() : fighterTail(&fighterHead), bulletTail(&bulletHead) {}
+};
+
+void initPlayer();
+void initSDL(void);
+void initStage(void);
+
+void logic(void);
+void draw(void);
+void doPlayer(void);
+void doBullets(void);
+void fireBullet(void);
+
+void drawPlayer(void);
+void drawBullets(void);
+
+void drawFighters(void);
+void doFighters(void);
+void spawnEnemies(void);
+
+int bulletHitFighter(Entity* b);
+void doEnemies(void);
+void fireAlienBullet(Entity* e);
+void clipPlayer(void);

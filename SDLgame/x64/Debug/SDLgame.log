@@ -1,0 +1,18 @@
+﻿  struct.cpp
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame_meoluoi3\struct.cpp(222,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame_meoluoi3\struct.cpp(222,37): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame_meoluoi3\struct.cpp(231,37): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame_meoluoi3\struct.cpp(231,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame_meoluoi3\struct.cpp(245,36): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame_meoluoi3\struct.cpp(245,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame_meoluoi3\struct.cpp(312,27): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame_meoluoi3\struct.cpp(318,21): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame_meoluoi3\struct.cpp(343,80): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame_meoluoi3\struct.cpp(343,74): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame_meoluoi3\struct.cpp(343,54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame_meoluoi3\struct.cpp(343,25): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame_meoluoi3\struct.cpp(358,76): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame_meoluoi3\struct.cpp(358,70): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame_meoluoi3\struct.cpp(358,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame_meoluoi3\struct.cpp(358,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  SDLgame.vcxproj -> C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame_meoluoi3\x64\Debug\SDLgame.exe
