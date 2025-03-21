@@ -1,6 +1,26 @@
 #pragma once
 #include "defs.h"
 
+struct Explosion {
+    float x;
+    float y;
+    float dx;
+    float dy;
+    int r, g, b, a;
+    Explosion* next;
+};
+
+struct Debris {
+    float x;
+    float y;
+    float dx;
+    float dy;
+    SDL_Rect rect;
+    SDL_Texture* texture;
+    int life;
+    Debris* next;
+};
+
 struct Delegate {
     void (*logic)(void);
     void (*draw)(void);
@@ -31,28 +51,42 @@ struct Stage {
     Entity* fighterTail;
     Entity bulletHead;
     Entity* bulletTail;
-
+    Explosion explosionHead, * explosionTail;
+    Debris debrisHead, * debrisTail;
     Stage() : fighterTail(&fighterHead), bulletTail(&bulletHead) {}
+};
+
+struct Star {
+    int x;
+    int y;
+    int speed;
 };
 
 void initPlayer();
 void initSDL(void);
 void initStage(void);
-
 void logic(void);
 void draw(void);
 void doPlayer(void);
 void doBullets(void);
 void fireBullet(void);
-
 void drawPlayer(void);
 void drawBullets(void);
-
 void drawFighters(void);
 void doFighters(void);
 void spawnEnemies(void);
-
 int bulletHitFighter(Entity* b);
 void doEnemies(void);
 void fireAlienBullet(Entity* e);
 void clipPlayer(void);
+void initStarfield(void);
+void doBackground(void);
+void doStarfield(void);
+void doExplosions(void);
+void doDebris(void);
+void addExplosions(int x, int y, int num);
+void addDebris(Entity* e);
+void drawBackground(void);
+void drawStarfield(void);
+void drawDebris(void);
+void drawExplosions(void);

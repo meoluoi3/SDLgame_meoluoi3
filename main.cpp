@@ -11,6 +11,7 @@ App app;
 Entity* player;
 Entity bullet;
 Stage stage;
+Star stars[MAX_STARS];
 
 
 int main(int argc, char* argv[]) {
