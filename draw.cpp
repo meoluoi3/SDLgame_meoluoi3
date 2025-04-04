@@ -107,7 +107,7 @@ void drawStarfield(void)
 
     for (i = 0; i < MAX_STARS; i++)
     {
-        c = (rand() * stars[i].speed)%255;
+        c = 32*stars[i].speed;
 
         SDL_SetRenderDrawColor(app.renderer, c, c, c, 255);
 

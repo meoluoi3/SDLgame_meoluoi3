@@ -135,3 +135,20 @@ void clipPlayer(void)
         }
     }
 }
+int bulletHitFighter(Entity* b)
+{
+    Entity* e;
+
+    for (e = stage.fighterHead.next; e != NULL; e = e->next)
+    {
+        if (e->side != b->side && collision(b->x, b->y, b->w, b->h, e->x, e->y, e->w, e->h))
+        {
+            b->health--;
+            e->health--;
+
+            return 1;
+        }
+    }
+
+    return 0;
+}

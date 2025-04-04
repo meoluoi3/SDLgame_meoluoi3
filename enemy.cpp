@@ -1,6 +1,7 @@
 #include "enemy.h"
 #include "struct.h"
 #include "bits/stdc++.h"
+#include "bullet.h"
 extern Stage stage;
 extern Entity* player;
 int enemySpawnTimer = 0;

@@ -1,5 +1,7 @@
 #include "player.h"
 #include "struct.h"
+#include "effect.h"
+#include "bullet.h"
 extern App app;
 extern Stage stage;
 extern Entity* player;

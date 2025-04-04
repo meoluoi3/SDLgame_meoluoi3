@@ -137,7 +137,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="bullet.cpp" />
     <ClCompile Include="draw.cpp" />
+    <ClCompile Include="effect.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
@@ -147,8 +149,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="allsource.h" />
+    <ClInclude Include="bullet.h" />
     <ClInclude Include="defs.h" />
     <ClInclude Include="draw.h" />
+    <ClInclude Include="effect.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="player.h" />

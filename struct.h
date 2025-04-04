@@ -68,22 +68,8 @@ void initSDL(void);
 void initStage(void);
 void logic(void);
 void draw(void);
-void doPlayer(void);
-void doBullets(void);
-void fireBullet(void);
-void drawPlayer(void);
 
-void doFighters(void);
 
-int bulletHitFighter(Entity* b);
-
-void fireAlienBullet(Entity* e);
 void clipPlayer(void);
 void initStarfield(void);
-void doBackground(void);
-void doStarfield(void);
-void doExplosions(void);
-void doDebris(void);
-void addExplosions(int x, int y, int num);
-void addDebris(Entity* e);
 
