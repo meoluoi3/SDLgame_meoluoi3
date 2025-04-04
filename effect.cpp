@@ -10,6 +10,7 @@ extern int backgroundX;
 
 void doBackground(void)
 {
+    
     if (--backgroundX < -SCREEN_WIDTH)
     {
         backgroundX = 0;

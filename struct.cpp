@@ -1,5 +1,6 @@
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 #include "struct.h"
 #include <stdio.h>
 #include "defs.h"
@@ -55,6 +56,13 @@ void initSDL(void) // Initialize SDL
         SDL_Log("Failed to create renderer: %s\n", SDL_GetError());
         exit(1);
     }
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) == -1)
+    {
+        printf("Couldn't initialize SDL Mixer\n");
+        exit(1);
+    }
+
+    Mix_AllocateChannels(MAX_SND_CHANNELS);
     SDL_ShowCursor(0);
 }
 void initStage(void) // Initialize the stage
