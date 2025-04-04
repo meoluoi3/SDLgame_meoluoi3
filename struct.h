@@ -1,5 +1,6 @@
 #pragma once
 #include "defs.h"
+#include "SDL.h"
 
 struct Explosion {
     float x;
@@ -53,7 +54,7 @@ struct Stage {
     Entity* bulletTail;
     Explosion explosionHead, * explosionTail;
     Debris debrisHead, * debrisTail;
-    Stage() : fighterTail(&fighterHead), bulletTail(&bulletHead) {}
+    //Stage() : fighterTail(&fighterHead), bulletTail(&bulletHead) {}
 };
 
 struct Star {
@@ -71,12 +72,11 @@ void doPlayer(void);
 void doBullets(void);
 void fireBullet(void);
 void drawPlayer(void);
-void drawBullets(void);
-void drawFighters(void);
+
 void doFighters(void);
-void spawnEnemies(void);
+
 int bulletHitFighter(Entity* b);
-void doEnemies(void);
+
 void fireAlienBullet(Entity* e);
 void clipPlayer(void);
 void initStarfield(void);
@@ -86,7 +86,4 @@ void doExplosions(void);
 void doDebris(void);
 void addExplosions(int x, int y, int num);
 void addDebris(Entity* e);
-void drawBackground(void);
-void drawStarfield(void);
-void drawDebris(void);
-void drawExplosions(void);
+

@@ -6,3 +6,10 @@ SDL_Texture* loadTexture(const char* filename);
 
 void blit(SDL_Texture* texture, int x, int y);
 void blitRect(SDL_Texture* texture, SDL_Rect* src, int x, int y);
+
+void drawBackground(void);
+void drawStarfield(void);
+void drawDebris(void);
+void drawExplosions(void);
+void drawBullets(void);
+void drawFighters(void);

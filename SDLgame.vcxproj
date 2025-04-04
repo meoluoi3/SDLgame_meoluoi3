@@ -138,8 +138,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="draw.cpp" />
+    <ClCompile Include="enemy.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="player.cpp" />
     <ClCompile Include="stage.cpp" />
     <ClCompile Include="struct.cpp" />
   </ItemGroup>
@@ -147,7 +149,9 @@
     <ClInclude Include="allsource.h" />
     <ClInclude Include="defs.h" />
     <ClInclude Include="draw.h" />
+    <ClInclude Include="enemy.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="player.h" />
     <ClInclude Include="stage.h" />
     <ClInclude Include="struct.h" />
   </ItemGroup>

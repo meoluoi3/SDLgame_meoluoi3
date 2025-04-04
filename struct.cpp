@@ -6,6 +6,7 @@
 #include "draw.h"
 #include "stage.h"
 #include "bits/stdc++.h"
+#include "enemy.h"
 extern App app;
 extern Stage stage;
 extern Entity* player;
@@ -15,9 +16,9 @@ SDL_Texture* enemyTexture = NULL;
 SDL_Texture* alienBullet = NULL;
 SDL_Texture* background = NULL;
 SDL_Texture* explosionTexture = NULL;
-int enemySpawnTimer = 0;
-int stageResetTimer{};
 int backgroundX{};
+int stageResetTimer{};
+
 
 void initSDL(void) // Initialize SDL
 {
@@ -69,7 +70,7 @@ void initStage(void) // Initialize the stage
     stage.debrisTail = &stage.debrisHead;
 
     initPlayer();
-
+    initStarfield();
     bulletTexture = loadTexture("img/bullet_klee.png");
     enemyTexture = loadTexture("img/enemy.png");
     alienBullet = loadTexture("img/alienBullet.png");
@@ -110,11 +111,7 @@ void initPlayer()
      clipPlayer();
      doExplosions();
      doDebris();
-     if (player == NULL)
-     {
-         printf("Player is NULL in logic()! Reset timer: %d\n", stageResetTimer);
-     }
-
+    
      if (player == NULL && --stageResetTimer <= 0)
      {
          printf("Calling resetStage()...\n");
@@ -130,46 +127,9 @@ void initPlayer()
      drawDebris();
      drawExplosions();
  }
- void doPlayer(void)
-{
-     if (player != NULL)
-     {
-         player->dx = player->dy = 0;
 
-         if (player->reload > 0)
-         {
-             player->reload--;
-         }
+  
 
-         if (app.keyboard[SDL_SCANCODE_UP])
-         {
-             player->dy = -PLAYER_SPEED;
-         }
-
-         if (app.keyboard[SDL_SCANCODE_DOWN])
-         {
-             player->dy = PLAYER_SPEED;
-         }
-
-         if (app.keyboard[SDL_SCANCODE_LEFT])
-         {
-             player->dx = -PLAYER_SPEED;
-         }
-
-         if (app.keyboard[SDL_SCANCODE_RIGHT])
-         {
-             player->dx = PLAYER_SPEED;
-         }
-
-         if (app.keyboard[SDL_SCANCODE_LCTRL] && player->reload == 0)
-         {
-             fireBullet();
-         }
-     }
-     /*player->x += player->dx;
-     player->y += player->dy;*/
-
-}   
  void fireBullet(void)
     {
         Entity* bullet = new Entity;
@@ -221,106 +181,9 @@ void initPlayer()
             prev = b;
         }
     }
-void drawPlayer(void)
-    {
-        blit(player->texture, player->x, player->y);
-    }
-void drawBullets(void)
-    {
-        Entity* b;
 
-        for (b = stage.bulletHead.next; b != NULL; b = b->next)
-        {
-            blit(b->texture, b->x, b->y);
-        }
-    }
-void drawFighters(void) //drawing player and enemies into the game
-    {
-    Entity* e;
-   
-    
 
-        for (e = stage.fighterHead.next; e != NULL; e = e->next)
-        {
-            
 
-           blit(e->texture, e->x, e->y); // enemies
-          
-        }
-    }
-void doFighters(void)
-{
-    Entity* e, * prev;
-
-    prev = &stage.fighterHead;
-
-    for (e = stage.fighterHead.next; e != NULL; e = e->next)
-    {
-        e->x += e->dx;
-        e->y += e->dy;
-
-        if (e != player && e->x < -e->w)
-        {
-            e->health = 0;
-        }
-
-        if (e->health == 0)
-        {
-            
-            if (e == player)
-            {
-               
-                player = NULL;
-            }
-
-            if (e == stage.fighterTail)
-            {
-                stage.fighterTail = prev;
-            }
-
-            prev->next = e->next;
-            delete e;
-            e = prev;
-        }
-
-        prev = e;
-    }
-}
-void doEnemies(void)
-{
-    Entity* e;
-
-    for (e = stage.fighterHead.next; e != NULL; e = e->next)
-    {
-        if (e != player && player != NULL && --e->reload <= 0)
-        {
-            fireAlienBullet(e);
-        }
-    }
-}
-void spawnEnemies(void)
-{
-    if (--enemySpawnTimer <= 0)
-    {
-        Entity* enemy = new Entity;
-        memset(enemy, 0, sizeof(Entity));  // Ensures all fields, including `next`, are set to 0
-
-        enemy->next = NULL;  // Explicitly set to NULL
-        stage.fighterTail->next = enemy;
-        stage.fighterTail = enemy;
-
-        enemy->x = SCREEN_WIDTH;
-        enemy->y = rand() % SCREEN_HEIGHT;
-        enemy->texture = enemyTexture;
-        enemy->side = SIDE_ALIEN;
-        enemy->health = rand() % 5;
-        SDL_QueryTexture(enemy->texture, NULL, NULL, &enemy->w, &enemy->h);
-
-        enemy->dx = -(2 + (rand() % 4));
-        enemySpawnTimer = 30 + (rand() % 60);
-        enemy->reload = FPS * (1 + (rand() % 3));
-    }
-}
 void fireAlienBullet(Entity* e)
 {
     Entity* bullet = new Entity;
@@ -422,7 +285,7 @@ void doExplosions(void)
         }
 
         prev = e;
-        printf("Explosions active: %d\n");
+        
     }
 }
 void doDebris(void)
@@ -436,7 +299,7 @@ void doDebris(void)
         d->x += d->dx;
         d->y += d->dy;
 
-        d->dy += 0.5;
+        d->dy += 0.2;
 
         if (--d->life <= 0)
         {
@@ -521,7 +384,7 @@ void addDebris(Entity* e)
             d->y = e->y + e->h / 2;
             d->dx = (rand() % 5) - (rand() % 5);
             d->dy = -(5 + (rand() % 12));
-            d->life = FPS * 2;
+            d->life = FPS * 3;
             d->texture = e->texture;
 
             d->rect.x = x;
@@ -530,58 +393,4 @@ void addDebris(Entity* e)
             d->rect.h = h;
         }
     }
-}
-void drawBackground(void)
-{
-    SDL_Rect dest;
-    int x;
-
-    for (x = backgroundX; x < SCREEN_WIDTH; x += SCREEN_WIDTH)
-    {
-        dest.x = x;
-        dest.y = 0;
-        dest.w = SCREEN_WIDTH;
-        dest.h = SCREEN_HEIGHT;
-
-        SDL_RenderCopy(app.renderer, background, NULL, &dest);
-    }
-}
-void drawStarfield(void)
-{
-    int i, c;
-
-    for (i = 0; i < MAX_STARS; i++)
-    {
-        c = 32 * stars[i].speed;
-
-        SDL_SetRenderDrawColor(app.renderer, c, c, c, 255);
-
-        SDL_RenderDrawLine(app.renderer, stars[i].x, stars[i].y, stars[i].x + 3, stars[i].y);
-    }
-}
-void drawDebris(void)
-{
-    Debris* d;
-
-    for (d = stage.debrisHead.next; d != NULL; d = d->next)
-    {
-        blitRect(d->texture, &d->rect, d->x, d->y);
-    }
-}
-void drawExplosions(void)
-{
-    Explosion* e;
-
-    SDL_SetRenderDrawBlendMode(app.renderer, SDL_BLENDMODE_ADD);
-    SDL_SetTextureBlendMode(explosionTexture, SDL_BLENDMODE_ADD);
-
-    for (e = stage.explosionHead.next; e != NULL; e = e->next)
-    {
-        SDL_SetTextureColorMod(explosionTexture, e->r, e->g, e->b);
-        SDL_SetTextureAlphaMod(explosionTexture, e->a);
-
-        blit(explosionTexture, e->x, e->y);
-    }
-
-    SDL_SetRenderDrawBlendMode(app.renderer, SDL_BLENDMODE_NONE);
 }

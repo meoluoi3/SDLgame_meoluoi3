@@ -1,2 +1,12 @@
-﻿  main.cpp
+﻿  draw.cpp
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\draw.cpp(64,44): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\draw.cpp(64,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\draw.cpp(72,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\draw.cpp(72,27): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\draw.cpp(85,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\draw.cpp(85,27): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\draw.cpp(123,47): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\draw.cpp(123,41): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\draw.cpp(138,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\ACER\source\repos\SDLgame_meoluoi3\draw.cpp(138,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   SDLgame.vcxproj -> C:\Users\ACER\source\repos\SDLgame_meoluoi3\x64\Debug\SDLgame.exe

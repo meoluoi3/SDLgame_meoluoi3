@@ -11,7 +11,7 @@ extern Stage stage;
 extern Entity* player;
 extern int enemySpawnTimer;
 extern int stageResetTimer;
-
+extern int backgroundX;
 void capFrameRate(long* then, float* remainder)
 {
     long wait, frameTime;
@@ -92,7 +92,7 @@ void resetStage(void)
     initStarfield();
 
     enemySpawnTimer = 0;
-    stageResetTimer = FPS * 3;
+    stageResetTimer = FPS * 3   ;
 }
 void calcSlope(int x1, int y1, int x2, int y2, float* dx, float* dy)
 {
