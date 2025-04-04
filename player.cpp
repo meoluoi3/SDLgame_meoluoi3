@@ -5,7 +5,7 @@
 extern App app;
 extern Stage stage;
 extern Entity* player;
-void doPlayer(void)
+void doPlayerMovement(void)
 {
     if (player != NULL)
     {
@@ -64,7 +64,7 @@ void doFighters(void)
 
         if (e->health == 0)
         {
-            addExplosions(e->x - e->w / 2, e->y - e->h / 2, 32);
+            addExplosions(e->x - e->w / 2, e->y - e->h / 2, 15);
             addDebris(e);
 
             if (e == player)

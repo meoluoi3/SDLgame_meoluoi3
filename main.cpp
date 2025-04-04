@@ -19,9 +19,7 @@ int main(int argc, char* argv[]) {
     float remainder;
 
     initSDL();
-    initStage();
-    //initPlayer();
-
+    initStage();    
 
     then = SDL_GetTicks();
     remainder = 0;

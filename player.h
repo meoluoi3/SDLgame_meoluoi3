@@ -1,3 +1,3 @@
 #pragma once
-void doPlayer(void);
+void doPlayerMovement(void);
 void doFighters(void);

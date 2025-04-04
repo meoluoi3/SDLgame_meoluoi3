@@ -116,7 +116,7 @@ void initStarfield(void)
  {
      doBackground();
      doStarfield();
-     doPlayer();
+     doPlayerMovement();
      doFighters();
      doBullets();
      spawnEnemies();
