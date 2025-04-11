@@ -62,7 +62,6 @@ void fireAlienBullet(Entity* e)
     Entity* bullet = new Entity;
 
 
-    memset(bullet, 0, sizeof(Entity));
     stage.bulletTail->next = bullet;
     stage.bulletTail = bullet;
 

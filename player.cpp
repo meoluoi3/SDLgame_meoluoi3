@@ -2,6 +2,8 @@
 #include "struct.h"
 #include "effect.h"
 #include "bullet.h"
+#include "struct.h"
+#include "sound.h"
 extern App app;
 extern Stage stage;
 extern Entity* player;
@@ -36,17 +38,17 @@ void doPlayerMovement(void)
             player->dx = PLAYER_SPEED;
         }
 
-        if (app.keyboard[SDL_SCANCODE_LCTRL] && player->reload == 0)
+        if (app.keyboard[SDL_SCANCODE_LCTRL] && player->reload <= 0)
         {
+            playSound(SND_PLAYER_FIRE, CH_PLAYER);
             fireBullet();
         }
     }
-    /*player->x += player->dx;
-    player->y += player->dy;*/
+    
 
 }
 
-void doFighters(void)
+void doFighters(void)   
 {
     Entity* e, * prev;
 
@@ -54,10 +56,12 @@ void doFighters(void)
 
     for (e = stage.fighterHead.next; e != NULL; e = e->next)
     {
-        e->x += e->dx;
-        e->y += e->dy;
+        
+            e->x += e->dx;
+            e->y += e->dy;
+        
 
-        if (e != player && e->x - e->w < 0)
+        if (e != player && e->x + e->w < 0)
         {
             e->health = 0;
         }

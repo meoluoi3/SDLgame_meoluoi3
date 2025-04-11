@@ -1,5 +1,6 @@
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 #include <iostream>
 #include "struct.h"
 #include "input.h"
@@ -12,9 +13,11 @@ Entity* player;
 Entity bullet;
 Stage stage;
 Star stars[MAX_STARS];
-
+Mix_Chunk* sounds[SND_MAX];
+Mix_Music* music;
 
 int main(int argc, char* argv[]) {
+    srand(static_cast<unsigned>(time(0)));
     long then;
     float remainder;
 
@@ -24,7 +27,7 @@ int main(int argc, char* argv[]) {
     then = SDL_GetTicks();
     remainder = 0;
 
-    while (true) {
+    while (true) { 
        
         prepareScene();
         doInput();

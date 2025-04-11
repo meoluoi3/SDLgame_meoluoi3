@@ -11,10 +11,12 @@
 #include "effect.h"
 #include "player.h"
 #include "bullet.h"
+#include "sound.h"
 extern App app;
 extern Stage stage;
 extern Entity* player;
 extern Star stars[MAX_STARS];
+
 SDL_Texture* bulletTexture = NULL;
 SDL_Texture* enemyTexture = NULL;
 SDL_Texture* alienBullet = NULL;
@@ -80,8 +82,10 @@ void initStage(void) // Initialize the stage
     stage.explosionTail = &stage.explosionHead;
     stage.debrisTail = &stage.debrisHead;
 
-    initPlayer();
+   //initPlayer();//already initialize player in resetStage
     initStarfield();
+    resetStage();
+    initSounds();
     bulletTexture = loadTexture("img/bullet_klee.png");
     enemyTexture = loadTexture("img/enemy.png");
     alienBullet = loadTexture("img/alienBullet.png");
@@ -91,18 +95,14 @@ void initStage(void) // Initialize the stage
 }
 void initPlayer()
 {
-    player = new Entity;
-  
-
-    memset(player, 0, sizeof(Entity));  // Ensures all fields are initialized
-
+    player = new Entity();
     player->next = NULL;  // Ensure proper termination
 
     stage.fighterTail->next = player;
     stage.fighterTail = player;
 
-    player->x = 100;
-    player->y = 100;
+    player->x = rand()%100+1;
+    player->y = rand()%(SCREEN_HEIGHT-player->h);
     player->side = SIDE_PLAYER;
     player->health = 3; 
     player->texture = loadTexture("img/4.png");
@@ -120,6 +120,10 @@ void initStarfield(void)
         stars[i].speed = 1 + rand() % 8;
     }
 }
+
+
+
+
  void logic(void)
  {
      doBackground();

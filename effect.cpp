@@ -50,7 +50,7 @@ void doExplosions(void)
             }
 
             prev->next = e->next;
-            free(e);
+            delete e;
             e = prev;
         }
 
@@ -66,13 +66,12 @@ void addExplosions(int x, int y, int num)
 
     for (i = 0; i < num; i++)
     {
-        e = new Explosion;
-        memset(e, 0, sizeof(Explosion));
+        e = new Explosion();
         stage.explosionTail->next = e;
         stage.explosionTail = e;
 
-        e->x = x + (rand() % 32) - (rand() % 32);
-        e->y = y + (rand() % 32) - (rand() % 32);
+        e->x = x + (rand() % 32)+30;// -(rand() % 32);
+        e->y = y + (rand() % 32)+30;// -(rand() % 32);
         e->dx = (rand() % 10) - (rand() % 10);
         e->dy = (rand() % 10) - (rand() % 10);
 
@@ -116,9 +115,14 @@ void doDebris(void)
         d->x += d->dx;
         d->y += d->dy;
 
-        d->dy += 0.2;
+        
+        d->life--;
+        
+        
 
-        if (--d->life <= 0)
+        d->rect.w --;
+        d->rect.h --;
+        if (d->life <= 0 or (d->rect.w == 0 and d->rect.h == 0))
         {
             if (d == stage.debrisTail)
             {
@@ -126,10 +130,11 @@ void doDebris(void)
             }
 
             prev->next = d->next;
-            free(d);
+            
+            delete d;
             d = prev;
         }
-
+        
         prev = d;
     }
 }
@@ -138,22 +143,26 @@ void addDebris(Entity* e)
     Debris* d;
     int x, y, w, h;
 
-    w = e->w / 2;
-    h = e->h / 2;
+    w = e->w / (rand() % 5 + 1);
+    h = e->h / (rand() % 5 + 1);
 
-    for (y = 0; y <= h; y += h)
+    for (y = 0; y < e->h; y += h)
     {
-        for (x = 0; x <= w; x += w)
+        for (x = 0; x < e->w; x += w)
         {
-            d = new Debris;
-            memset(d, 0, sizeof(Debris));
+            d = new Debris();
             stage.debrisTail->next = d;
             stage.debrisTail = d;
 
+            w = rand() % (e->w / 5) + 1;
+            h = rand() % (e->h / 5) + 1;
+
             d->x = e->x + e->w / 2;
             d->y = e->y + e->h / 2;
-            d->dx = (rand() % 5) - (rand() % 5);
-            d->dy = -(5 + (rand() % 12));
+
+            d->dx = (rand() % 20) - (rand() % 20); // small horizontal movement
+            d->dy = (rand() % 20) - (rand() % 20);        // flies upward
+
             d->life = FPS * 3;
             d->texture = e->texture;
 
@@ -164,3 +173,4 @@ void addDebris(Entity* e)
         }
     }
 }
+    

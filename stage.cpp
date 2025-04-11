@@ -5,6 +5,8 @@
 #include "stage.h"
 #include "bits/stdc++.h"
 #include "struct.h"
+#include "sound.h"
+
 using namespace std;
 extern App app;
 extern Stage stage;
@@ -143,6 +145,14 @@ int bulletHitFighter(Entity* b)
     {
         if (e->side != b->side && collision(b->x, b->y, b->w, b->h, e->x, e->y, e->w, e->h))
         {
+            if (e == player)
+            {
+                playSound(SND_PLAYER_DIE, CH_PLAYER);
+            }
+            else
+            {
+                playSound(SND_ALIEN_DIE, CH_ANY);
+            }
             b->health--;
             e->health--;
 

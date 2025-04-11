@@ -20,6 +20,7 @@ public:
     int life;
     Debris* next;
 
+
     Debris() : x(0), y(0), dx(0), dy(0), texture(nullptr), life(0), next(nullptr) {
         rect = { 0, 0, 0, 0 };
     }
@@ -76,6 +77,7 @@ public:
     Star() : x(0), y(0), speed(0) {}
 };
 
+
 void initPlayer();
 void initSDL(void);
 void initStage(void);
@@ -83,3 +85,4 @@ void logic(void);
 void draw(void);
 void clipPlayer(void);
 void initStarfield(void);
+

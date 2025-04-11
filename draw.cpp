@@ -75,15 +75,10 @@ void drawBullets(void)
 void drawFighters(void) //drawing player and enemies into the game
 {
     Entity* e;
-
-
-
     for (e = stage.fighterHead.next; e != NULL; e = e->next)
     {
-
-
+        
         blit(e->texture, e->x, e->y); // enemies
-
     }
 }
 void drawBackground(void)
@@ -120,9 +115,12 @@ void drawDebris(void)
 
     for (d = stage.debrisHead.next; d != NULL; d = d->next)
     {
+       
         blitRect(d->texture, &d->rect, d->x, d->y);
     }
 }
+
+
 void drawExplosions(void)
 {
     Explosion* e;
