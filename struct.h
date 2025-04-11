@@ -58,6 +58,7 @@ public:
 
 class Stage {
 public:
+    int score;
     Entity fighterHead;
     Entity* fighterTail;
     Entity bulletHead;
