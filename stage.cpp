@@ -89,7 +89,7 @@ void resetStage(void)
 
     // Reinitialize player
     initPlayer();
-
+   
 
     initStarfield();
 

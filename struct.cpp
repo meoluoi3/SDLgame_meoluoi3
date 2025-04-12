@@ -86,6 +86,7 @@ void initStage(void) // Initialize the stage
     initStarfield();
     resetStage();
     initSounds();
+    loadMusic("sound/backgroundsound.mp3");
     bulletTexture = loadTexture("img/bullet_klee.png");
     enemyTexture = loadTexture("img/enemy.png");
     alienBullet = loadTexture("img/alienBullet.png");

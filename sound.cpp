@@ -13,13 +13,13 @@ void initSounds(void)
 }
 void loadSounds(void)
 {
-    sounds[SND_PLAYER_FIRE] = Mix_LoadWAV("sound/beat.mp3");
-    sounds[SND_ALIEN_FIRE] = Mix_LoadWAV("sound/high.mp3");
+    sounds[SND_PLAYER_FIRE] = Mix_LoadWAV("sound/bulletsound.mp3");
+    sounds[SND_ALIEN_FIRE] = Mix_LoadWAV("sound/bulletsound.mp3");
     sounds[SND_PLAYER_DIE] = Mix_LoadWAV("sound/low.mp3");
     sounds[SND_ALIEN_DIE] = Mix_LoadWAV("sound/medium.mp3");
 
 }
-void loadMusic(char* filename)
+void loadMusic(const char* filename)
 {
     if (music != NULL)
     {

@@ -8,6 +8,7 @@
 #include "defs.h"
 #include "stage.h"
 #include "bits/stdc++.h"
+#include "sound.h"
 App app;
 Entity* player;
 Entity bullet;
@@ -18,12 +19,13 @@ Mix_Music* music;
 
 int main(int argc, char* argv[]) {
     srand(static_cast<unsigned>(time(0)));
-    long then;
-    float remainder;
+    long then{};
+    float remainder{};
 
     initSDL();
     initStage();    
 
+    playMusic(10);
     then = SDL_GetTicks();
     remainder = 0;
 

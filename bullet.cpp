@@ -8,15 +8,15 @@ extern SDL_Texture* bulletTexture;
 extern SDL_Texture* alienBullet;
 void fireBullet(void)
 {
-    Entity* bullet = new Entity;
+    Entity* bullet = new Entity();
 
-    memset(bullet, 0, sizeof(Entity));
+    
 
 
 
     bullet->x = player->x;
     bullet->y = player->y;
-    bullet->dx = PLAYER_BULLET_SPEED;
+    bullet->dx = PLAYER_BULLET_SPEED + player->dx/0.70;
     bullet->health = 1;
     bullet->texture = bulletTexture;
     SDL_QueryTexture(bullet->texture, NULL, NULL, &bullet->w, &bullet->h);
@@ -26,7 +26,7 @@ void fireBullet(void)
     stage.bulletTail->next = bullet;
     stage.bulletTail = bullet;
 
-    player->reload = 8;
+    player->reload = FPS*1;
 
 }
 void doBullets(void)

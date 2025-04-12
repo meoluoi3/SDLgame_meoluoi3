@@ -2,16 +2,18 @@
 #include "struct.h"
 #include "effect.h"
 #include "bullet.h"
-#include "struct.h"
 #include "sound.h"
+
 extern App app;
 extern Stage stage;
 extern Entity* player;
+
 void doPlayerMovement(void)
 {
-    if (player != NULL)
+    if (player != nullptr)
     {
-        player->dx = player->dy = 0;
+        player->dx = 0;
+        player->dy = 0;
 
         if (player->reload > 0)
         {
@@ -44,22 +46,17 @@ void doPlayerMovement(void)
             fireBullet();
         }
     }
-    
-
 }
 
-void doFighters(void)   
+void doFighters(void)
 {
-    Entity* e, * prev;
+    Entity* e;
+    Entity* prev = &stage.fighterHead;
 
-    prev = &stage.fighterHead;
-
-    for (e = stage.fighterHead.next; e != NULL; e = e->next)
+    for (e = stage.fighterHead.next; e != nullptr; e = e->next)
     {
-        
-            e->x += e->dx;
-            e->y += e->dy;
-        
+        e->x += e->dx;
+        e->y += e->dy;
 
         if (e != player && e->x + e->w < 0)
         {
@@ -73,8 +70,7 @@ void doFighters(void)
 
             if (e == player)
             {
-
-                player = NULL;
+                player = nullptr;
             }
 
             if (e == stage.fighterTail)
