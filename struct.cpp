@@ -12,6 +12,7 @@
 #include "player.h"
 #include "bullet.h"
 #include "sound.h"
+
 extern App app;
 extern Stage stage;
 extern Entity* player;
@@ -26,13 +27,11 @@ int backgroundX{};
 int stageResetTimer{};
 
 
-void initSDL(void) // Initialize SDL
+void initSDL() // Initialize SDL
 {
-
     int rendererFlags, windowFlags;
 
     rendererFlags = SDL_RENDERER_ACCELERATED;
-
     windowFlags = 0;
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -58,6 +57,7 @@ void initSDL(void) // Initialize SDL
         SDL_Log("Failed to create renderer: %s\n", SDL_GetError());
         exit(1);
     }
+
     if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) == -1)
     {
         printf("Couldn't initialize SDL Mixer\n");
@@ -65,11 +65,11 @@ void initSDL(void) // Initialize SDL
     }
 
     Mix_AllocateChannels(MAX_SND_CHANNELS);
-    SDL_ShowCursor(0);
+    SDL_ShowCursor(1);
 }
-void initStage(void) // Initialize the stage
+
+void initStage() // Initialize the stage
 {
-    
     app.delegate.logic = logic;
     app.delegate.draw = draw;
 
@@ -82,7 +82,7 @@ void initStage(void) // Initialize the stage
     stage.explosionTail = &stage.explosionHead;
     stage.debrisTail = &stage.debrisHead;
 
-   //initPlayer();//already initialize player in resetStage
+    //initPlayer(); // already initialize player in resetStage
     initStarfield();
     resetStage();
     initSounds();
@@ -94,6 +94,7 @@ void initStage(void) // Initialize the stage
     explosionTexture = loadTexture("img/explosion.png");
     //resetStage();
 }
+
 void initPlayer()
 {
     player = new Entity();
@@ -102,15 +103,15 @@ void initPlayer()
     stage.fighterTail->next = player;
     stage.fighterTail = player;
 
-    player->x = rand()%100+1;
-    player->y = rand()%(SCREEN_HEIGHT-player->h);
+    player->x = SCREEN_WIDTH/2 + rand() % 20 - rand() % 20;
+    player->y = SCREEN_HEIGHT/2 + rand() % 20 - rand() % 20;
     player->side = SIDE_PLAYER;
-    player->health = 3; 
+    player->health = 3;
     player->texture = loadTexture("img/4.png");
     SDL_QueryTexture(player->texture, NULL, NULL, &player->w, &player->h);
-   
 }
-void initStarfield(void)
+
+void initStarfield()
 {
     int i;
 
@@ -122,39 +123,35 @@ void initStarfield(void)
     }
 }
 
+void logic()
+{
+    doBackground();
+    doStarfield();
 
+    doPlayerMovement();
+    doFighters();
+    doBullets();
 
+    spawnEnemies();
+    doEnemies();
 
- void logic(void)
- {
-     doBackground();
-     doStarfield();
-     doPlayerMovement();
-     doFighters();
-     doBullets();
-     spawnEnemies();
-     doEnemies(); 
-     clipPlayer();
-     doExplosions();
-     doDebris();
-    
-     if (player == NULL && --stageResetTimer <= 0)
-     {
-         printf("Calling resetStage()...\n");
-         resetStage();
-     }
- }
- void draw(void)
- {
-     drawBackground();
-     drawStarfield();
-     drawFighters();
-     drawBullets();
-     drawDebris();
-     drawExplosions();
- }
+    clipPlayer();
+    doExplosions();
+    doDebris();
 
+    if (player == NULL && --stageResetTimer <= 0)
+    {
+        printf("Calling resetStage()...\n");
+        resetStage();
+    }
+}
 
-
-
-
+void draw()
+{
+    drawBackground();
+    drawStarfield();
+    drawFighters();
+    drawBullets();
+    drawDebris();
+    drawExplosions();
+}

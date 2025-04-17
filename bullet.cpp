@@ -2,34 +2,48 @@
 #include "struct.h"
 #include "bits/stdc++.h"
 #include "stage.h"
+
 extern Stage stage;
 extern Entity* player;
 extern SDL_Texture* bulletTexture;
 extern SDL_Texture* alienBullet;
-void fireBullet(void)
+
+void fireBullet()
 {
     Entity* bullet = new Entity();
+    int mouseX, mouseY;
 
-    
-
-
+    // Get mouse position
+    SDL_GetMouseState(&mouseX, &mouseY);
 
     bullet->x = player->x;
     bullet->y = player->y;
-    bullet->dx = PLAYER_BULLET_SPEED + player->dx/0.70;
-    bullet->health = 1;
-    bullet->texture = bulletTexture;
+
+    // Use calcSlope to calculate the direction of the bullet
+    float dx, dy;
+    calcSlope(mouseX, mouseY, player->x, player->y, &dx, &dy);
+
+    
+    bullet->dx = dx * PLAYER_BULLET_SPEED;
+    bullet->dy = dy * PLAYER_BULLET_SPEED;
+
+    bullet->health = 1;  // Bullet health (or lifetime)
+    bullet->texture = bulletTexture;  
     SDL_QueryTexture(bullet->texture, NULL, NULL, &bullet->w, &bullet->h);
 
+    // Adjust bullet's vertical position to center it based on the player's height
     bullet->y += (player->h / 2) - (bullet->h / 2);
 
+    // Add the bullet to the stage's linked list of bullets
     stage.bulletTail->next = bullet;
     stage.bulletTail = bullet;
 
-    player->reload = FPS*1;
-
+    // Set player reload time
+    player->reload = FPS * 0.1;
 }
-void doBullets(void)
+
+
+void doBullets()
 {
     Entity* b, * prev;
 
@@ -40,10 +54,8 @@ void doBullets(void)
         b->x += b->dx;
         b->y += b->dy;
 
-
         if (bulletHitFighter(b) || b->x < -b->w || b->y < -b->h || b->x > SCREEN_WIDTH || b->y > SCREEN_HEIGHT)
         {
-
             if (b == stage.bulletTail)
             {
                 stage.bulletTail = prev;
@@ -57,10 +69,10 @@ void doBullets(void)
         prev = b;
     }
 }
+
 void fireAlienBullet(Entity* e)
 {
     Entity* bullet = new Entity;
-
 
     stage.bulletTail->next = bullet;
     stage.bulletTail = bullet;
@@ -81,5 +93,4 @@ void fireAlienBullet(Entity* e)
     bullet->dy *= ALIEN_BULLET_SPEED;
 
     e->reload = (rand() % FPS * 2);
-
 }

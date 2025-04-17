@@ -2,6 +2,7 @@
 #include "defs.h"
 #include "SDL.h"
 #include "bits/stdc++.h"
+#include "defs.h"
 
 class Explosion {
 public:
@@ -28,8 +29,8 @@ public:
 
 class Delegate {
 public:
-    void (*logic)(void);
-    void (*draw)(void);
+    void (*logic)();
+    void (*draw)();
 
     Delegate() : logic(nullptr), draw(nullptr) {}
 };
@@ -40,11 +41,14 @@ public:
     SDL_Window* window;
     Delegate delegate;
     int keyboard[MAX_KEYBOARD_KEYS];
+    int mouseButtons[MAX_MOUSE_BUTTONS];
 
-    App() : renderer(nullptr), window(nullptr) {
+    App()
+        : renderer(nullptr), window(nullptr) {
         memset(keyboard, 0, sizeof(keyboard));
     }
 };
+
 
 class Entity {
 public:
@@ -80,10 +84,10 @@ public:
 
 
 void initPlayer();
-void initSDL(void);
-void initStage(void);
-void logic(void);
-void draw(void);
-void clipPlayer(void);
-void initStarfield(void);
+void initSDL();
+void initStage();
+void logic();
+void draw();
+void clipPlayer();
+void initStarfield();
 

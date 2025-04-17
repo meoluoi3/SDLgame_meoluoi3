@@ -1,26 +1,24 @@
 #include "effect.h"
 #include "struct.h"
 #include "bits/stdc++.h"
+
 extern App app;
 extern Stage stage;
 extern Entity* player;
-extern Star stars[MAX_STARS]; 
+extern Star stars[MAX_STARS];
 extern int backgroundX;
 
-
-void doBackground(void)
+void doBackground()
 {
-    
     if (--backgroundX < -SCREEN_WIDTH)
     {
         backgroundX = 0;
     }
 }
-void doStarfield(void)
-{
-    int i;
 
-    for (i = 0; i < MAX_STARS; i++)
+void doStarfield()
+{
+    for (int i = 0; i < MAX_STARS; i++)
     {
         stars[i].x -= stars[i].speed;
 
@@ -30,12 +28,11 @@ void doStarfield(void)
         }
     }
 }
-void doExplosions(void)
+
+void doExplosions()
 {
-
-    Explosion* e, * prev;
-
-    prev = &stage.explosionHead;
+    Explosion* e;
+    Explosion* prev = &stage.explosionHead;
 
     for (e = stage.explosionHead.next; e != NULL; e = e->next)
     {
@@ -55,23 +52,22 @@ void doExplosions(void)
         }
 
         prev = e;
-
     }
 }
+
 void addExplosions(int x, int y, int num)
 {
     printf("Explosion added\n");
-    Explosion* e;
-    int i;
 
-    for (i = 0; i < num; i++)
+    for (int i = 0; i < num; i++)
     {
-        e = new Explosion();
+        Explosion* e = new Explosion();
+
         stage.explosionTail->next = e;
         stage.explosionTail = e;
 
-        e->x = x + (rand() % 32)+30;// -(rand() % 32);
-        e->y = y + (rand() % 32)+30;// -(rand() % 32);
+        e->x = x + (rand() % 32) + 30;
+        e->y = y + (rand() % 32) + 30;
         e->dx = (rand() % 10) - (rand() % 10);
         e->dy = (rand() % 10) - (rand() % 10);
 
@@ -83,17 +79,14 @@ void addExplosions(int x, int y, int num)
         case 0:
             e->r = 255;
             break;
-
         case 1:
             e->r = 255;
             e->g = 128;
             break;
-
         case 2:
             e->r = 255;
             e->g = 255;
             break;
-
         default:
             e->r = 255;
             e->g = 255;
@@ -104,25 +97,23 @@ void addExplosions(int x, int y, int num)
         e->a = rand() % FPS * 3;
     }
 }
-void doDebris(void)
-{
-    Debris* d, * prev;
 
-    prev = &stage.debrisHead;
+void doDebris()
+{
+    Debris* d;
+    Debris* prev = &stage.debrisHead;
 
     for (d = stage.debrisHead.next; d != NULL; d = d->next)
     {
         d->x += d->dx;
         d->y += d->dy;
 
-        
         d->life--;
-        
-        
 
-        d->rect.w --;
-        d->rect.h --;
-        if (d->life <= 0 or (d->rect.w == 0 and d->rect.h == 0))
+        d->rect.w--;
+        d->rect.h--;
+
+        if (d->life <= 0 || (d->rect.w == 0 && d->rect.h == 0))
         {
             if (d == stage.debrisTail)
             {
@@ -130,27 +121,24 @@ void doDebris(void)
             }
 
             prev->next = d->next;
-            
             delete d;
             d = prev;
         }
-        
+
         prev = d;
     }
 }
+
 void addDebris(Entity* e)
 {
-    Debris* d;
-    int x, y, w, h;
+    int w = e->w / (rand() % 5 + 1);
+    int h = e->h / (rand() % 5 + 1);
 
-    w = e->w / (rand() % 5 + 1);
-    h = e->h / (rand() % 5 + 1);
-
-    for (y = 0; y < e->h; y += h)
+    for (int y = 0; y < e->h; y += h)
     {
-        for (x = 0; x < e->w; x += w)
+        for (int x = 0; x < e->w; x += w)
         {
-            d = new Debris();
+            Debris* d = new Debris();
             stage.debrisTail->next = d;
             stage.debrisTail = d;
 
@@ -160,8 +148,8 @@ void addDebris(Entity* e)
             d->x = e->x + e->w / 2;
             d->y = e->y + e->h / 2;
 
-            d->dx = (rand() % 20) - (rand() % 20); // small horizontal movement
-            d->dy = (rand() % 20) - (rand() % 20);        // flies upward
+            d->dx = (rand() % 20) - (rand() % 20);
+            d->dy = (rand() % 20) - (rand() % 20);
 
             d->life = FPS * 3;
             d->texture = e->texture;
@@ -173,4 +161,3 @@ void addDebris(Entity* e)
         }
     }
 }
-    

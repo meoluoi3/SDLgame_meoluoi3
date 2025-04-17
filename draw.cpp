@@ -2,7 +2,8 @@
 #include "SDL_image.h"
 #include "draw.h"
 #include "struct.h"
-#include"bits/stdc++.h"
+#include "bits/stdc++.h"
+
 extern App app;
 extern Stage stage;
 extern Entity* player;
@@ -10,18 +11,19 @@ extern SDL_Texture* background;
 extern Star stars[MAX_STARS];
 extern SDL_Texture* explosionTexture;
 extern int backgroundX;
-void prepareScene(void) // Clear the window and make it all blue
+
+void prepareScene()
 {
     SDL_SetRenderDrawColor(app.renderer, 96, 128, 255, 255);
     SDL_RenderClear(app.renderer);
 }
 
-void presentScene(void) // Draw everything to the window
+void presentScene()
 {
-   SDL_RenderPresent(app.renderer);
+    SDL_RenderPresent(app.renderer);
 }
 
-SDL_Texture* loadTexture(const char* filename) // Load an image from file
+SDL_Texture* loadTexture(const char* filename)
 {
     SDL_Texture* texture = IMG_LoadTexture(app.renderer, filename);
     if (!texture) {
@@ -30,22 +32,21 @@ SDL_Texture* loadTexture(const char* filename) // Load an image from file
     return texture;
 }
 
-
-void blit(SDL_Texture* texture, int x, int y) //draw an image to the screen (specific coordinate)
+void blit(SDL_Texture* texture, int x, int y)
 {
-	SDL_Rect dest;
+    SDL_Rect dest;
     if (!texture) {
         SDL_Log("blit() Error: Attempted to render a NULL texture");
         return;
     }
     dest.x = x;
     dest.y = y;
-    
-    SDL_QueryTexture(texture, NULL, NULL, &dest.w, &dest.h);
 
+    SDL_QueryTexture(texture, NULL, NULL, &dest.w, &dest.h);
 
     SDL_RenderCopy(app.renderer, texture, NULL, &dest);
 }
+
 void blitRect(SDL_Texture* texture, SDL_Rect* src, int x, int y)
 {
     SDL_Rect dest;
@@ -58,30 +59,30 @@ void blitRect(SDL_Texture* texture, SDL_Rect* src, int x, int y)
     SDL_RenderCopy(app.renderer, texture, src, &dest);
 }
 
-
-void drawPlayer(void)
+void drawPlayer()
 {
     blit(player->texture, player->x, player->y);
 }
-void drawBullets(void)
+
+void drawBullets()
 {
     Entity* b;
-
     for (b = stage.bulletHead.next; b != NULL; b = b->next)
     {
         blit(b->texture, b->x, b->y);
     }
 }
-void drawFighters(void) //drawing player and enemies into the game
+
+void drawFighters()
 {
     Entity* e;
     for (e = stage.fighterHead.next; e != NULL; e = e->next)
     {
-        
-        blit(e->texture, e->x, e->y); // enemies
+        blit(e->texture, e->x, e->y);
     }
 }
-void drawBackground(void)
+
+void drawBackground()
 {
     SDL_Rect dest;
     int x;
@@ -96,32 +97,31 @@ void drawBackground(void)
         SDL_RenderCopy(app.renderer, background, NULL, &dest);
     }
 }
-void drawStarfield(void)
+
+void drawStarfield()
 {
     int i, c;
 
     for (i = 0; i < MAX_STARS; i++)
     {
-        c = 32*stars[i].speed;
+        c = 32 * stars[i].speed;
 
         SDL_SetRenderDrawColor(app.renderer, c, c, c, 255);
-
         SDL_RenderDrawLine(app.renderer, stars[i].x, stars[i].y, stars[i].x + 3, stars[i].y);
     }
 }
-void drawDebris(void)
+
+void drawDebris()
 {
     Debris* d;
 
     for (d = stage.debrisHead.next; d != NULL; d = d->next)
     {
-       
         blitRect(d->texture, &d->rect, d->x, d->y);
     }
 }
 
-
-void drawExplosions(void)
+void drawExplosions()
 {
     Explosion* e;
 

@@ -1,7 +1,7 @@
 #pragma once
 #include "struct.h"
-void fireBullet(void);
-void doBullets(void);
+void fireBullet();
+void doBullets();
 void fireAlienBullet(Entity* e);
 
 

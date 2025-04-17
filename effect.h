@@ -1,9 +1,9 @@
 #pragma once
 #include "struct.h"
-void doBackground(void);
-void doStarfield(void);
-void doExplosions(void);
-void doDebris(void);
+void doBackground();
+void doStarfield();
+void doExplosions();
+void doDebris();
 void addExplosions(int x, int y, int num);
 void addDebris(Entity* e);
 

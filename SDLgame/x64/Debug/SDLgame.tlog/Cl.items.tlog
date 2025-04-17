@@ -1,9 +1,10 @@
-C:\Users\ACER\source\repos\SDLgame_meoluoi3\bullet.cpp;C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame\x64\Debug\bullet.obj
-C:\Users\ACER\source\repos\SDLgame_meoluoi3\draw.cpp;C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame\x64\Debug\draw.obj
-C:\Users\ACER\source\repos\SDLgame_meoluoi3\effect.cpp;C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame\x64\Debug\effect.obj
-C:\Users\ACER\source\repos\SDLgame_meoluoi3\enemy.cpp;C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame\x64\Debug\enemy.obj
-C:\Users\ACER\source\repos\SDLgame_meoluoi3\input.cpp;C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame\x64\Debug\input.obj
-C:\Users\ACER\source\repos\SDLgame_meoluoi3\main.cpp;C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame\x64\Debug\main.obj
-C:\Users\ACER\source\repos\SDLgame_meoluoi3\player.cpp;C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame\x64\Debug\player.obj
-C:\Users\ACER\source\repos\SDLgame_meoluoi3\stage.cpp;C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame\x64\Debug\stage.obj
-C:\Users\ACER\source\repos\SDLgame_meoluoi3\struct.cpp;C:\Users\ACER\source\repos\SDLgame_meoluoi3\SDLgame\x64\Debug\struct.obj
+I:\SDL Project\SDLgame_meoluoi3\bullet.cpp;I:\SDL Project\SDLgame_meoluoi3\SDLgame\x64\Debug\bullet.obj
+I:\SDL Project\SDLgame_meoluoi3\draw.cpp;I:\SDL Project\SDLgame_meoluoi3\SDLgame\x64\Debug\draw.obj
+I:\SDL Project\SDLgame_meoluoi3\effect.cpp;I:\SDL Project\SDLgame_meoluoi3\SDLgame\x64\Debug\effect.obj
+I:\SDL Project\SDLgame_meoluoi3\enemy.cpp;I:\SDL Project\SDLgame_meoluoi3\SDLgame\x64\Debug\enemy.obj
+I:\SDL Project\SDLgame_meoluoi3\input.cpp;I:\SDL Project\SDLgame_meoluoi3\SDLgame\x64\Debug\input.obj
+I:\SDL Project\SDLgame_meoluoi3\main.cpp;I:\SDL Project\SDLgame_meoluoi3\SDLgame\x64\Debug\main.obj
+I:\SDL Project\SDLgame_meoluoi3\player.cpp;I:\SDL Project\SDLgame_meoluoi3\SDLgame\x64\Debug\player.obj
+I:\SDL Project\SDLgame_meoluoi3\sound.cpp;I:\SDL Project\SDLgame_meoluoi3\SDLgame\x64\Debug\sound.obj
+I:\SDL Project\SDLgame_meoluoi3\stage.cpp;I:\SDL Project\SDLgame_meoluoi3\SDLgame\x64\Debug\stage.obj
+I:\SDL Project\SDLgame_meoluoi3\struct.cpp;I:\SDL Project\SDLgame_meoluoi3\SDLgame\x64\Debug\struct.obj

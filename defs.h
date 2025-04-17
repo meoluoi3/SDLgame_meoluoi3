@@ -1,15 +1,15 @@
 #ifndef DEFS
 #define DEFS
 
-#define SCREEN_WIDTH   1280
-#define SCREEN_HEIGHT  720
+#define SCREEN_WIDTH   1800
+#define SCREEN_HEIGHT  900
 #define PLAYER_SPEED  10
 #define PLAYER_BULLET_SPEED   16
 #define MAX_KEYBOARD_KEYS  350
 #define SIDE_PLAYER 0
 #define SIDE_ALIEN  1
 #define FPS 60
-
+#define MAX_MOUSE_BUTTONS 3 
 #define ALIEN_BULLET_SPEED    8
 #define MAX_STARS   500
 #define MAX_SND_CHANNELS 8

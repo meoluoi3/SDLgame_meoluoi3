@@ -7,112 +7,99 @@
 #include "struct.h"
 #include "sound.h"
 
+
 using namespace std;
+
 extern App app;
 extern Stage stage;
 extern Entity* player;
 extern int enemySpawnTimer;
 extern int stageResetTimer;
 extern int backgroundX;
+
 void capFrameRate(long* then, float* remainder)
 {
-    long wait, frameTime;
-
-    wait = 16 + *remainder;
-
+    long wait = 16 + *remainder;
     *remainder -= (int)*remainder;
 
-    frameTime = SDL_GetTicks() - *then;
-
+    long frameTime = SDL_GetTicks() - *then;
     wait -= frameTime;
 
-    if (wait < 1)
-    {
-        wait = 1;
-    }
+    if (wait < 1) wait = 1;
 
     SDL_Delay(wait);
-
     *remainder += 0.667;
-
     *then = SDL_GetTicks();
 }
+
 int collision(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2)
 {
-    return (max(x1, x2) < min(x1 + w1, x2 + w2)) && (max(y1, y2) < min(y1 + h1, y2 + h2));
+    return (max(x1, x2) < min(x1 + w1, x2 + w2)) &&
+        (max(y1, y2) < min(y1 + h1, y2 + h2));
 }
+
 void resetStage(void)
 {
+    // Free all entities
+    Entity* e;
     Explosion* ex;
     Debris* d;
 
-    Entity* e;
-
-    // Free all fighters
-    while (stage.fighterHead.next)
+    while ((e = stage.fighterHead.next))
     {
-        e = stage.fighterHead.next;
         stage.fighterHead.next = e->next;
         delete e;
     }
 
-    // Free all bullets
-    while (stage.bulletHead.next)
+    while ((e = stage.bulletHead.next))
     {
-        e = stage.bulletHead.next;
         stage.bulletHead.next = e->next;
         delete e;
     }
 
-    while (stage.explosionHead.next)
+    while ((ex = stage.explosionHead.next))
     {
-        ex = stage.explosionHead.next;
         stage.explosionHead.next = ex->next;
         delete ex;
     }
 
-    while (stage.debrisHead.next)
+    while ((d = stage.debrisHead.next))
     {
-        d = stage.debrisHead.next;
         stage.debrisHead.next = d->next;
         delete d;
     }
 
-    // Reset stage pointers without overwriting everything
+    // Reset pointers
     stage.fighterHead.next = NULL;
-    stage.bulletHead.next = NULL;
     stage.fighterTail = &stage.fighterHead;
+
+    stage.bulletHead.next = NULL;
     stage.bulletTail = &stage.bulletHead;
 
     stage.explosionTail = &stage.explosionHead;
     stage.debrisTail = &stage.debrisHead;
 
-    // Reinitialize player
     initPlayer();
-   
-
     initStarfield();
 
     enemySpawnTimer = 0;
-    stageResetTimer = FPS * 3   ;
+    stageResetTimer = FPS * 3;
 }
+
 void calcSlope(int x1, int y1, int x2, int y2, float* dx, float* dy)
 {
     int steps = max(abs(x1 - x2), abs(y1 - y2));
-
     if (steps == 0)
     {
         *dx = *dy = 0;
         return;
     }
 
-    *dx = (x1 - x2);
-    *dx /= steps;
-
-    *dy = (y1 - y2);
-    *dy /= steps;
+    *dx = (x1 - x2) / (float)steps;
+    *dy = (y1 - y2) / (float)steps;
 }
-void clipPlayer(void)
+
+void clipPlayer()
 {
     if (player != NULL)
     {
@@ -137,22 +124,23 @@ void clipPlayer(void)
         }
     }
 }
+
+
+
+
 int bulletHitFighter(Entity* b)
 {
-    Entity* e;
-
-    for (e = stage.fighterHead.next; e != NULL; e = e->next)
+    for (Entity* e = stage.fighterHead.next; e != NULL; e = e->next)
     {
-        if (e->side != b->side && collision(b->x, b->y, b->w, b->h, e->x, e->y, e->w, e->h))
+        if (e->side != b->side &&
+            collision(b->x, b->y, b->w, b->h, e->x, e->y, e->w, e->h))
         {
+            // Play sound based on target
             if (e == player)
-            {
                 playSound(SND_PLAYER_DIE, CH_PLAYER);
-            }
             else
-            {
                 playSound(SND_ALIEN_DIE, CH_ANY);
-            }
+
             b->health--;
             e->health--;
 
@@ -162,3 +150,27 @@ int bulletHitFighter(Entity* b)
 
     return 0;
 }
+
+int playerHitEnemy(Entity* player)
+{
+    for (Entity* e = stage.fighterHead.next; e != NULL; e = e->next)
+    {
+        if (e != player && e->side != player->side &&
+            collision(player->x, player->y, player->w, player->h, e->x, e->y, e->w, e->h))
+        {
+            // Play sound based on health and target
+            
+         playSound(SND_PLAYER_DIE, CH_PLAYER);
+            
+         playSound(SND_ALIEN_DIE, CH_ANY);
+
+   
+            // Return after handling the collision
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+

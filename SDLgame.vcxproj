@@ -144,6 +144,7 @@
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="sound.cpp" />
     <ClCompile Include="stage.cpp" />
     <ClCompile Include="struct.cpp" />
   </ItemGroup>
@@ -156,6 +157,7 @@
     <ClInclude Include="enemy.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="sound.h" />
     <ClInclude Include="stage.h" />
     <ClInclude Include="struct.h" />
   </ItemGroup>
