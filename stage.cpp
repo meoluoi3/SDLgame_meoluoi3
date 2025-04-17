@@ -155,6 +155,7 @@ int playerHitEnemy(Entity* player)
 {
     for (Entity* e = stage.fighterHead.next; e != NULL; e = e->next)
     {
+
         if (e != player && e->side != player->side &&
             collision(player->x, player->y, player->w, player->h, e->x, e->y, e->w, e->h))
         {
@@ -164,7 +165,8 @@ int playerHitEnemy(Entity* player)
             
          playSound(SND_ALIEN_DIE, CH_ANY);
 
-   
+         e->health--;
+         player->health--;
             // Return after handling the collision
             return 1;
         }

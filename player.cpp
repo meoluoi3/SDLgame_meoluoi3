@@ -65,8 +65,7 @@ void doFighters(void)
 
         if (player != nullptr && playerHitEnemy(player))
         {
-            e->health--;
-            player->health--;
+            
         }
         // Handle death 
         if (e->health <= 0)
