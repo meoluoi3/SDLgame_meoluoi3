@@ -29,7 +29,7 @@ void fireBullet()
 
     bullet->health = 1;  // Bullet health (or lifetime)
     bullet->texture = bulletTexture;  
-    SDL_QueryTexture(bullet->texture, NULL, NULL, &bullet->w, &bullet->h);
+    SDL_QueryTexture(bullet->texture, nullptr, nullptr, &bullet->w, &bullet->h);
 
     // Adjust bullet's vertical position to center it based on the player's height
     bullet->y += (player->h / 2) - (bullet->h / 2);
@@ -49,7 +49,7 @@ void doBullets()
 
     prev = &stage.bulletHead;
 
-    for (b = stage.bulletHead.next; b != NULL; b = b->next)
+    for (b = stage.bulletHead.next; b != nullptr; b = b->next)
     {
         b->x += b->dx;
         b->y += b->dy;
@@ -82,7 +82,7 @@ void fireAlienBullet(Entity* e)
     bullet->health = 1;
     bullet->texture = alienBullet;
     bullet->side = SIDE_ALIEN;
-    SDL_QueryTexture(bullet->texture, NULL, NULL, &bullet->w, &bullet->h);
+    SDL_QueryTexture(bullet->texture, nullptr, nullptr, &bullet->w, &bullet->h);
 
     bullet->x += (e->w / 2) - (bullet->w / 2);
     bullet->y += (e->h / 2) - (bullet->h / 2);

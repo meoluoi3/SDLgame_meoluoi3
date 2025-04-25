@@ -5,6 +5,7 @@
 #include "bits/stdc++.h"
 #include "stage.h"
 
+
 extern Stage stage;
 extern Entity* player;
 extern SDL_Texture* enemyTexture;
@@ -13,10 +14,10 @@ int enemySpawnTimer = 0;
 
 void doEnemies()
 {
-    for (Entity* e = stage.fighterHead.next; e != NULL; e = e->next)
+    for (Entity* e = stage.fighterHead.next; e != nullptr; e = e->next)
     {
 
-        if (e != player && player != NULL && --e->reload <= 0)
+        if (e != player && player != nullptr && --e->reload <= 0)
         {
             fireAlienBullet(e);
             playSound(SND_ALIEN_FIRE, CH_ALIEN_FIRE);
@@ -64,8 +65,9 @@ void spawnEnemies()
         enemy->texture = enemyTexture;
         enemy->side = SIDE_ALIEN;
         enemy->health = (rand() % 5) + 1;
+        enemy->maxHealth = enemy->health;
 
-        SDL_QueryTexture(enemy->texture, NULL, NULL, &enemy->w, &enemy->h);
+        SDL_QueryTexture(enemy->texture, nullptr, nullptr, &enemy->w, &enemy->h);
 
 //nemy->dx = -(2 + (rand() % 4));  // Speed: -2 to -5
         enemy->reload = FPS * (3 + (rand() % 3));  // Reload: 3-5 seconds

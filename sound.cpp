@@ -22,11 +22,11 @@ void loadSounds()
 
 void loadMusic(const char* filename)
 {
-    if (music != NULL)
+    if (music != nullptr)
     {
         Mix_HaltMusic();
         Mix_FreeMusic(music);
-        music = NULL;
+        music = nullptr;
     }
 
     music = Mix_LoadMUS(filename);

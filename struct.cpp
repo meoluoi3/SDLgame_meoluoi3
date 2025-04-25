@@ -12,26 +12,33 @@
 #include "player.h"
 #include "bullet.h"
 #include "sound.h"
-
+#include <SDL_ttf.h>
+#include "text.h"
+#include "SDL_video.h"
 extern App app;
 extern Stage stage;
 extern Entity* player;
 extern Star stars[MAX_STARS];
 
-SDL_Texture* bulletTexture = NULL;
-SDL_Texture* enemyTexture = NULL;
-SDL_Texture* alienBullet = NULL;
-SDL_Texture* background = NULL;
-SDL_Texture* explosionTexture = NULL;
+SDL_Texture* bulletTexture = nullptr;
+SDL_Texture* enemyTexture = nullptr;
+SDL_Texture* alienBullet = nullptr;
+SDL_Texture* background = nullptr;
+SDL_Texture* explosionTexture = nullptr;
+SDL_Texture* fontTexture = nullptr;
 int backgroundX{};
 int stageResetTimer{};
 
 
+
+
+
 void initSDL() // Initialize SDL
 {
+
     int rendererFlags, windowFlags;
 
-    rendererFlags = SDL_RENDERER_ACCELERATED;
+    rendererFlags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
     windowFlags = 0;
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -60,10 +67,15 @@ void initSDL() // Initialize SDL
 
     if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) == -1)
     {
-        printf("Couldn't initialize SDL Mixer\n");
+        SDL_Log("Couldn't initialize SDL Mixer\n");
         exit(1);
     }
 
+    if (TTF_Init() == -1) {
+        SDL_Log("SDL_ttf could not initialize! SDL_ttf Error: ", TTF_GetError());
+    }
+
+    initFont("font/HYWenHei_Extended.ttf", 28);
     Mix_AllocateChannels(MAX_SND_CHANNELS);
     SDL_ShowCursor(1);
 }
@@ -73,12 +85,12 @@ void initStage() // Initialize the stage
     app.delegate.logic = logic;
     app.delegate.draw = draw;
 
-    stage.fighterHead.next = NULL;
-    stage.bulletHead.next = NULL;
+    stage.fighterHead.next = nullptr;
+    stage.bulletHead.next = nullptr;
     stage.fighterTail = &stage.fighterHead;
     stage.bulletTail = &stage.bulletHead;
 
-    stage.explosionHead.next = NULL;
+    stage.explosionHead.next = nullptr;
     stage.explosionTail = &stage.explosionHead;
     stage.debrisTail = &stage.debrisHead;
 
@@ -98,7 +110,7 @@ void initStage() // Initialize the stage
 void initPlayer()
 {
     player = new Entity();
-    player->next = NULL;  // Ensure proper termination
+    player->next = nullptr;  // Ensure proper termination
 
     stage.fighterTail->next = player;
     stage.fighterTail = player;
@@ -107,8 +119,9 @@ void initPlayer()
     player->y = SCREEN_HEIGHT/2 + rand() % 20 - rand() % 20;
     player->side = SIDE_PLAYER;
     player->health = 3;
-    player->texture = loadTexture("img/4.png");
-    SDL_QueryTexture(player->texture, NULL, NULL, &player->w, &player->h);
+    player->maxHealth = 3;
+    player->texture = loadTexture("img/survivor1_stand.png");
+    SDL_QueryTexture(player->texture, nullptr, nullptr, &player->w, &player->h);
 }
 
 void initStarfield()
@@ -125,6 +138,7 @@ void initStarfield()
 
 void logic()
 {
+  
     doBackground();
     doStarfield();
 
@@ -138,10 +152,12 @@ void logic()
     clipPlayer();
     doExplosions();
     doDebris();
-
-    if (player == NULL && --stageResetTimer <= 0)
+    if (stage.score > stage.highscore) {
+        stage.highscore = stage.score;
+    }
+    if (player == nullptr && --stageResetTimer <= 0)
     {
-        printf("Calling resetStage()...\n");
+        SDL_Log("Calling resetStage()...\n");
         resetStage();
     }
 }
@@ -154,4 +170,6 @@ void draw()
     drawBullets();
     drawDebris();
     drawExplosions();
+    drawHud(app.renderer, stage.score, stage.highscore);
+    
 }

@@ -1,8 +1,9 @@
 #pragma once
 #include "defs.h"
 #include "SDL.h"
-#include "bits/stdc++.h"
-#include "defs.h"
+#include <SDL_image.h>
+#include <SDL_ttf.h>
+#include <bits/stdc++.h>
 
 class Explosion {
 public:
@@ -20,7 +21,6 @@ public:
     SDL_Texture* texture;
     int life;
     Debris* next;
-
 
     Debris() : x(0), y(0), dx(0), dy(0), texture(nullptr), life(0), next(nullptr) {
         rect = { 0, 0, 0, 0 };
@@ -43,25 +43,24 @@ public:
     int keyboard[MAX_KEYBOARD_KEYS];
     int mouseButtons[MAX_MOUSE_BUTTONS];
 
-    App()
-        : renderer(nullptr), window(nullptr) {
+    App() : renderer(nullptr), window(nullptr) {
         memset(keyboard, 0, sizeof(keyboard));
+        memset(mouseButtons, 0, sizeof(mouseButtons));
     }
 };
-
 
 class Entity {
 public:
     float x, y, dx, dy;
-    int w, h, health, reload, side;
+    int w, h, health, maxHealth, reload, side, angle;
     SDL_Texture* texture;
     Entity* next;
-
     Entity() : x(0), y(0), dx(0), dy(0), w(0), h(0), health(0), reload(0), side(0), texture(nullptr), next(nullptr) {}
 };
 
 class Stage {
 public:
+    int highscore;
     int score;
     Entity fighterHead;
     Entity* fighterTail;
@@ -90,4 +89,3 @@ void logic();
 void draw();
 void clipPlayer();
 void initStarfield();
-

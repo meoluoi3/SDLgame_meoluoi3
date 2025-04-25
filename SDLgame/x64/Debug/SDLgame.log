@@ -1,8 +1,0 @@
-﻿  player.cpp
-I:\SDL Project\SDLgame_meoluoi3\player.cpp(52,75): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-I:\SDL Project\SDLgame_meoluoi3\player.cpp(52,69): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-I:\SDL Project\SDLgame_meoluoi3\player.cpp(52,63): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-I:\SDL Project\SDLgame_meoluoi3\player.cpp(52,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-I:\SDL Project\SDLgame_meoluoi3\player.cpp(74,49): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-I:\SDL Project\SDLgame_meoluoi3\player.cpp(74,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  SDLgame.vcxproj -> I:\SDL Project\SDLgame_meoluoi3\x64\Debug\SDLgame.exe

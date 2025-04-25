@@ -63,6 +63,7 @@ void doFighters(void)
             e->health = 0;
         }
 
+
         if (player != nullptr && playerHitEnemy(player))
         {
             

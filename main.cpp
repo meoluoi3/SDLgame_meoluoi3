@@ -9,6 +9,7 @@
 #include "stage.h"
 #include "bits/stdc++.h"
 #include "sound.h"
+#include "text.h"
 App app;
 Entity* player;
 Entity bullet;
@@ -16,6 +17,7 @@ Stage stage;
 Star stars[MAX_STARS];
 Mix_Chunk* sounds[SND_MAX];
 Mix_Music* music;
+
 
 int main(int argc, char* argv[]) {
     srand(static_cast<unsigned>(time(0)));
@@ -39,9 +41,10 @@ int main(int argc, char* argv[]) {
         
         presentScene();
         capFrameRate(&then, &remainder);
+        
     }
     
-
+    cleanupFont();
     delete player;
     return 0;
 }

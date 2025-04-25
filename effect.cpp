@@ -24,7 +24,7 @@ void doStarfield()
 
         if (stars[i].x < 0)
         {
-            stars[i].x = SCREEN_WIDTH + stars[i].x;
+               stars[i].x = SCREEN_WIDTH + stars[i].x;
         }
     }
 }
@@ -34,7 +34,7 @@ void doExplosions()
     Explosion* e;
     Explosion* prev = &stage.explosionHead;
 
-    for (e = stage.explosionHead.next; e != NULL; e = e->next)
+    for (e = stage.explosionHead.next; e != nullptr; e = e->next)
     {
         e->x += e->dx;
         e->y += e->dy;
@@ -57,7 +57,7 @@ void doExplosions()
 
 void addExplosions(int x, int y, int num)
 {
-    printf("Explosion added\n");
+    SDL_Log("Explosion added\n");
 
     for (int i = 0; i < num; i++)
     {
@@ -103,7 +103,7 @@ void doDebris()
     Debris* d;
     Debris* prev = &stage.debrisHead;
 
-    for (d = stage.debrisHead.next; d != NULL; d = d->next)
+    for (d = stage.debrisHead.next; d != nullptr; d = d->next)
     {
         d->x += d->dx;
         d->y += d->dy;

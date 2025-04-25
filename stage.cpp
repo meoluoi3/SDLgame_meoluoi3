@@ -17,6 +17,21 @@ extern int enemySpawnTimer;
 extern int stageResetTimer;
 extern int backgroundX;
 
+double getAngle(int x1, int y1, int x2, int y2)
+{
+    double angle = -180 + atan2(y1 - y2, x1 - x2) * (180 / PI);
+    return angle >= 0 ? angle : 360 + angle;
+}
+bool checkForQuitEvent() {
+    SDL_Event e;
+    while (SDL_PollEvent(&e)) {
+        if (e.type == SDL_QUIT) {
+            return true;
+        }
+    }
+    return false;
+}
+
 void capFrameRate(long* then, float* remainder)
 {
     long wait = 16 + *remainder;
@@ -70,10 +85,10 @@ void resetStage(void)
     }
 
     // Reset pointers
-    stage.fighterHead.next = NULL;
+    stage.fighterHead.next = nullptr;
     stage.fighterTail = &stage.fighterHead;
 
-    stage.bulletHead.next = NULL;
+    stage.bulletHead.next = nullptr;
     stage.bulletTail = &stage.bulletHead;
 
     stage.explosionTail = &stage.explosionHead;
@@ -84,6 +99,10 @@ void resetStage(void)
 
     enemySpawnTimer = 0;
     stageResetTimer = FPS * 3;
+    
+    stage.score = 0;
+    
+
 }
 
 void calcSlope(int x1, int y1, int x2, int y2, float* dx, float* dy)
@@ -101,7 +120,7 @@ void calcSlope(int x1, int y1, int x2, int y2, float* dx, float* dy)
 
 void clipPlayer()
 {
-    if (player != NULL)
+    if (player != nullptr)
     {
         if (player->x < 0)
         {
@@ -130,20 +149,38 @@ void clipPlayer()
 
 int bulletHitFighter(Entity* b)
 {
-    for (Entity* e = stage.fighterHead.next; e != NULL; e = e->next)
+    for (Entity* e = stage.fighterHead.next; e != nullptr; e = e->next)
     {
-        if (e->side != b->side &&
+        if (e->side != b->side && 
             collision(b->x, b->y, b->w, b->h, e->x, e->y, e->w, e->h))
         {
-            // Play sound based on target
-            if (e == player)
-                playSound(SND_PLAYER_DIE, CH_PLAYER);
-            else
-                playSound(SND_ALIEN_DIE, CH_ANY);
-
             b->health--;
-            e->health--;
+           
+            if (e == player)
+            {
+                
+                
+                    if(player->health == 1)playSound(SND_PLAYER_DIE, CH_PLAYER);
+                    player->health--;
+                   // player->isImmortal = true;
+                   // player->immortalityStartTime = SDL_GetTicks();
+                    
+                
+            }
+            else
+            {
+              if(e->health == 1)  playSound(SND_ALIEN_DIE, CH_ANY);
+                e->health--;
+                
+            }
 
+            
+            
+            
+            if (e->health == 0) {
+                stage.score++;
+                stage.highscore = max(stage.score, stage.highscore);  
+            }
             return 1;
         }
     }
@@ -153,10 +190,10 @@ int bulletHitFighter(Entity* b)
 
 int playerHitEnemy(Entity* player)
 {
-    for (Entity* e = stage.fighterHead.next; e != NULL; e = e->next)
+    for (Entity* e = stage.fighterHead.next; e != nullptr; e = e->next)
     {
 
-        if (e != player && e->side != player->side &&
+        if (e != player && e->side != player->side && 
             collision(player->x, player->y, player->w, player->h, e->x, e->y, e->w, e->h))
         {
             // Play sound based on health and target
@@ -164,9 +201,21 @@ int playerHitEnemy(Entity* player)
          playSound(SND_PLAYER_DIE, CH_PLAYER);
             
          playSound(SND_ALIEN_DIE, CH_ANY);
-
-         e->health--;
-         player->health--;
+         int pl = player->health;
+         int en = e->health;
+         if (pl < en) {
+             e->health -= player->health;
+             player->health = 0;
+         }
+         else if (pl > en) {
+             player->health -= e->health;
+             e->health = 0;
+             
+         }
+         else {
+             player->health = 0;
+             e->health = 0;
+         }
             // Return after handling the collision
             return 1;
         }
