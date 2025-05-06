@@ -39,16 +39,14 @@ enum GameState {
     GS_EXIT
 };
 extern GameState gameState;
-
+extern GameState previousState;
 enum MovePattern {
     PATTERN_LINEAR,
     PATTERN_ZIGZAG,
     PATTERN_WAVE,
-    PATTERN_SINE_VERTICAL,
     PATTERN_SPIRAL,
     PATTERN_RANDOM_DRUNK,
     PATTERN_CIRCLE
 };
-
 
 #endif // DEFS

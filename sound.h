@@ -14,3 +14,4 @@ void playMusic(int loop);
 
 // Plays a sound effect identified by an id on a specific channel
 void playSound(int id, int channel);
+void stopMusic();

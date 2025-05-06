@@ -56,7 +56,11 @@ void updateMainMenu(const SDL_Event& e) {
 			switch (menuIndex) {
 			case 0: gameState = GS_PLAYING;  break;
 			case 1: gameState = GS_TUTORIAL; break;
-			case 2: gameState = GS_SETTINGS; break;
+			case 2:
+				previousState = GS_MENU;
+				gameState = GS_SETTINGS;
+				break;
+
 			case 3: gameState = GS_EXIT;     break;
 			}
 			break;
@@ -90,7 +94,11 @@ void updateMainMenu(const SDL_Event& e) {
 					switch (i) {
 					case 0: gameState = GS_PLAYING;  break;
 					case 1: gameState = GS_TUTORIAL; break;
-					case 2: gameState = GS_SETTINGS; break;
+					case 2:
+						previousState = GS_MENU;
+						gameState = GS_SETTINGS;
+						break;
+
 					case 3: gameState = GS_EXIT;     break;
 					}
 					break;
@@ -171,6 +179,7 @@ void updatePauseMenu(const SDL_Event& e) {
 				gameState = GS_PLAYING;
 				break;
 			case 1:
+				previousState = GS_PAUSED;
 				gameState = GS_SETTINGS;
 				break;
 			case 2:
@@ -218,6 +227,7 @@ void updatePauseMenu(const SDL_Event& e) {
 						gameState = GS_PLAYING;
 						break;
 					case 1:
+						previousState = GS_PAUSED;
 						gameState = GS_SETTINGS;
 						break;
 					case 2:

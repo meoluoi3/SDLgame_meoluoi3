@@ -1,7 +1,8 @@
 #include "bullet.h"
 #include "struct.h"
-#include "bits/stdc++.h"
 #include "stage.h"
+#include "sound.h"
+#include <SDL.h>
 
 extern Stage stage;
 extern Entity* player;
@@ -13,60 +14,55 @@ void fireBullet()
     Entity* bullet = new Entity();
     int mouseX, mouseY;
 
-    // Get mouse position
     SDL_GetMouseState(&mouseX, &mouseY);
 
     bullet->x = player->x;
     bullet->y = player->y;
 
-    // Use calcSlope to calculate the direction of the bullet
-    float dx, dy;
+    double dx, dy;
     calcSlope(mouseX, mouseY, player->x, player->y, &dx, &dy);
 
-    
     bullet->dx = dx * PLAYER_BULLET_SPEED;
     bullet->dy = dy * PLAYER_BULLET_SPEED;
 
-    bullet->health = 1;  // Bullet health (or lifetime)
-    bullet->texture = bulletTexture;  
+    bullet->health = 1;
+    bullet->texture = bulletTexture;
     SDL_QueryTexture(bullet->texture, nullptr, nullptr, &bullet->w, &bullet->h);
 
-    // Adjust bullet's vertical position to center it based on the player's height
     bullet->y += (player->h / 2) - (bullet->h / 2);
 
-    // Add the bullet to the stage's linked list of bullets
     stage.bulletTail->next = bullet;
     stage.bulletTail = bullet;
 
-    // Set player reload time
     player->reload = FPS * 0.1;
 }
 
-
 void doBullets()
 {
-    Entity* b, * prev;
+    Entity* b = stage.bulletHead.next;
+    Entity* prev = &stage.bulletHead;
 
-    prev = &stage.bulletHead;
-
-    for (b = stage.bulletHead.next; b != nullptr; b = b->next)
+    while (b)
     {
         b->x += b->dx;
         b->y += b->dy;
 
-        if (bulletHitFighter(b) || b->x < -b->w || b->y < -b->h || b->x > SCREEN_WIDTH || b->y > SCREEN_HEIGHT)
+        if (bulletHitFighter(b)
+            || b->x < -b->w || b->y < -b->h
+            || b->x > SCREEN_WIDTH || b->y > SCREEN_HEIGHT)
         {
             if (b == stage.bulletTail)
-            {
                 stage.bulletTail = prev;
-            }
 
             prev->next = b->next;
             delete b;
             b = prev;
         }
-
-        prev = b;
+        else
+        {
+            prev = b;
+            b = b->next;
+        }
     }
 }
 
@@ -87,10 +83,18 @@ void fireAlienBullet(Entity* e)
     bullet->x += (e->w / 2) - (bullet->w / 2);
     bullet->y += (e->h / 2) - (bullet->h / 2);
 
-    calcSlope(player->x + (player->w / 2), player->y + (player->h / 2), e->x, e->y, &bullet->dx, &bullet->dy);
+    double dx, dy;
+    calcSlope(
+        player->x + (player->w / 2),
+        player->y + (player->h / 2),
+        e->x,
+        e->y,
+        &dx,
+        &dy
+    );
 
-    bullet->dx *= ALIEN_BULLET_SPEED;
-    bullet->dy *= ALIEN_BULLET_SPEED;
+    bullet->dx = dx * ALIEN_BULLET_SPEED;
+    bullet->dy = dy * ALIEN_BULLET_SPEED;
 
-    e->reload = (rand() % FPS * 2);
+    e->reload = std::rand() % (FPS * 2);
 }

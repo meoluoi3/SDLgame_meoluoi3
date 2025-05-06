@@ -3,7 +3,7 @@
 #include "SDL.h"
 #include <SDL_image.h>
 #include <SDL_ttf.h>
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 
 class Explosion {
 public:
@@ -52,9 +52,9 @@ public:
 class Entity {
 public:
     MovePattern pattern;
-    float baseX, baseY, timer; 
+    double baseX, baseY, timer; 
 
-    float x, y, dx, dy;
+    double x, y, dx, dy, targetX, targetY;
     int w, h, health, maxHealth, reload, side, angle;
 
     SDL_Texture* texture;

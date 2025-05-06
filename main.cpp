@@ -2,7 +2,7 @@
 #include <SDL_image.h>
 #include <SDL_mixer.h>
 #include <iostream>
-#include <bits/stdc++.h>         // Moved up with other includes
+#include "bits/stdc++.h "    
 
 #include "defs.h"
 #include "struct.h"
@@ -15,6 +15,9 @@
 #include "settings.h"
 #include "tutorial.h"
 #include "menu.h"
+
+GameState gameState = GS_MENU;
+GameState previousState = GS_MENU;
     App app;
     Entity* player;
     Entity bullet;
@@ -22,7 +25,6 @@
     Star stars[MAX_STARS];
     Mix_Chunk* sounds[SND_MAX];
     Mix_Music* music;
-    GameState gameState = GS_MENU;
 
     int main(int argc, char* argv[]) {
         srand(static_cast<unsigned>(time(0)));
@@ -36,7 +38,7 @@
         applySettings();
 
 
-        //playMusic(10);
+        playMusic(10);
         then = SDL_GetTicks();
         remainder = 0;
 
@@ -65,7 +67,7 @@
                 default: break;
                 }
             }
-            std::cout << "Current GameState: " << gameState << std::endl;
+           
 
             // Draw / logic by state...
             switch (gameState) {

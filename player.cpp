@@ -51,33 +51,7 @@ void doFighters() {
             e->dy *= speed;
         }
 
-        e->timer += 1.0f / FPS;
-
-        switch (e->pattern) {
-        case PATTERN_ZIGZAG:
-            e->x = e->baseX + 100.0f * sinf(e->timer * M_PI * 4);
-            break;
-        case PATTERN_WAVE:
-            e->x = e->baseX + 80.0f * sinf(e->timer * M_PI * 2);
-            break;
-        case PATTERN_SINE_VERTICAL:
-            e->y = e->baseY + 100.0f * sinf(e->timer * M_PI * 2);
-            break;
-        case PATTERN_SPIRAL:
-            e->x = e->baseX + 50.0f * cosf(e->timer * 2);
-            e->y = e->baseY + 50.0f * sinf(e->timer * 2);
-            break;
-        case PATTERN_RANDOM_DRUNK:
-            e->x += ((rand() % 3) - 1);
-            e->y += ((rand() % 3) - 1);
-            break;
-        case PATTERN_CIRCLE:
-            e->x = e->baseX + 60.0f * cosf(e->timer);
-            e->y = e->baseY + 60.0f * sinf(e->timer);
-            break;
-        default:
-            break;
-        }
+       
 
         // Apply movement
         e->x += e->dx;

@@ -66,7 +66,10 @@ void spawnEnemies()
         enemy->baseX = enemy->x;
         enemy->baseY = enemy->y;
         enemy->timer = 0;   
-
+        if (player != nullptr) {
+            enemy->targetX = player->x;
+            enemy->targetY = player->y;
+        }
         enemy->texture = enemyTexture;
         enemy->side = SIDE_ALIEN;
         enemy->health = (rand() % 5) + 1;
