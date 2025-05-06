@@ -13,7 +13,7 @@
 #define ALIEN_BULLET_SPEED    8
 #define MAX_STARS   500
 #define MAX_SND_CHANNELS 8
-
+#define MAX_NAME_LENGTH 1000
 enum
 {
     CH_ANY = -1,
@@ -29,5 +29,26 @@ enum
     SND_ALIEN_DIE,
     SND_MAX
 };
-	
+
+enum GameState {
+    GS_MENU,
+    GS_TUTORIAL,
+    GS_SETTINGS,
+    GS_PLAYING,
+    GS_PAUSED,
+    GS_EXIT
+};
+extern GameState gameState;
+
+enum MovePattern {
+    PATTERN_LINEAR,
+    PATTERN_ZIGZAG,
+    PATTERN_WAVE,
+    PATTERN_SINE_VERTICAL,
+    PATTERN_SPIRAL,
+    PATTERN_RANDOM_DRUNK,
+    PATTERN_CIRCLE
+};
+
+
 #endif // DEFS

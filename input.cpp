@@ -1,6 +1,7 @@
 #include <SDL.h>
 #include "input.h"
 #include "struct.h"
+#include "sound.h"
 
 extern App app;
 
@@ -24,11 +25,11 @@ void doInput()
             doKeyUp(&event.key);
             break;
         case SDL_MOUSEBUTTONDOWN:  // Mouse button pressed
-            handleMouseDown(event.button);
+            handleMouseDown(&event.button);
             break;
 
         case SDL_MOUSEBUTTONUP:  // Mouse button released
-            handleMouseUp(event.button);
+            handleMouseUp(&event.button);
             break;
         }
     }
@@ -54,18 +55,46 @@ void doKeyUp(SDL_KeyboardEvent* event)
     }
 }
 
-void handleMouseDown(SDL_MouseButtonEvent button)
+void handleMouseDown(SDL_MouseButtonEvent* button)
 {
-    if (button.button < MAX_MOUSE_BUTTONS)
+    if (button->button < MAX_MOUSE_BUTTONS )
     {
-        app.mouseButtons[button.button] = 1;
+       
+        app.mouseButtons[button->button] = 1;
     }
 }
 
-void handleMouseUp(SDL_MouseButtonEvent button)
+void handleMouseUp(SDL_MouseButtonEvent* button)
 {
-    if (button.button < MAX_MOUSE_BUTTONS)
+    if (button->button < MAX_MOUSE_BUTTONS)
     {
-        app.mouseButtons[button.button] = 0;
+        app.mouseButtons[button->button] = 0;
+    }
+}
+
+void handleInputEvent(SDL_Event& e) {
+    switch (e.type) {
+    case SDL_QUIT:
+        exit(0);
+        break;
+
+    case SDL_KEYDOWN:
+        doKeyDown(&e.key);
+        break;
+
+    case SDL_KEYUP:
+        doKeyUp(&e.key);
+        break;
+
+    case SDL_MOUSEBUTTONDOWN:
+        handleMouseDown(&e.button);
+        break;
+
+    case SDL_MOUSEBUTTONUP:
+        handleMouseUp(&e.button);
+        break;
+
+    default:
+        break;
     }
 }

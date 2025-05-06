@@ -42,7 +42,7 @@ public:
     Delegate delegate;
     int keyboard[MAX_KEYBOARD_KEYS];
     int mouseButtons[MAX_MOUSE_BUTTONS];
-
+    
     App() : renderer(nullptr), window(nullptr) {
         memset(keyboard, 0, sizeof(keyboard));
         memset(mouseButtons, 0, sizeof(mouseButtons));
@@ -51,12 +51,25 @@ public:
 
 class Entity {
 public:
+    MovePattern pattern;
+    float baseX, baseY, timer; 
+
     float x, y, dx, dy;
     int w, h, health, maxHealth, reload, side, angle;
+
     SDL_Texture* texture;
+
     Entity* next;
-    Entity() : x(0), y(0), dx(0), dy(0), w(0), h(0), health(0), reload(0), side(0), texture(nullptr), next(nullptr) {}
+
+    Entity()
+        : x(0), y(0), dx(0), dy(0),
+        w(0), h(0), health(0), maxHealth(0),
+        reload(0), side(0), angle(0),
+    pattern(PATTERN_LINEAR), baseX(0), baseY(0), timer(0), 
+        texture(nullptr), next(nullptr)
+    {}
 };
+
 
 class Stage {
 public:
@@ -81,11 +94,15 @@ public:
     Star() : x(0), y(0), speed(0) {}
 };
 
+struct Settings {
+    int sfxVolume;    // 0–100
+    int musicVolume;  // 0–100
+    int bgIndex;
+    int musicIndex;
+};
 
-void initPlayer();
-void initSDL();
-void initStage();
+extern Settings settings; 
 void logic();
 void draw();
 void clipPlayer();
-void initStarfield();
+

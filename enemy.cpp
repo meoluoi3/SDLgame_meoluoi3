@@ -57,10 +57,15 @@ void spawnEnemies()
             break;
         }
 
-        // Calculate direction toward player
-        if (player != nullptr) calcSlope(player->x, player->y, enemy->x, enemy->y, &enemy->dx, &enemy->dy);
-        else calcSlope(SCREEN_WIDTH/2 * rand() + 1, SCREEN_HEIGHT/2 * rand() +1, enemy->x, enemy->y, &enemy->dx, &enemy->dy);
+        //// Calculate direction toward player
+        //if (player != nullptr) calcSlope(player->x, player->y, enemy->x, enemy->y, &enemy->dx, &enemy->dy);
+        //else calcSlope(SCREEN_WIDTH/2 * rand() + 1, SCREEN_HEIGHT/2 * rand() +1, enemy->x, enemy->y, &enemy->dx, &enemy->dy);
 
+        int pat = rand() % 7;
+        enemy->pattern = static_cast<MovePattern>(pat);
+        enemy->baseX = enemy->x;
+        enemy->baseY = enemy->y;
+        enemy->timer = 0;   
 
         enemy->texture = enemyTexture;
         enemy->side = SIDE_ALIEN;

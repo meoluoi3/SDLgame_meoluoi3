@@ -6,6 +6,7 @@
 #include "bits/stdc++.h"
 #include "struct.h"
 #include "sound.h"
+#include "init.h"
 
 
 using namespace std;

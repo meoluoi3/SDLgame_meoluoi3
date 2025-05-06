@@ -141,13 +141,18 @@
     <ClCompile Include="draw.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="init.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="menu.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="settings.cpp" />
     <ClCompile Include="sound.cpp" />
     <ClCompile Include="stage.cpp" />
     <ClCompile Include="struct.cpp" />
     <ClCompile Include="text.cpp" />
+    <ClCompile Include="tutorial.cpp" />
+    <ClCompile Include="widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="allsource.h" />
@@ -156,12 +161,17 @@
     <ClInclude Include="draw.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="enemy.h" />
+    <ClInclude Include="init.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="menu.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="settings.h" />
     <ClInclude Include="sound.h" />
     <ClInclude Include="stage.h" />
     <ClInclude Include="struct.h" />
     <ClInclude Include="text.h" />
+    <ClInclude Include="tutorial.h" />
+    <ClInclude Include="widgets.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
