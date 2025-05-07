@@ -19,7 +19,7 @@ static const vector<string> musicNames = { "backgroundsound.mp3", "track2.mp3" }
 
 int selectedSettingIndex = 0;
 const int settingCount = 6;
-
+int currentMusicIndex = -1;
 void applySettings() {
     Mix_Volume(-1, settings.sfxVolume * 128 / 100);
     Mix_VolumeMusic(settings.musicVolume * 128 / 100);
@@ -27,8 +27,12 @@ void applySettings() {
     extern SDL_Texture* background;
     background = loadTexture(("img/" + bgNames[settings.bgIndex] + ".png").c_str());
 
-    loadMusic(("sound/" + musicNames[settings.musicIndex]).c_str());
+    if (settings.musicIndex != currentMusicIndex) {
+        loadMusic(("sound/" + musicNames[settings.musicIndex]).c_str());
+        currentMusicIndex = settings.musicIndex;
+    }
 }
+
 
 void updateSettings(const SDL_Event& e) {
     if (e.type != SDL_KEYDOWN) return;
