@@ -16,6 +16,8 @@ public:
 
 class Debris {
 public:
+    float fx, fy;      // floating-point position
+    float fW, fH;
     float x, y, dx, dy;
     SDL_Rect rect;
     SDL_Texture* texture;
@@ -74,7 +76,7 @@ class Map {
 };
 
 struct Dungeon {
-    
+    public:
     SDL_Point renderOffset;
     Map map;
 };

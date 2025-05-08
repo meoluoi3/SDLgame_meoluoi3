@@ -9,8 +9,8 @@
 #include <vector>
 #include <string>
 
-using std::vector;
-using std::string;
+using namespace std;
+
 
 Settings settings = { 100, 100, 0, 0 };
 
@@ -35,7 +35,8 @@ void applySettings() {
 
 
 void updateSettings(const SDL_Event& e) {
-    if (e.type != SDL_KEYDOWN) return;
+    if (e.type != SDL_KEYDOWN && e.type != SDL_MOUSEBUTTONDOWN)
+        return;
     bool changed = false;
 
     switch (e.key.keysym.sym) {
@@ -55,7 +56,47 @@ void updateSettings(const SDL_Event& e) {
     default:
         break;
     }
+    if (e.type == SDL_MOUSEBUTTONDOWN) {
+        if (e.button.button == SDL_BUTTON_LEFT) {
+            int mouseX = e.button.x;
+            int mouseY = e.button.y;
 
+            
+            for (int i = 0; i < settingCount; ++i) {
+                int textW = 0, textH = 0;
+                std::string label;
+
+                
+                switch (i) {
+                case 0: label = "SFX Volume"; break;
+                case 1: label = "Music Volume"; break;
+                case 2: label = "Background: " + bgNames[settings.bgIndex]; break;
+                case 3: label = "Music: " + musicNames[settings.musicIndex]; break;
+                case 4: label = "▶ Play Music (Enter)"; break;
+                case 5: label = "■ Stop Music (Enter)"; break;
+                }
+
+                
+                if (gFont) {
+                    TTF_SizeText(gFont, label.c_str(), &textW, &textH);
+                }
+
+                SDL_Rect rect = {
+                    600,                  // x of text
+                    150 + i * 50,         // y of text
+                    textW,
+                    textH
+                };
+
+                // Check if the mouse click is inside the bounds of the setting's rectangle
+                if (mouseX >= rect.x && mouseX <= rect.x + rect.w &&
+                    mouseY >= rect.y && mouseY <= rect.y + rect.h) {
+                    selectedSettingIndex = i;  // Set the clicked setting as selected
+                    break;  // No need to check further once the setting is selected
+                }
+            }
+        }
+    }
     switch (selectedSettingIndex) {
     case 0:
         if ((e.key.keysym.sym == SDLK_RIGHT || e.key.keysym.sym == SDLK_d) && settings.sfxVolume < 100) {
@@ -100,7 +141,7 @@ void updateSettings(const SDL_Event& e) {
     default:
         break;
     }
-
+    
     if (changed) applySettings();
 }
 
@@ -120,10 +161,53 @@ void drawSettings(SDL_Renderer* renderer) {
     SDL_Color white = { 255,255,255,255 };
     SDL_Color green = { 0,255,0,255 };
 
+    int mouseX, mouseY;
+    SDL_GetMouseState(&mouseX, &mouseY);
+    int hoveredSettingIndex = -1;
+
     renderText(renderer, "Settings", 650, 50, white);
 
+    // hover 
     for (int i = 0; i < settingCount; ++i) {
-        SDL_Color color = (selectedSettingIndex == i ? green : white);
+        std::string label;
+
+        switch (i) {
+        case 0: label = "SFX Volume"; break;
+        case 1: label = "Music Volume"; break;
+        case 2: label = "Background: " + bgNames[settings.bgIndex]; break;
+        case 3: label = "Music: " + musicNames[settings.musicIndex]; break;
+        case 4: label = "▶ Play Music (Enter)"; break;
+        case 5: label = "■ Stop Music (Enter)"; break;
+        }
+
+        int textW = 0, textH = 0;
+        if (gFont) {
+            TTF_SizeText(gFont, label.c_str(), &textW, &textH);
+        }
+
+        SDL_Rect rect = {
+            600,                  // x of text
+            150 + i * 50,         // y of text
+            textW,
+            textH
+        };
+
+        if (mouseX >= rect.x && mouseX <= rect.x + rect.w &&
+            mouseY >= rect.y && mouseY <= rect.y + rect.h) {
+            hoveredSettingIndex = i;
+            break; 
+        }
+    }
+
+    
+    for (int i = 0; i < settingCount; ++i) {
+        SDL_Color color = white;  
+        if (selectedSettingIndex == i and hoveredSettingIndex == -1) {
+            color = green;  
+        }
+        else if (hoveredSettingIndex == i) {
+            color = green;
+        }
         int y = 150 + i * 50;
 
         switch (i) {

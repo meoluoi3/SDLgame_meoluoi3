@@ -4,6 +4,7 @@
 #include "bullet.h"
 #include "sound.h"
 #include "stage.h"
+#include "math.h"
 
 extern App app;
 extern Stage stage;

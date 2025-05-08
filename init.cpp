@@ -89,7 +89,7 @@ void initStage() // Initialize the stage
     initSounds();
 
     bulletTexture = loadTexture("img/bullet_klee.png");
-    enemyTexture = loadTexture("img/enemy.png");
+    enemyTexture = loadTexture("kenney_top-down-shooter/PNG/Zombie 1/zoimbie1_gun.png");
     alienBullet = loadTexture("img/alienBullet.png");
     explosionTexture = loadTexture("img/explosion.png");
 
@@ -138,7 +138,7 @@ void initPlayer()
     player->side = SIDE_PLAYER;
     player->health = 3;
     player->maxHealth = 3;
-    player->texture = loadTexture("img/survivor1_stand.png");
+    player->texture = loadTexture("kenney_top-down-shooter/PNG/Survivor 1/survivor1_machine.png");
     SDL_QueryTexture(player->texture, nullptr, nullptr, &player->w, &player->h);
 }
 void initStarfield()

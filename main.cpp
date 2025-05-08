@@ -15,6 +15,7 @@
 #include "settings.h"
 #include "tutorial.h"
 #include "menu.h"
+#include "math.h"
 
 GameState gameState = GS_MENU;
 GameState previousState = GS_MENU;

@@ -1,6 +1,7 @@
 #include "effect.h"
 #include "struct.h"
 #include "bits/stdc++.h"
+#include "draw.h"
 
 extern App app;
 extern Stage stage;
@@ -142,8 +143,8 @@ void addDebris(Entity* e)
             stage.debrisTail->next = d;
             stage.debrisTail = d;
 
-            w = rand() % (e->w / 5) + 1;
-            h = rand() % (e->h / 5) + 1;
+            w = rand() % (e->w / 4) + 1;
+            h = rand() % (e->h / 4) + 1;
 
             d->x = e->x + e->w / 2;
             d->y = e->y + e->h / 2;
@@ -152,7 +153,7 @@ void addDebris(Entity* e)
             d->dy = (rand() % 20) - (rand() % 20);
 
             d->life = FPS * 3;
-            d->texture = e->texture;
+            d->texture = loadTexture("img/debris.png");
 
             d->rect.x = x;
             d->rect.y = y;

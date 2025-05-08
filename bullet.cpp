@@ -1,8 +1,9 @@
-#include "bullet.h"
+﻿#include "bullet.h"
 #include "struct.h"
 #include "stage.h"
 #include "sound.h"
 #include <SDL.h>
+#include "math.h"
 
 extern Stage stage;
 extern Entity* player;
@@ -24,14 +25,16 @@ void fireBullet()
 
     SDL_GetMouseState(&mouseX, &mouseY);
 
-    bullet->x = player->x;
+    bullet->x = player->x-player->w/2;
     bullet->y = player->y;
 
-    double dx, dy;
-    calcSlope(mouseX, mouseY, player->x, player->y, &dx, &dy);
+  
+    double rad = player->angle * (PI / 180.0);
 
-    bullet->dx = dx * PLAYER_BULLET_SPEED;
-    bullet->dy = dy * PLAYER_BULLET_SPEED;
+    bullet->dx = cos(rad) * PLAYER_BULLET_SPEED;
+    bullet->dy = sin(rad) * PLAYER_BULLET_SPEED;
+
+
 
     bullet->health = 1;
     bullet->texture = bulletTexture;

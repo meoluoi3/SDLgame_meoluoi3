@@ -5,6 +5,7 @@
 #include "bits/stdc++.h"
 #include "text.h"
 #include "stage.h"
+#include "math.h"
 
 extern App app;
 extern Stage stage;
@@ -101,7 +102,10 @@ void drawFighters()
             player->angle = getAngle(player->x, player->y, mouseX, mouseY);
             blitRotated(player->texture, player->x, player->y, player->angle);
         }
-        else blit(e->texture, e->x, e->y);
+        else if (player != nullptr and e!= player) {
+            e->angle = getAngle(e->x, e->y, player->x, player->y);
+            blitRotated(e->texture, e->x, e->y, e->angle);
+        }
         // Draw the health bar above the entity
         drawHealthBar( app.renderer,e);
         drawHealthText (app.renderer,e);
