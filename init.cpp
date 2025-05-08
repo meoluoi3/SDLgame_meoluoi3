@@ -81,11 +81,9 @@ void initStage() // Initialize the stage
     stage.explosionTail = &stage.explosionHead;
     stage.debrisTail = &stage.debrisHead;
 
-    //initMap();            // sets up dungeon.map
-    //initEntities();       // whatever “other” dungeon entities you have
-    //initPlayer();         // pushes the player into fighter list
-
-
+    //initMap();            
+    //initEntities();       
+    //initPlayer();         
    // initStarfield();
     resetStage();
     initSounds();
@@ -97,6 +95,34 @@ void initStage() // Initialize the stage
 
     
     applySettings(); // loads background and music
+}
+
+void initDungeon(void)
+{
+
+    app.delegate.logic = logic;
+    app.delegate.draw = draw;
+
+    stage.fighterHead.next = nullptr;
+    stage.bulletHead.next = nullptr;
+    stage.fighterTail = &stage.fighterHead;
+    stage.bulletTail = &stage.bulletHead;
+
+    stage.explosionHead.next = nullptr;
+    stage.explosionTail = &stage.explosionHead;
+    stage.debrisTail = &stage.debrisHead;
+
+    //initMap();
+
+    
+
+    initPlayer();
+
+    stage.dungeon.renderOffset.x = (SCREEN_WIDTH - (MAP_WIDTH * TILE_SIZE)) / 2;
+    stage.dungeon.renderOffset.y = (SCREEN_HEIGHT - (MAP_HEIGHT * TILE_SIZE)) / 2;
+
+    app.delegate.logic = &logic;
+    app.delegate.draw = &draw;
 }
 
 void initPlayer()

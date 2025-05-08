@@ -73,7 +73,8 @@ class Map {
     int map[MAP_WIDTH][MAP_HEIGHT];
 };
 
-class Dungeon {
+struct Dungeon {
+    
     SDL_Point renderOffset;
     Map map;
 };

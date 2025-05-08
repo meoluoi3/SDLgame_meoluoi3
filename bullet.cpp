@@ -11,7 +11,15 @@ extern SDL_Texture* alienBullet;
 
 void fireBullet()
 {
+    SDL_Log("Using player at %p", (void*)player);
+
+    if (!player)
+    {
+        SDL_Log("fireBullet called but player is NULL");
+        return;
+    }
     Entity* bullet = new Entity();
+    bullet->next = nullptr;
     int mouseX, mouseY;
 
     SDL_GetMouseState(&mouseX, &mouseY);
@@ -47,16 +55,18 @@ void doBullets()
         b->x += b->dx;
         b->y += b->dy;
 
-        if (bulletHitFighter(b)
-            || b->x < -b->w || b->y < -b->h
-            || b->x > SCREEN_WIDTH || b->y > SCREEN_HEIGHT)
+        if (bulletHitFighter(b) || b->x < -b->w || b->y < -b->h || b->x > SCREEN_WIDTH || b->y > SCREEN_HEIGHT)
         {
+            Entity* toDelete = b;
+            Entity* nextNode = b->next;
+
             if (b == stage.bulletTail)
                 stage.bulletTail = prev;
 
-            prev->next = b->next;
-            delete b;
-            b = prev;
+            prev->next = nextNode;
+            delete toDelete;
+
+            b = nextNode;
         }
         else
         {
@@ -66,10 +76,11 @@ void doBullets()
     }
 }
 
+
 void fireAlienBullet(Entity* e)
 {
     Entity* bullet = new Entity;
-
+    bullet->next = nullptr;
     stage.bulletTail->next = bullet;
     stage.bulletTail = bullet;
 

@@ -30,8 +30,9 @@ void doPlayerMovement()
 
 
         // Fire input
-        if (app.mouseButtons[SDL_BUTTON_LEFT] && player->reload <= 0)
+        if (player != nullptr and app.mouseButtons[SDL_BUTTON_LEFT] and player->reload <= 0)
         {
+            SDL_Log("Firing bullet...");
             playSound(SND_PLAYER_FIRE, CH_PLAYER);
             fireBullet();
         }
@@ -46,9 +47,11 @@ void doFighters() {
     while (e != nullptr) {
         if (e != player && player != nullptr) {
             calcSlope(player->x, player->y, e->x, e->y, &e->dx, &e->dy);
+            double speedIncreaseRate = 1;
             double speed = 4.0;
             e->dx *= speed;
             e->dy *= speed;
+            speed += speedIncreaseRate;
         }
 
        
@@ -69,12 +72,14 @@ void doFighters() {
 
         // Handle death
         if (e->health <= 0) {
+            if (e == player) {
+                player = nullptr;
+
+            }
             addExplosions(e->x - e->w / 2, e->y - e->h / 2, 15);
             addDebris(e);
 
-            if (e == player) {
-                player = nullptr;
-            }
+            
 
             if (e == stage.fighterTail) {
                 stage.fighterTail = prev;
@@ -83,6 +88,8 @@ void doFighters() {
             prev->next = e->next;
 
             Entity* temp = e->next;
+            SDL_Log("Deleting entity at %p, health = %d", (void*)e, e->health);
+
             delete e;
             e = temp;
         }

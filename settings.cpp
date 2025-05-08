@@ -14,8 +14,8 @@ using std::string;
 
 Settings settings = { 100, 100, 0, 0 };
 
-static const vector<string> bgNames = { "background", "Nebula", "Stars" };
-static const vector<string> musicNames = { "backgroundsound.mp3", "track2.mp3" };
+static const vector<string> bgNames = { "background", "drthanh", "Stars" };
+static const vector<string> musicNames = { "_Hotline Miami Soundtrack_Crystals.mp3" , "_Hotline Miami Soundtrack . Perturbator.mp3", "_Hotline Miami Soundtrack . -Paris-.mp3", "_Hotline Miami Soundtrack . Musik.mp3", "_Hotline Miami Soundtrack . Miami.mp3", "_Hotline Miami Soundtrack . It's Safe Now.mp3", "_Hotline Miami Soundtrack . Hydrogen.mp3", "_Hotline Miami Soundtrack . Daisuke.mp3", "_Hotline Miami Soundtrack . A New Morning.mp3"};
 
 int selectedSettingIndex = 0;
 const int settingCount = 6;
