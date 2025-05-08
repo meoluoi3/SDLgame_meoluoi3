@@ -54,7 +54,7 @@ public:
     MovePattern pattern;
     double baseX, baseY, timer; 
 
-    double x, y, dx, dy, targetX, targetY;
+    double x, y, dx, dy;
     int w, h, health, maxHealth, reload, side, angle;
 
     SDL_Texture* texture;
@@ -69,7 +69,14 @@ public:
         texture(nullptr), next(nullptr)
     {}
 };
+class Map {
+    int map[MAP_WIDTH][MAP_HEIGHT];
+};
 
+class Dungeon {
+    SDL_Point renderOffset;
+    Map map;
+};
 
 class Stage {
 public:
@@ -83,9 +90,13 @@ public:
     Explosion* explosionTail;
     Debris debrisHead;
     Debris* debrisTail;
-
+    
+    Dungeon dungeon;
     Stage() : fighterTail(&fighterHead), bulletTail(&bulletHead), explosionTail(&explosionHead), debrisTail(&debrisHead) {}
 };
+
+
+
 
 class Star {
 public:

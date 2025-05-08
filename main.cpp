@@ -51,7 +51,7 @@ GameState previousState = GS_MENU;
                 }
 
                 // Pause toggle
-                if (gameState == GS_PLAYING and e.type == SDL_KEYDOWN and e.key.keysym.sym == SDLK_p)
+                if (gameState == GS_PLAYING and e.type == SDL_KEYDOWN and( e.key.keysym.sym == SDLK_p or e.key.keysym.sym == SDLK_ESCAPE) )
                 {
                     gameState = GS_PAUSED;
                     continue;

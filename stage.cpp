@@ -96,6 +96,7 @@ void resetStage(void)
     stage.debrisTail = &stage.debrisHead;
 
     initPlayer();
+    //initMap();
     initStarfield();
 
     enemySpawnTimer = 0;

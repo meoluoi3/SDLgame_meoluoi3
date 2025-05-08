@@ -1,8 +1,8 @@
 #ifndef DEFS
 #define DEFS
 #define PI 3.14159265358979323846
-#define SCREEN_WIDTH   1500
-#define SCREEN_HEIGHT  800
+#define SCREEN_WIDTH 1600  
+#define SCREEN_HEIGHT 900 
 #define PLAYER_SPEED  10
 #define PLAYER_BULLET_SPEED   16
 #define MAX_KEYBOARD_KEYS  350
@@ -14,6 +14,12 @@
 #define MAX_STARS   500
 #define MAX_SND_CHANNELS 8
 #define MAX_NAME_LENGTH 1000
+#define MAX_TILES 100
+#define TILE_SIZE 48 
+#define MAP_WIDTH  34  
+#define MAP_HEIGHT 19  
+#define MAP_RENDER_WIDTH     (SCREEN_WIDTH / TILE_SIZE)   // = 33 
+#define MAP_RENDER_HEIGHT    (SCREEN_HEIGHT / TILE_SIZE)  // = 18 
 enum
 {
     CH_ANY = -1,

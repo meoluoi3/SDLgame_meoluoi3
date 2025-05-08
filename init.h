@@ -4,3 +4,4 @@ void initSDL();
 void initStage();
 void initStarfield();
 
+

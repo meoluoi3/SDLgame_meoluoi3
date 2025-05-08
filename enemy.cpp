@@ -61,15 +61,12 @@ void spawnEnemies()
         //if (player != nullptr) calcSlope(player->x, player->y, enemy->x, enemy->y, &enemy->dx, &enemy->dy);
         //else calcSlope(SCREEN_WIDTH/2 * rand() + 1, SCREEN_HEIGHT/2 * rand() +1, enemy->x, enemy->y, &enemy->dx, &enemy->dy);
 
-        int pat = rand() % 7;
-        enemy->pattern = static_cast<MovePattern>(pat);
+       // int pat = rand() % 7;
+        enemy->pattern = static_cast<MovePattern>(1);
         enemy->baseX = enemy->x;
         enemy->baseY = enemy->y;
         enemy->timer = 0;   
-        if (player != nullptr) {
-            enemy->targetX = player->x;
-            enemy->targetY = player->y;
-        }
+        
         enemy->texture = enemyTexture;
         enemy->side = SIDE_ALIEN;
         enemy->health = (rand() % 5) + 1;

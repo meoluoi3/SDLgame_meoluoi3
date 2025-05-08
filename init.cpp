@@ -81,7 +81,12 @@ void initStage() // Initialize the stage
     stage.explosionTail = &stage.explosionHead;
     stage.debrisTail = &stage.debrisHead;
 
-    initStarfield();
+    //initMap();            // sets up dungeon.map
+    //initEntities();       // whatever “other” dungeon entities you have
+    //initPlayer();         // pushes the player into fighter list
+
+
+   // initStarfield();
     resetStage();
     initSounds();
 
