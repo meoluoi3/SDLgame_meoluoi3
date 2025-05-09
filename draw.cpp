@@ -6,17 +6,14 @@
 #include "text.h"
 #include "stage.h"
 #include "math.h"
+#include "weapon.h"
 
 extern App app;
 extern Stage stage;
 extern Entity* player;
-extern SDL_Texture* background;
-extern Star stars[MAX_STARS];
-extern SDL_Texture* explosionTexture;
-extern int backgroundX;
 
-std::vector<SDL_Texture*> playerTextures;
-std::vector<SDL_Texture*> enemyTextures;
+extern PlayerWeapons wpnList;
+
 
 int playerCurrentFrame = 0;
 int enemyCurrentFrame = 0;
@@ -33,14 +30,18 @@ void presentScene()
 {
     SDL_RenderPresent(app.renderer);
 }
-SDL_Texture* loadTexture(const char* filename)
-{
+SDL_Texture* loadTexture(const char* filename) {
+    if (!app.renderer) {
+        SDL_Log("loadTexture: Renderer is NULL! Cannot load texture: %s", filename);
+        return nullptr;
+    }
     SDL_Texture* texture = IMG_LoadTexture(app.renderer, filename);
     if (!texture) {
-        SDL_Log("Failed to load texture: %s", IMG_GetError());
+        SDL_Log("Failed to load texture '%s': %s", filename, IMG_GetError());
     }
     return texture;
 }
+
 void blit(SDL_Texture* texture, int x, int y)
 {
     SDL_Rect dest;
@@ -95,76 +96,26 @@ void drawFighters()
     {
         // Draw the entity (player or enemy)
         
-        if (e == player) {
-            int mouseX, mouseY;
-            // Get mouse position
-            SDL_GetMouseState(&mouseX, &mouseY);
-            player->angle = getAngle(player->x, player->y, mouseX, mouseY);
-            blitRotated(player->texture, player->x, player->y, player->angle);
+        if (e != nullptr && e->texture != nullptr) {
+            if (e == player) {
+                int mouseX, mouseY;
+                SDL_GetMouseState(&mouseX, &mouseY);
+                player->angle = getAngle(player->x, player->y, mouseX, mouseY);
+                blitRotated(player->texture, player->x, player->y, player->angle);
+            }
+            else {
+                if(player != nullptr) e->angle = getAngle(e->x, e->y, player->x, player->y);
+                blitRotated(e->texture, e->x, e->y, e->angle);
+            }
+            // Health bar and text
+            drawHealthBar(app.renderer, e);
+            drawHealthText(app.renderer, e);
         }
-        else if (player != nullptr and e!= player) {
-            e->angle = getAngle(e->x, e->y, player->x, player->y);
-            blitRotated(e->texture, e->x, e->y, e->angle);
-        }
-        // Draw the health bar above the entity
-        drawHealthBar( app.renderer,e);
-        drawHealthText (app.renderer,e);
+
     }
     
 }
-void drawBackground()
-{
-    SDL_Rect dest;
-    int x;
 
-    for (x = backgroundX; x < SCREEN_WIDTH; x += SCREEN_WIDTH)
-    {
-        dest.x = x;
-        dest.y = 0;
-        dest.w = SCREEN_WIDTH;
-        dest.h = SCREEN_HEIGHT;
-
-        SDL_RenderCopy(app.renderer, background, nullptr, &dest);
-    }
-}
-void drawStarfield()
-{
-    int i, c;
-
-    for (i = 0; i < MAX_STARS; i++)
-    {
-        c = 32 * stars[i].speed;
-       
-        SDL_SetRenderDrawColor(app.renderer, c, c, c, 255);
-        SDL_RenderDrawLine(app.renderer, stars[i].x, stars[i].y, stars[i].x + 3, stars[i].y);
-    }
-}
-void drawDebris()
-{
-    Debris* d;
-
-    for (d = stage.debrisHead.next; d != nullptr; d = d->next)
-    {
-        blitRect(d->texture, &d->rect, d->x, d->y);
-    }
-}
-void drawExplosions()
-{
-    Explosion* e;
-
-    SDL_SetRenderDrawBlendMode(app.renderer, SDL_BLENDMODE_ADD);
-    SDL_SetTextureBlendMode(explosionTexture, SDL_BLENDMODE_ADD);
-
-    for (e = stage.explosionHead.next; e != nullptr; e = e->next)
-    {
-        SDL_SetTextureColorMod(explosionTexture, e->r, e->g, e->b);
-        SDL_SetTextureAlphaMod(explosionTexture, e->a);
-
-        blit(explosionTexture, e->x, e->y);
-    }
-
-    SDL_SetRenderDrawBlendMode(app.renderer, SDL_BLENDMODE_NONE);
-}
 void drawHealthBar(SDL_Renderer* renderer,Entity* entity) {
     int barWidth = 16 * entity->maxHealth;
     int barHeight = 10;

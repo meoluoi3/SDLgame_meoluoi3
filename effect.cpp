@@ -8,6 +8,7 @@ extern Stage stage;
 extern Entity* player;
 extern Star stars[MAX_STARS];
 extern int backgroundX;
+extern SDL_Texture* debrisTexture;
 
 void doBackground()
 {
@@ -153,12 +154,67 @@ void addDebris(Entity* e)
             d->dy = (rand() % 20) - (rand() % 20);
 
             d->life = FPS * 3;
-            d->texture = loadTexture("img/debris.png");
+            d->texture = debrisTexture  ;
 
             d->rect.x = x;
             d->rect.y = y;
             d->rect.w = w;
             d->rect.h = h;
         }
+    }
+}
+
+
+void drawDebris()
+{
+    Debris* d;
+
+    for (d = stage.debrisHead.next; d != nullptr; d = d->next)
+    {
+        blitRect(d->texture, &d->rect, d->x, d->y);
+    }
+}
+void drawExplosions()
+{
+    Explosion* e;
+
+    SDL_SetRenderDrawBlendMode(app.renderer, SDL_BLENDMODE_ADD);
+    SDL_SetTextureBlendMode(explosionTexture, SDL_BLENDMODE_ADD);
+
+    for (e = stage.explosionHead.next; e != nullptr; e = e->next)
+    {
+        SDL_SetTextureColorMod(explosionTexture, e->r, e->g, e->b);
+        SDL_SetTextureAlphaMod(explosionTexture, e->a);
+
+        blit(explosionTexture, e->x, e->y);
+    }
+
+    SDL_SetRenderDrawBlendMode(app.renderer, SDL_BLENDMODE_NONE);
+}
+void drawBackground()
+{
+    SDL_Rect dest;
+    int x;
+
+    for (x = backgroundX; x < SCREEN_WIDTH; x += SCREEN_WIDTH)
+    {
+        dest.x = x;
+        dest.y = 0;
+        dest.w = SCREEN_WIDTH;
+        dest.h = SCREEN_HEIGHT;
+
+        SDL_RenderCopy(app.renderer, background, nullptr, &dest);
+    }
+}
+void drawStarfield()
+{
+    int i, c;
+
+    for (i = 0; i < MAX_STARS; i++)
+    {
+        c = 32 * stars[i].speed;
+
+        SDL_SetRenderDrawColor(app.renderer, c, c, c, 255);
+        SDL_RenderDrawLine(app.renderer, stars[i].x, stars[i].y, stars[i].x + 3, stars[i].y);
     }
 }

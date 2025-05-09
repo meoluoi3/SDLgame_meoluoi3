@@ -1,3 +1,4 @@
 #pragma once
-void doPlayerMovement();
+#include "weapon.h"
+void doPlayerMovement(PlayerWeapons& wpnList);
 void doFighters();

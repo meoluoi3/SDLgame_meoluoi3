@@ -1,6 +1,8 @@
 #pragma once
 #include "struct.h"
-void fireBullet();
+#include "weapon.h"
+
+void fireBullet(PlayerWeapons& wpnList);
 void doBullets();
 void fireAlienBullet(Entity* e);
 

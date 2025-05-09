@@ -16,8 +16,6 @@ public:
 
 class Debris {
 public:
-    float fx, fy;      // floating-point position
-    float fW, fH;
     float x, y, dx, dy;
     SDL_Rect rect;
     SDL_Texture* texture;
@@ -118,5 +116,4 @@ struct Settings {
 extern Settings settings; 
 void logic();
 void draw();
-void clipPlayer();
 

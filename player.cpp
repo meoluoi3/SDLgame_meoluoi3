@@ -5,12 +5,13 @@
 #include "sound.h"
 #include "stage.h"
 #include "math.h"
+#include "weapon.h"
 
 extern App app;
 extern Stage stage;
 extern Entity* player;
-
-void doPlayerMovement()
+//xtern PlayerWeapons wpnList;
+void doPlayerMovement(PlayerWeapons& wpnList)
 {
     if (player != nullptr)
     {
@@ -29,13 +30,18 @@ void doPlayerMovement()
         if (app.keyboard[SDL_SCANCODE_A]) player->dx = -PLAYER_SPEED;
         if (app.keyboard[SDL_SCANCODE_D]) player->dx = PLAYER_SPEED;
 
+        if (app.keyboard[SDL_SCANCODE_1]) switchWeapon(wpnList, SDLK_1);
+        if (app.keyboard[SDL_SCANCODE_2]) switchWeapon(wpnList, SDLK_2);
+        if (app.keyboard[SDL_SCANCODE_3]) switchWeapon(wpnList, SDLK_3);
 
         // Fire input
-        if (player != nullptr and app.mouseButtons[SDL_BUTTON_LEFT] and player->reload <= 0)
-        {
-            SDL_Log("Firing bullet...");
-            playSound(SND_PLAYER_FIRE, CH_PLAYER);
-            fireBullet();
+        if (app.mouseButtons[SDL_BUTTON_LEFT]) {
+           
+                //SDL_Log("Firing bullet...");
+                
+                fireBullet(wpnList);
+            
+            
         }
     }
 }
@@ -90,6 +96,9 @@ void doFighters() {
 
             Entity* temp = e->next;
             SDL_Log("Deleting entity at %p, health = %d", (void*)e, e->health);
+            if (e != player) {
+                SDL_Log("Enemy texture: %p, health: %d", (void*)e->texture, e->health);
+            }
 
             delete e;
             e = temp;

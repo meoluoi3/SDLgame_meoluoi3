@@ -119,7 +119,7 @@ void updateSettings(const SDL_Event& e) {
     case 2:
         if ((e.key.keysym.sym == SDLK_RIGHT || e.key.keysym.sym == SDLK_d) && settings.bgIndex < (int)bgNames.size() - 1) {
             settings.bgIndex++; changed = true;
-        }
+        }       
         else if ((e.key.keysym.sym == SDLK_LEFT || e.key.keysym.sym == SDLK_a) && settings.bgIndex > 0) {
             settings.bgIndex--; changed = true;
         }

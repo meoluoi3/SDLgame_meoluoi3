@@ -39,8 +39,7 @@ void capFrameRate(long* then, float* remainder)
 
 int collision(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2)
 {
-    return (max(x1, x2) < min(x1 + w1, x2 + w2)) &&
-        (max(y1, y2) < min(y1 + h1, y2 + h2));
+    return (max(x1, x2) < min(x1 + w1, x2 + w2)) && (max(y1, y2) < min(y1 + h1, y2 + h2));
 }
 
 void calcSlope(int x1, int y1, int x2, int y2, double* dx, double* dy)
@@ -111,9 +110,6 @@ int bulletHitFighter(Entity* b)
                 e->health--;
 
             }
-
-
-
 
             if (e->health == 0) {
                 stage.score++;

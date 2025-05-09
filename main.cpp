@@ -16,6 +16,7 @@
 #include "tutorial.h"
 #include "menu.h"
 #include "math.h"
+#include "weapon.h"
 
 GameState gameState = GS_MENU;
 GameState previousState = GS_MENU;
@@ -26,6 +27,8 @@ GameState previousState = GS_MENU;
     Star stars[MAX_STARS];
     Mix_Chunk* sounds[SND_MAX];
     Mix_Music* music;
+    PlayerWeapons wpnList;
+     
 
     int main(int argc, char* argv[]) {
         srand(static_cast<unsigned>(time(0)));

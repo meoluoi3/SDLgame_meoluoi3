@@ -8,17 +8,23 @@
 #include "draw.h"
 #include "text.h"
 #include "settings.h"
+#include "weapon.h"
 extern App app;
 extern Stage stage;
 extern Entity* player;
 extern Star stars[MAX_STARS];
-
+extern PlayerWeapons wpnList;
 SDL_Texture* bulletTexture = nullptr;
 SDL_Texture* enemyTexture = nullptr;
 SDL_Texture* alienBullet = nullptr;
 SDL_Texture* background = nullptr;
 SDL_Texture* explosionTexture = nullptr;
 SDL_Texture* fontTexture = nullptr;
+ SDL_Texture* playerStanding;
+ SDL_Texture* playerHoldingAK;
+ SDL_Texture* playerHoldingPistol;
+ SDL_Texture* playerPunching;
+ SDL_Texture* debrisTexture;
 int backgroundX{};
 int stageResetTimer{};
 void initSDL() // Initialize SDL
@@ -87,12 +93,12 @@ void initStage() // Initialize the stage
    // initStarfield();
     resetStage();
     initSounds();
-
+    initWeapons(wpnList);
     bulletTexture = loadTexture("img/bullet_klee.png");
     enemyTexture = loadTexture("kenney_top-down-shooter/PNG/Zombie 1/zoimbie1_gun.png");
     alienBullet = loadTexture("img/alienBullet.png");
     explosionTexture = loadTexture("img/explosion.png");
-
+    debrisTexture = loadTexture("img/debris.png");  
     
     applySettings(); // loads background and music
 }
@@ -139,6 +145,10 @@ void initPlayer()
     player->health = 3;
     player->maxHealth = 3;
     player->texture = loadTexture("kenney_top-down-shooter/PNG/Survivor 1/survivor1_machine.png");
+    playerStanding = loadTexture("kenney_top-down-shooter/PNG/Survivor 1/survivor1_stand.png");
+    playerHoldingAK = loadTexture("kenney_top-down-shooter/PNG/Survivor 1/survivor1_machine.png");
+    playerHoldingPistol = loadTexture("kenney_top-down-shooter/PNG/Survivor 1/survivor1_gun.png");
+    playerPunching = loadTexture("kenney_top-down-shooter/PNG/Survivor 1/survivor1_hold.png");
     SDL_QueryTexture(player->texture, nullptr, nullptr, &player->w, &player->h);
 }
 void initStarfield()

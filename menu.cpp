@@ -3,8 +3,9 @@
 #include <SDL_ttf.h>
 #include <SDL.h>
 #include "defs.h"
+#include "stage.h"
 
-extern TTF_Font* gFont;
+
 
 static int menuIndex;
 static const char* mainMenuLabels[] = {
@@ -23,10 +24,11 @@ static int pauseIndex = 0;
 static const char* pauseMenuLabels[] = {
 	"Resume",
 	"Settings",
+	"Restart",
 	"Exit to Main Menu",
 	"Quit Game"
 };
-static const int PAUSE_MENU_COUNT = 4;
+static const int PAUSE_MENU_COUNT = 5;
 static const int PAUSE_MENU_START_X = SCREEN_WIDTH / 2 - 100;
 static const int PAUSE_MENU_START_Y = 200;
 static const int PAUSE_MENU_SPACING_Y = 60;
@@ -183,9 +185,17 @@ void updatePauseMenu(const SDL_Event& e) {
 				gameState = GS_SETTINGS;
 				break;
 			case 2:
-				gameState = GS_MENU;
+				if (gameState == GS_PAUSED) {
+					resetStage();
+					SDL_Delay(10);
+
+					gameState = GS_PLAYING;
+				}
 				break;
 			case 3:
+				gameState = GS_MENU;
+				break;
+			case 4:
 				gameState = GS_EXIT;
 				break;
 			}
@@ -231,9 +241,17 @@ void updatePauseMenu(const SDL_Event& e) {
 						gameState = GS_SETTINGS;
 						break;
 					case 2:
-						gameState = GS_MENU;
+						if (gameState == GS_PAUSED) {
+							resetStage();
+							SDL_Delay(10);
+
+							gameState = GS_PLAYING;
+						}
 						break;
 					case 3:
+						gameState = GS_MENU;
+						break;
+					case 4:
 						gameState = GS_EXIT;
 						break;
 					}
