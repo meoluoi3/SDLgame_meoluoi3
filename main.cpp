@@ -28,7 +28,8 @@ GameState previousState = GS_MENU;
     Mix_Chunk* sounds[SND_MAX];
     Mix_Music* music;
     PlayerWeapons wpnList;
-     
+    std::vector<SDL_Texture*> tiles;
+
 
     int main(int argc, char* argv[]) {
         srand(static_cast<unsigned>(time(0)));

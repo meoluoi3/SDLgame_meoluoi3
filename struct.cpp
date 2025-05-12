@@ -37,7 +37,7 @@ void logic()
    
    
     
-   // spawnEnemies();
+    spawnEnemies();
     doEnemies();
     updateWeaponReloads(wpnList, SDL_GetTicks());
     

@@ -30,9 +30,15 @@ void doPlayerMovement(PlayerWeapons& wpnList)
         if (app.keyboard[SDL_SCANCODE_A]) player->dx = -PLAYER_SPEED;
         if (app.keyboard[SDL_SCANCODE_D]) player->dx = PLAYER_SPEED;
 
-        if (app.keyboard[SDL_SCANCODE_1]) switchWeapon(wpnList, SDLK_1);
-        if (app.keyboard[SDL_SCANCODE_2]) switchWeapon(wpnList, SDLK_2);
-        if (app.keyboard[SDL_SCANCODE_3]) switchWeapon(wpnList, SDLK_3);
+        if (app.keyboard[SDL_SCANCODE_1] && !app.prevKeyboard[SDL_SCANCODE_1]) {
+            switchWeapon(wpnList, SDLK_1);
+        }
+        if (app.keyboard[SDL_SCANCODE_2] && !app.prevKeyboard[SDL_SCANCODE_2]) {
+            switchWeapon(wpnList, SDLK_2);
+        }
+        if (app.keyboard[SDL_SCANCODE_3] && !app.prevKeyboard[SDL_SCANCODE_3]) {
+            switchWeapon(wpnList, SDLK_3);
+        }
 
         // Fire input
         if (app.mouseButtons[SDL_BUTTON_LEFT]) {

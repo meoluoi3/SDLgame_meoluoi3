@@ -7,6 +7,7 @@
 #include "struct.h"
 #include "sound.h"
 #include "init.h"
+#include "dungeon.h"
 
 
 using namespace std;
@@ -64,7 +65,7 @@ void resetStage(void)
     initPlayer();
     //initMap();
     initStarfield();
-
+   // resetDungeon();
     enemySpawnTimer = 0;
     stageResetTimer = FPS * 3;
     

@@ -42,10 +42,11 @@ public:
     Delegate delegate;
     int keyboard[MAX_KEYBOARD_KEYS];
     int mouseButtons[MAX_MOUSE_BUTTONS];
-    
+    int prevKeyboard[MAX_KEYBOARD_KEYS];
     App() : renderer(nullptr), window(nullptr) {
         memset(keyboard, 0, sizeof(keyboard));
         memset(mouseButtons, 0, sizeof(mouseButtons));
+        memset(prevKeyboard, 0, sizeof(prevKeyboard));
     }
 };
 
@@ -53,7 +54,8 @@ class Entity {
 public:
     MovePattern pattern;
     double baseX, baseY, timer; 
-
+    int px, py;
+    
     double x, y, dx, dy;
     int w, h, health, maxHealth, reload, side, angle;
 
@@ -69,13 +71,16 @@ public:
         texture(nullptr), next(nullptr)
     {}
 };
-class Map {
-    int map[MAP_WIDTH][MAP_HEIGHT];
+extern Entity* player;
+struct Map {
+    int tileVisual[MAP_WIDTH][MAP_HEIGHT];
+    int data[MAP_WIDTH][MAP_HEIGHT];
 };
 
 struct Dungeon {
-    public:
     SDL_Point renderOffset;
+    SDL_Point camera;
+    
     Map map;
 };
 
@@ -85,10 +90,13 @@ public:
     int score;
     Entity fighterHead;
     Entity* fighterTail;
+
     Entity bulletHead;
     Entity* bulletTail;
+
     Explosion explosionHead;
     Explosion* explosionTail;
+
     Debris debrisHead;
     Debris* debrisTail;
     

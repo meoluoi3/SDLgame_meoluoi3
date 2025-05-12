@@ -14,12 +14,20 @@
 #define MAX_STARS   500
 #define MAX_SND_CHANNELS 8
 #define MAX_NAME_LENGTH 1000
-#define MAX_TILES 100
+#define MAX_TILES 538
+
 #define TILE_SIZE 48 
-#define MAP_WIDTH  34  
-#define MAP_HEIGHT 19  
-#define MAP_RENDER_WIDTH     (SCREEN_WIDTH / TILE_SIZE)   // = 33 
-#define MAP_RENDER_HEIGHT    (SCREEN_HEIGHT / TILE_SIZE)  // = 18 
+#define MAP_WIDTH              57
+#define MAP_HEIGHT             30
+
+#define MAP_RENDER_WIDTH       19
+#define MAP_RENDER_HEIGHT      10
+
+
+#define TILE_GROUND   1
+#define TILE_WALL  40
+
+
 enum
 {
     CH_ANY = -1,

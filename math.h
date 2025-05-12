@@ -9,3 +9,4 @@ void calcSlope(int x1, int y1, int x2, int y2, double* dx, double* dy);
 void clipPlayer();
 int bulletHitFighter(Entity* b);
 int playerHitEnemy(Entity* player);
+int clamp(int value, int low, int high);

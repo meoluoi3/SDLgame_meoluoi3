@@ -42,7 +42,7 @@ struct PlayerWeapons {
     std::vector<Weapon> list;
     int currentIndex; // 0 = AK, 1 = Pistol, 2 = Knife
 };
-
+extern PlayerWeapons wpnList;
 // Functions
 void initWeapons(PlayerWeapons& wpnList);
 void handleWeaponFire(PlayerWeapons& wpnList, Uint32 currentTime);
