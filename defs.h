@@ -14,18 +14,26 @@
 #define MAX_STARS   500
 #define MAX_SND_CHANNELS 8
 #define MAX_NAME_LENGTH 1000
+
+
+#define SURVIVOR_MODE 1
+#define DUNGEON_MODE 2
+
 #define MAX_TILES 538
 
-#define TILE_SIZE 48 
-#define MAP_WIDTH              57
-#define MAP_HEIGHT             30
+#define TILE_SIZE      64
 
-#define MAP_RENDER_WIDTH       19
-#define MAP_RENDER_HEIGHT      10
+
+#define MAP_RENDER_WIDTH   (SCREEN_WIDTH  / TILE_SIZE)   // = 1600/64 = 25
+#define MAP_RENDER_HEIGHT  (SCREEN_HEIGHT / TILE_SIZE)   // = 900/64  = 14
+
+
+#define MAP_WIDTH    (MAP_RENDER_WIDTH  * 3)  // 25 * 3 = 75
+#define MAP_HEIGHT   (MAP_RENDER_HEIGHT * 3)  // 14 * 3 = 42
 
 
 #define TILE_GROUND   1
-#define TILE_WALL  40
+#define TILE_WALL  2
 
 
 enum
@@ -50,7 +58,8 @@ enum GameState {
     GS_SETTINGS,
     GS_PLAYING,
     GS_PAUSED,
-    GS_EXIT
+    GS_EXIT,
+    GS_MODE_SELECTION
 };
 extern GameState gameState;
 extern GameState previousState;

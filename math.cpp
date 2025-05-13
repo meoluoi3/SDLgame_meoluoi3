@@ -4,9 +4,11 @@
 #include "struct.h"
 #include "sound.h"
 #include "bits/stdc++.h"
+#include "settings.h"
 using namespace std;
 extern Entity* player;
 extern Stage stage;
+
 double getAngle(int x1, int y1, int x2, int y2)
 {
     double angle = -180 + atan2(y1 - y2, x1 - x2) * (180 / PI);
@@ -24,18 +26,32 @@ bool checkForQuitEvent() {
 
 void capFrameRate(long* then, float* remainder)
 {
-    long wait = 16 + *remainder;
-    *remainder -= (int)*remainder;
+    // 1. Determine your target FPS from settings
+    int targetFPS = fpsCapOptions[settings.fpsCapIndex];
+    // 2. Compute the ideal frame time in milliseconds
+    float idealFrameMs = 1000.0f / targetFPS;
 
+    // 3. Add the fractional remainder carried over from last frame
+    long wait = (long)idealFrameMs + (int)(*remainder);
+    *remainder -= floorf(*remainder);
+
+    // 4. Subtract the time already spent this frame
     long frameTime = SDL_GetTicks() - *then;
     wait -= frameTime;
 
+    // 5. Clamp so we never wait negative
     if (wait < 1) wait = 1;
 
+    // 6. Wait that long
     SDL_Delay(wait);
-    *remainder += 0.667;
+
+    // 7. Carry over the leftover fraction to the next frame
+    *remainder += (idealFrameMs - floorf(idealFrameMs));
+
+    // 8. Reset the timer for the next frame
     *then = SDL_GetTicks();
 }
+
 
 int collision(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2)
 {

@@ -48,6 +48,7 @@ void initWeapons(PlayerWeapons& wpnList);
 void handleWeaponFire(PlayerWeapons& wpnList, Uint32 currentTime);
 void updateWeaponReloads(PlayerWeapons& wpnList, Uint32 currentTime);
 void switchWeapon(PlayerWeapons& wpnList, int key);
-
+void resetWeapons();
 void playerAndWeaponTexture(PlayerWeapons& wpnList);
 void drawAmmoHUD(SDL_Renderer* renderer, const Weapon& currentWeapon);
+bool forceReload(PlayerWeapons& wpnList, Uint32 currentTime);

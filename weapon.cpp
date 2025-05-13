@@ -49,10 +49,21 @@ void handleWeaponFire(PlayerWeapons& wpnList, Uint32 currentTime) {
         w.lastFireTime = currentTime; // just use milliseconds
     }
 }
+bool forceReload(PlayerWeapons& wpnList, Uint32 currentTime) {
+    Weapon& w = wpnList.list[wpnList.currentIndex];
+
+    // Only reload if it's not already reloading and not full
+    if (w.ammo < w.ammoCapacity && w.reloadtime == 0) {
+        w.reloadtime = currentTime;
+        SDL_Log("Force reloading %s...", w.name.c_str());
+        return true;
+    }
+    return false;
+}
 
 void updateWeaponReloads(PlayerWeapons& wpnList, Uint32 currentTime) {
     for (auto& w : wpnList.list) {
-        if (w.ammo == 0 && w.reloadtime > 0) {
+        if (w.reloadtime > 0 ) {
             if (w.type == WeaponType::AK ) {
                 std::cerr << "AK: " << currentTime - w.reloadtime << "\n";
                 if (currentTime - w.reloadtime >= w.reloadDuration) {
@@ -73,28 +84,59 @@ void updateWeaponReloads(PlayerWeapons& wpnList, Uint32 currentTime) {
     }
 }
 
-void switchWeapon(PlayerWeapons& wpnList, int key) {
+void switchWeapon(PlayerWeapons& wpnList, int key)
+{
     int newIndex = -1;
+
+    // Determine the new weapon index based on the key input
     if (key == SDLK_1) newIndex = 0;
     else if (key == SDLK_2) newIndex = 1;
     else if (key == SDLK_3) newIndex = 2;
 
-    if (newIndex != -1) {
-        if (wpnList.currentIndex != newIndex) {
-            // stop old reload timer (if any)
-            if (wpnList.currentIndex >= 0)
+    if (newIndex != -1)
+    {
+        // Only switch if the new index is different
+        if (wpnList.currentIndex != newIndex)
+        {
+            // Reset the reload timer for the current weapon
+            if (wpnList.currentIndex >= 0 && wpnList.currentIndex < wpnList.list.size())
+            {
                 wpnList.list[wpnList.currentIndex].reloadtime = 0;
+            }
 
+            // Switch to the new weapon
             wpnList.currentIndex = newIndex;
-            wpnList.list[newIndex].reloadtime = 0;  // stop any reload on new too
+
+            // Reset reloadtime for the new weapon as well
+            if (wpnList.currentIndex >= 0 && wpnList.currentIndex < wpnList.list.size())
+            {
+                wpnList.list[wpnList.currentIndex].reloadtime = 0;
+            }
         }
-        else {
-            // toggle off
+        else
+        {
+            // Optional: toggle off if the same weapon is selected
             wpnList.currentIndex = -1;
             player->texture = playerStanding;
         }
     }
 }
+
+
+
+void resetWeapons()
+{
+    for (auto& w : wpnList.list)
+    {
+        w.ammo = w.ammoCapacity;
+        w.reloadtime = 0;
+        w.lastFireTime = 0.0;  // Reset the last fire time too
+    }
+
+    // Optionally reset the active weapon to a default (e.g., AK)
+    wpnList.currentIndex = 0; // or any weapon index you prefer
+}
+
 
 
 void playerAndWeaponTexture(PlayerWeapons& wpnList) {

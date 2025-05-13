@@ -1,4 +1,4 @@
-#include <SDL.h>
+﻿#include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_mixer.h>
 #include <iostream>
@@ -29,13 +29,19 @@ GameState previousState = GS_MENU;
     Mix_Music* music;
     PlayerWeapons wpnList;
     std::vector<SDL_Texture*> tiles;
+  
+    static int   currentFPS = 0;
+    static int   frameCount = 0;
+    static Uint32 fpsTimer = 0;
 
 
     int main(int argc, char* argv[]) {
         srand(static_cast<unsigned>(time(0)));
-        long then{};
-        float remainder{};
-
+        long then = SDL_GetTicks();
+        float remainder = 0;
+        fpsTimer = SDL_GetTicks();
+         int   currentFPS = 0;
+         int   frameCount = 0;
         initSDL();
         initStage();    
         initMenu(app.renderer);
@@ -69,6 +75,7 @@ GameState previousState = GS_MENU;
                 case GS_SETTINGS: updateSettings(e);    break;
                 case GS_PLAYING:  handleInputEvent(e);  break;
                 case GS_PAUSED:   updatePauseMenu(e);   break;
+                case GS_MODE_SELECTION: updateModeSelection(e); break;
                 default: break;
                 }
             }
@@ -81,17 +88,40 @@ GameState previousState = GS_MENU;
             case GS_SETTINGS: drawSettings(app.renderer); break;
             case GS_PLAYING:
                 prepareScene();
-                app.delegate.logic();
-                app.delegate.draw();
+
+                if (app.delegate.logic) app.delegate.logic();
+                if (app.delegate.draw)  app.delegate.draw();
+
+                
+                if (settings.showFPS) {
+                    frameCount++;
+                    Uint32 now = SDL_GetTicks();
+                    if (now - fpsTimer >= 1000) {
+                        currentFPS = frameCount;
+                        frameCount = 0;
+                        fpsTimer = now;
+                    }
+
+                    SDL_Color white = { 255,255,255,255 };
+                    std::string txt = "FPS: " + std::to_string(currentFPS);
+                    renderText(app.renderer, txt, 200, 10, white);
+                }
+                
+
                 presentScene();
                 break;
+
             case GS_PAUSED:
                 drawPauseMenu(app.renderer);
+                break;
+            case GS_MODE_SELECTION:
+                drawModeSelection(app.renderer);  
                 break;
             default: break;
             }
 
             capFrameRate(&then, &remainder);
+            
         }
 
         cleanupMenu();

@@ -32,23 +32,44 @@ void doPlayerMovement(PlayerWeapons& wpnList)
 
         if (app.keyboard[SDL_SCANCODE_1] && !app.prevKeyboard[SDL_SCANCODE_1]) {
             switchWeapon(wpnList, SDLK_1);
+            app.prevKeyboard[SDL_SCANCODE_1] = true;  // Mark as pressed
         }
+        else if (!app.keyboard[SDL_SCANCODE_1]) {
+            app.prevKeyboard[SDL_SCANCODE_1] = false;  // Mark as released
+        }
+
         if (app.keyboard[SDL_SCANCODE_2] && !app.prevKeyboard[SDL_SCANCODE_2]) {
             switchWeapon(wpnList, SDLK_2);
+            app.prevKeyboard[SDL_SCANCODE_2] = true;  // Mark as pressed
         }
+        else if (!app.keyboard[SDL_SCANCODE_2]) {
+            app.prevKeyboard[SDL_SCANCODE_2] = false;  // Mark as released
+        }
+
         if (app.keyboard[SDL_SCANCODE_3] && !app.prevKeyboard[SDL_SCANCODE_3]) {
             switchWeapon(wpnList, SDLK_3);
+            app.prevKeyboard[SDL_SCANCODE_3] = true;  // Mark as pressed
+        }
+        else if (!app.keyboard[SDL_SCANCODE_3]) {
+            app.prevKeyboard[SDL_SCANCODE_3] = false;  // Mark as released
+        }
+
+        if (app.keyboard[SDL_SCANCODE_R] && !app.prevKeyboard[SDL_SCANCODE_R]) {
+            forceReload(wpnList, SDL_GetTicks());
+            app.prevKeyboard[SDL_SCANCODE_R] = true;  // Mark as pressed
+        }
+        else if (!app.keyboard[SDL_SCANCODE_R]) {
+            app.prevKeyboard[SDL_SCANCODE_R] = false;  // Mark as released
         }
 
         // Fire input
-        if (app.mouseButtons[SDL_BUTTON_LEFT]) {
-           
-                //SDL_Log("Firing bullet...");
-                
+        if (wpnList.currentIndex >= 0 && wpnList.currentIndex < wpnList.list.size()) {
+            if (app.mouseButtons[SDL_BUTTON_LEFT] && wpnList.list[wpnList.currentIndex].reloadtime == 0) {
                 fireBullet(wpnList);
-            
-            
+            }
         }
+
+
     }
 }
 

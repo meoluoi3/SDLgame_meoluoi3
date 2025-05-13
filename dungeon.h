@@ -1,11 +1,10 @@
 #pragma once
-void resetDungeon();
-void logicDungeon();
-void drawDungeon();
-void initMap();
-void loadTiles();
-void drawMap();
-void drawMapTiles();
-void movePlayer(int dx, int dy);
-void updateCameraDelay();
-extern int moveDelay;
+#include <string>
+#include "struct.h"
+void initMap(void);
+void loadTiles(void);
+void drawMapTiles(void);
+bool loadMapFromCSV(const std::string& filename, Map& map);
+void logicDungeon(void);
+void drawDungeon(void);
+void drawFightersDungeon(void);

@@ -6,20 +6,31 @@
 #include <SDL_mixer.h>
 #include "draw.h"
 #include "text.h"
-#include <vector>
-#include <string>
+
 
 using namespace std;
 
 
-Settings settings = { 100, 100, 0, 0 };
-
+const std::vector<int> fpsCapOptions = { 30, 60, 75, 120, 144, 165 };
 static const vector<string> bgNames = { "background", "drthanh", "Stars" };
-static const vector<string> musicNames = { "_Hotline Miami Soundtrack_Crystals.mp3" , "_Hotline Miami Soundtrack . Perturbator.mp3", "_Hotline Miami Soundtrack . -Paris-.mp3", "_Hotline Miami Soundtrack . Musik.mp3", "_Hotline Miami Soundtrack . Miami.mp3", "_Hotline Miami Soundtrack . It's Safe Now.mp3", "_Hotline Miami Soundtrack . Hydrogen.mp3", "_Hotline Miami Soundtrack . Daisuke.mp3", "_Hotline Miami Soundtrack . A New Morning.mp3"};
+static const vector<string> musicNames = {
+    "_Hotline Miami Soundtrack_Crystals.mp3",
+    "_Hotline Miami Soundtrack . Perturbator.mp3",
+    "_Hotline Miami Soundtrack . -Paris-.mp3",
+    "_Hotline Miami Soundtrack . Musik.mp3",
+    "_Hotline Miami Soundtrack . Miami.mp3",
+    "_Hotline Miami Soundtrack . It's Safe Now.mp3",
+    "_Hotline Miami Soundtrack . Hydrogen.mp3",
+    "_Hotline Miami Soundtrack . Daisuke.mp3",
+    "_Hotline Miami Soundtrack . A New Morning.mp3"
+};
 
+Settings settings = { 100, 100, 0, 0, true, 1 }; // Default: showFPS = true, fpsCap = 60
 int selectedSettingIndex = 0;
-const int settingCount = 6;
+const int settingCount = 8; 
 int currentMusicIndex = -1;
+
+
 void applySettings() {
     Mix_Volume(-1, settings.sfxVolume * 128 / 100);
     Mix_VolumeMusic(settings.musicVolume * 128 / 100);
@@ -137,6 +148,28 @@ void updateSettings(const SDL_Event& e) {
             playMusic(-1);
         }
         return;
+        break;
+    case 6: // Toggle Show FPS
+        if (e.type == SDL_KEYDOWN &&
+            (e.key.keysym.sym == SDLK_RIGHT || e.key.keysym.sym == SDLK_LEFT ||
+                e.key.keysym.sym == SDLK_d || e.key.keysym.sym == SDLK_a)) {
+            settings.showFPS = !settings.showFPS;
+            changed = true;
+        }
+        break;
+
+    case 7: // FPS Cap
+        if ((e.key.keysym.sym == SDLK_RIGHT || e.key.keysym.sym == SDLK_d) &&
+            settings.fpsCapIndex < (int)fpsCapOptions.size() - 1) {
+            settings.fpsCapIndex++;
+            changed = true;
+        }
+        else if ((e.key.keysym.sym == SDLK_LEFT || e.key.keysym.sym == SDLK_a) &&
+            settings.fpsCapIndex > 0) {
+            settings.fpsCapIndex--;
+            changed = true;
+        }
+        break;
 
     default:
         break;
@@ -178,6 +211,8 @@ void drawSettings(SDL_Renderer* renderer) {
         case 3: label = "Music: " + musicNames[settings.musicIndex]; break;
         case 4: label = "▶ Play Music (Enter)"; break;
         case 5: label = "■ Stop Music (Enter)"; break;
+        case 6: label = "Show FPS"; break;
+        case 7: label = "FPS Cap"; break;
         }
 
         int textW = 0, textH = 0;
@@ -195,15 +230,14 @@ void drawSettings(SDL_Renderer* renderer) {
         if (mouseX >= rect.x && mouseX <= rect.x + rect.w &&
             mouseY >= rect.y && mouseY <= rect.y + rect.h) {
             hoveredSettingIndex = i;
-            break; 
+            break;
         }
     }
 
-    
     for (int i = 0; i < settingCount; ++i) {
-        SDL_Color color = white;  
-        if (selectedSettingIndex == i and hoveredSettingIndex == -1) {
-            color = green;  
+        SDL_Color color = white;
+        if (selectedSettingIndex == i && hoveredSettingIndex == -1) {
+            color = green;
         }
         else if (hoveredSettingIndex == i) {
             color = green;
@@ -248,6 +282,26 @@ void drawSettings(SDL_Renderer* renderer) {
         case 5:
             renderText(renderer, "■ Stop Music (Enter)", 600, y, color);
             break;
+
+        case 6: // Show FPS
+            renderText(renderer, "Show FPS: ", 600, y, color);
+            renderText(renderer, (settings.showFPS ? "ON" : "OFF"), 930, y, color);
+            break;
+
+        case 7: // FPS Cap
+            renderText(renderer, "FPS Cap: ", 600, y, color);
+
+            if (settings.fpsCapIndex >= 0 && settings.fpsCapIndex < (int)fpsCapOptions.size()) {
+                // Convert int → string before rendering
+                renderText(
+                    renderer,
+                    std::to_string(fpsCapOptions[settings.fpsCapIndex]),
+                    930,
+                    y,
+                    color
+                );
+            }
+            break;
         }
     }
 
@@ -255,3 +309,4 @@ void drawSettings(SDL_Renderer* renderer) {
     renderText(renderer, (gameState == GS_PAUSED ? "Return" : "Back"), 800, 700, white);
     SDL_RenderPresent(renderer);
 }
+

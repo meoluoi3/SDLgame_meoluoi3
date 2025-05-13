@@ -88,6 +88,7 @@ class Stage {
 public:
     int highscore;
     int score;
+    int mode;
     Entity fighterHead;
     Entity* fighterTail;
 
@@ -119,7 +120,11 @@ struct Settings {
     int musicVolume;  // 0–100
     int bgIndex;
     int musicIndex;
+
+    bool showFPS;     // true or false
+    int fpsCapIndex;  // index into fpsCapOptions array
 };
+
 
 extern Settings settings; 
 void logic();

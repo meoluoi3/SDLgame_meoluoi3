@@ -56,7 +56,7 @@ void updateMainMenu(const SDL_Event& e) {
 			break;
 		case SDLK_RETURN:
 			switch (menuIndex) {
-			case 0: gameState = GS_PLAYING;  break;
+			case 0: gameState = GS_MODE_SELECTION;  break;
 			case 1: gameState = GS_TUTORIAL; break;
 			case 2:
 				previousState = GS_MENU;
@@ -94,7 +94,7 @@ void updateMainMenu(const SDL_Event& e) {
 					mouseY >= menuItemRect.y && mouseY < menuItemRect.y + menuItemRect.h)
 				{
 					switch (i) {
-					case 0: gameState = GS_PLAYING;  break;
+					case 0: gameState = GS_MODE_SELECTION; break;
 					case 1: gameState = GS_TUTORIAL; break;
 					case 2:
 						previousState = GS_MENU;

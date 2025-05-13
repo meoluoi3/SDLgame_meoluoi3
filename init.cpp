@@ -1,4 +1,4 @@
-#include "init.h"
+﻿#include "init.h"
 #include <SDL.h>
 #include <SDL_mixer.h>
 #include <SDL_ttf.h>
@@ -9,6 +9,7 @@
 #include "text.h"
 #include "settings.h"
 #include "weapon.h"
+#include "dungeon.h"
 extern App app;
 extern Stage stage;
 extern Entity* player;
@@ -102,13 +103,7 @@ void initStage() // Initialize the stage
     
     applySettings(); // loads background and music
 }
-
-void initDungeon(void)
-{
-
-    app.delegate.logic = logic;
-    app.delegate.draw = draw;
-
+void initSurvivor() {
     stage.fighterHead.next = nullptr;
     stage.bulletHead.next = nullptr;
     stage.fighterTail = &stage.fighterHead;
@@ -118,18 +113,45 @@ void initDungeon(void)
     stage.explosionTail = &stage.explosionHead;
     stage.debrisTail = &stage.debrisHead;
 
-    //initMap();
+    initPlayer();
+    initStarfield();
 
-    
+    app.delegate.logic = logic;
+    app.delegate.draw = draw;
+}
 
+void initDungeon()
+{
+    // 1) Reset all your entity lists exactly as before
+    stage.fighterHead.next = nullptr;
+    stage.bulletHead.next = nullptr;
+    stage.fighterTail = &stage.fighterHead;
+    stage.bulletTail = &stage.bulletHead;
+
+    stage.explosionHead.next = nullptr;
+    stage.explosionTail = &stage.explosionHead;
+    stage.debrisTail = &stage.debrisHead;
+
+    // 2) Spawn the player
     initPlayer();
 
-    stage.dungeon.renderOffset.x = (SCREEN_WIDTH - (MAP_WIDTH * TILE_SIZE)) / 2;
-    stage.dungeon.renderOffset.y = (SCREEN_HEIGHT - (MAP_HEIGHT * TILE_SIZE)) / 2;
+    // ────────────────────────────────────────────────────────────
+    // 3) Load *and* initialize your map here
+    initMap();  // ← calls loadTiles() and fills map.data[][] with TILE_GROUND
+    // ────────────────────────────────────────────────────────────
 
-    app.delegate.logic = &logic;
-    app.delegate.draw = &draw;
+    // 4) Center your view in the middle of the map
+    stage.dungeon.renderOffset.x = (SCREEN_WIDTH - (MAP_RENDER_WIDTH * TILE_SIZE)) / 2;
+    stage.dungeon.renderOffset.y = (SCREEN_HEIGHT - (MAP_RENDER_HEIGHT * TILE_SIZE)) / 2;
+
+    // 5) Start your camera at the top‐left of the world
+    stage.dungeon.camera = { 0, 0 };
+
+    // 6) Hook up dungeon logic/draw
+    app.delegate.logic = logicDungeon;
+    app.delegate.draw = drawDungeon;
 }
+
 
 void initPlayer()
 {
