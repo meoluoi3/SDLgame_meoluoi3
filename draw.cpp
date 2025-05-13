@@ -108,27 +108,27 @@ void drawFighters()
                 blitRotated(e->texture, e->x, e->y, e->angle);
             }
             // Health bar and text
-            drawHealthBar(app.renderer, e);
-            drawHealthText(app.renderer, e);
+            drawHealthBar(app.renderer, e, e->x, e->y);
+            drawHealthText(app.renderer, e, e->x, e->y);
         }
 
     }
     
 }
 
-void drawHealthBar(SDL_Renderer* renderer,Entity* entity) {
+void drawHealthBar(SDL_Renderer* renderer, Entity* entity, int screenX, int screenY) {
     int barWidth = 16 * entity->maxHealth;
     int barHeight = 10;
 
     int healthWidth = (entity->health * barWidth) / entity->maxHealth;
 
-    SDL_Rect healthBar = { entity->x, entity->y - entity->h / 2 - 10, healthWidth, barHeight };
+    SDL_Rect healthBar = { screenX, screenY - entity->h / 2 - 10, healthWidth, barHeight };
 
     SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
     SDL_RenderFillRect(renderer, &healthBar);
 
-    SDL_Rect remainingHealthBar = { entity->x + healthWidth,
-                                    entity->y - entity->h / 2 - 10,
+    SDL_Rect remainingHealthBar = { screenX + healthWidth,
+                                    screenY - entity->h / 2 - 10,
                                     barWidth - healthWidth, barHeight };
 
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
@@ -150,11 +150,11 @@ void drawHud(SDL_Renderer* renderer, int score, int highscore) {
         renderText(renderer, "HIGH SCORE: " + std::to_string(highscore), 960, 10, white);
     }
 }
-void drawHealthText(SDL_Renderer* renderer,Entity* entity ) {
+void drawHealthText(SDL_Renderer* renderer,Entity* entity, int screenX, int screenY) {
     std::string healthText = std::to_string(entity->health) + "/" + std::to_string(entity->maxHealth);
     SDL_Color textColor = { 255, 255, 255 };
-    int textX = entity->x ;
-    int textY = entity->y - entity->h - 2;
+    int textX = screenX ;
+    int textY = screenY - entity->h - 2;
     renderText(renderer, healthText, textX, textY, textColor,0.5);
 }
 

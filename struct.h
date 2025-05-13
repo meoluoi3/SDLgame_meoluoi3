@@ -58,7 +58,7 @@ public:
     
     double x, y, dx, dy;
     int w, h, health, maxHealth, reload, side, angle;
-
+    int screenX, screenY;
     SDL_Texture* texture;
 
     Entity* next;
@@ -77,6 +77,11 @@ struct Map {
     int data[MAP_WIDTH][MAP_HEIGHT];
 };
 
+struct CameraGhost {
+    float x, y;
+    float smoothSpeed;
+};
+extern CameraGhost cameraghost;
 struct Dungeon {
     SDL_Point renderOffset;
     SDL_Point camera;
@@ -127,6 +132,6 @@ struct Settings {
 
 
 extern Settings settings; 
-void logic();
-void draw();
+void logicSurvivor();
+void drawSurvivor();
 

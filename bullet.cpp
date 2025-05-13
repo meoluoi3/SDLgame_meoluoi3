@@ -39,8 +39,8 @@ void fireBullet(PlayerWeapons& wpnList) {
         int mouseX, mouseY;
         SDL_GetMouseState(&mouseX, &mouseY);
 
-        bullet->x = player->x - player->w / 2;
-        bullet->y = player->y;
+        bullet->x = player->x - player->w / 2;// -stage.dungeon.camera.x;
+        bullet->y = player->y;// -stage.dungeon.camera.y;
         double rad = player->angle * (PI / 180.0);
         bullet->dx = cos(rad) * PLAYER_BULLET_SPEED;
         bullet->dy = sin(rad) * PLAYER_BULLET_SPEED;
@@ -74,7 +74,13 @@ void doBullets()
         b->x += b->dx;
         b->y += b->dy;
 
-        if (bulletHitFighter(b) || b->x < -b->w || b->y < -b->h || b->x > SCREEN_WIDTH || b->y > SCREEN_HEIGHT)
+        if (
+            bulletHitFighter(b) ||
+            (stage.mode == DUNGEON_MODE &&
+                (b->x < 0 || b->y < 0 || b->x > MAP_WIDTH * TILE_SIZE || b->y > MAP_HEIGHT * TILE_SIZE)) ||
+            (stage.mode == SURVIVOR_MODE &&
+                (b->x < -b->w || b->y < -b->h || b->x > SCREEN_WIDTH || b->y > SCREEN_HEIGHT))
+            )
         {
             Entity* toDelete = b;
             Entity* nextNode = b->next;

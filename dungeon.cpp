@@ -37,7 +37,35 @@ void initMap(void)
             stage.dungeon.map.data[x][y] = TILE_GROUND;
         }
     }
+
+
 }
+void resetDungeon() {
+    stage.fighterHead.next = nullptr;
+    stage.fighterTail = &stage.fighterHead;
+    stage.bulletHead.next = nullptr;
+    stage.bulletTail = &stage.bulletHead;
+
+    for (int x = 0; x < MAP_WIDTH; ++x) {
+        for (int y = 0; y < MAP_HEIGHT; ++y) {
+            stage.dungeon.map.data[x][y] = TILE_GROUND;
+            stage.dungeon.map.tileVisual[x][y] = 1 + (std::rand() % 10);
+        }
+    }
+
+    stage.dungeon.camera.x = 0;
+    stage.dungeon.camera.y = 0;
+    stage.dungeon.renderOffset.x = (SCREEN_WIDTH - (MAP_RENDER_WIDTH * TILE_SIZE)) / 2;
+    stage.dungeon.renderOffset.y = (SCREEN_HEIGHT - (MAP_RENDER_HEIGHT * TILE_SIZE)) / 2;
+
+    cameraghost.x = 0;
+    cameraghost.y = 0;
+    cameraghost.smoothSpeed = 0.2f;
+}
+
+
+
+
 
 void loadTiles() {
     tiles.clear();
@@ -67,27 +95,41 @@ void drawMapTiles(void)
         for (int x = 0; x < MAP_WIDTH; ++x) {
             int t = stage.dungeon.map.data[x][y];
             if (t >= 0 && t < (int)tiles.size() && tiles[t]) {
-                int px = x * TILE_SIZE - stage.dungeon.camera.x + stage.dungeon.renderOffset.x;
-                int py = y * TILE_SIZE - stage.dungeon.camera.y + stage.dungeon.renderOffset.y;
+                int px = x * TILE_SIZE - stage.dungeon.camera.x;
+                int py = y * TILE_SIZE - stage.dungeon.camera.y;
                 blit(tiles[t], px, py);
             }
         }
     }
 }
 
-
+extern int frameCount;
 void updateCamera() {
-    // Desired camera origin so player is centered
-    int cx = player->x - SCREEN_WIDTH / 2 + player->w / 2;
-    int cy = player->y - SCREEN_HEIGHT / 2 + player->h / 2;
+    if (!player) return;
 
-    // Clamp to [0, worldWidth−screenWidth]
-    int maxCX = MAP_WIDTH * TILE_SIZE - SCREEN_WIDTH;
-    int maxCY = MAP_HEIGHT * TILE_SIZE - SCREEN_HEIGHT;
+    // 1) Build look‑ahead target
+    double tx = player->x + ((player->dx || player->dy) ? player->dx * 2.0 : 0.0);
+    double ty = player->y + ((player->dx || player->dy) ? player->dy * 2.0 : 0.0);
 
-    stage.dungeon.camera.x = clamp(cx, 0, maxCX);
-    stage.dungeon.camera.y = clamp(cy, 0, maxCY);
+    // 2) Smooth the ghost toward that target
+    cameraghost.x += (tx - cameraghost.x) * cameraghost.smoothSpeed;
+    cameraghost.y += (ty - cameraghost.y) * cameraghost.smoothSpeed;
+
+    // 3) Clamp the GHOST so centering never shows outside the world
+    const int halfW = SCREEN_WIDTH / 2 - player->w / 2;
+    const int halfH = SCREEN_HEIGHT / 2 - player->h / 2;
+    const int worldW = MAP_WIDTH * TILE_SIZE;
+    const int worldH = MAP_HEIGHT * TILE_SIZE;
+
+    cameraghost.x = clamp(cameraghost.x, double(halfW), double(worldW - halfW));
+    cameraghost.y = clamp(cameraghost.y, double(halfH), double(worldH - halfH));
+
+    // 4) Center the camera on the ghost — no final clamp here!
+    stage.dungeon.camera.x = int(cameraghost.x) - SCREEN_WIDTH / 2 + player->w / 2;
+    stage.dungeon.camera.y = int(cameraghost.y) - SCREEN_HEIGHT / 2 + player->h / 2;
 }
+
+
 
 
 bool loadMapFromCSV(const std::string& filename, Map& map) {
@@ -130,6 +172,8 @@ void logicDungeon() {
     doExplosions();
     doDebris();
 
+
+
     // Update camera to follow the player
     if (player) {
         updateCamera();
@@ -150,9 +194,11 @@ void drawDungeon() {
     // Draw map
     drawMapTiles();
 
+
+
     // Draw all fighters (player, enemies, etc.)
-    drawFighters();
-    drawBullets();
+    drawFightersDungeon();
+    drawBulletDungeon();
     drawDebris();
     drawExplosions();
 
@@ -168,40 +214,72 @@ void drawDungeon() {
         drawAmmoHUD(app.renderer, wpnList.list[idx]);
     }
 }
+void drawBulletDungeon() {
+    Entity* bullet = stage.bulletHead.next;
+    while (bullet) {
+        // In Dungeon mode, subtract camera position to get the correct on-screen position
+        int renderX = bullet->x - stage.dungeon.camera.x;
+        int renderY = bullet->y - stage.dungeon.camera.y;
 
+        // Draw the bullet at the calculated position
+        SDL_Rect dstRect = { renderX, renderY, bullet->w, bullet->h };
+        SDL_RenderCopy(app.renderer, bullet->texture, nullptr, &dstRect);
 
-void drawFightersDungeon(void)
-{
-    Entity* e;
+        bullet = bullet->next;
+    }
+}
 
-    for (e = stage.fighterHead.next; e != nullptr; e = e->next)
-    {
-        // Calculate the position based on the tile size and render offset
-        int x = (e->x * TILE_SIZE) + (TILE_SIZE / 2);
-        int y = (e->y * TILE_SIZE) + (TILE_SIZE / 2);
+void drawFightersDungeon() {
+    for (Entity* e = stage.fighterHead.next; e != nullptr; e = e->next) {
+        std::cerr << "using drawFightersDungeon\n";
+        // Convert world (pixel) coords into screen coords:
+        int sx = int(e->x) - stage.dungeon.camera.x - e->w / 2;
+        int sy = int(e->y) - stage.dungeon.camera.y - e->h / 2;
 
-        // Apply the render offset
-        x += stage.dungeon.renderOffset.x;
-        y += stage.dungeon.renderOffset.y;
-        
-        x += -stage.dungeon.camera.x;
-        y += -stage.dungeon.camera.y;
+        int screenX = int(e->x) - stage.dungeon.camera.x;
+        int screenY = int(e->y) - stage.dungeon.camera.y;
 
-        // If it's the player, rotate based on the mouse position
+        e->screenX = screenX;
+        e->screenY = screenY;
+
+        // Rotate & blit
         if (e == player) {
             int mouseX, mouseY;
             SDL_GetMouseState(&mouseX, &mouseY);
-            player->angle = getAngle(player->x, player->y, mouseX, mouseY);
-            blitRotated(player->texture, x, y, player->angle);
+
+            // Correct angle calculation: Use world coordinates (e->x, e->y) and mouse position
+            player->angle = getAngle(e->x, e->y, mouseX + stage.dungeon.camera.x, mouseY + stage.dungeon.camera.y);
+            blitRotated(player->texture, sx, sy, player->angle);
         }
         else {
-            // If it's an enemy, rotate based on the player's position
-            if (player != nullptr) e->angle = getAngle(e->x, e->y, player->x, player->y);
-            blitRotated(e->texture, x, y, e->angle);
+            // For other entities, you can still use their world coordinates for angle calculation
+            e->angle = getAngle(e->x, e->y, screenX, screenY);
+            blitRotated(e->texture, sx, sy, e->angle);
         }
 
-        // Draw health bar and text (for both player and enemies)
-        drawHealthBar(app.renderer, e);
-        drawHealthText(app.renderer, e);
+        // Draw health bars/text
+        drawHealthBar(app.renderer, e, screenX, screenY);
+        drawHealthText(app.renderer, e, screenX, screenY);
     }
+}
+
+
+
+void initCameraGhost() {
+    if (player) {
+        cameraghost.x = player->x;
+        cameraghost.y = player->y;
+    }
+    else {
+        cameraghost.x = 0;
+        cameraghost.y = 0;
+    }
+    cameraghost.smoothSpeed = 0.2f;      // tweak for your desired feel
+
+    // zero any lingering offsets
+    stage.dungeon.renderOffset.x = 0;
+    stage.dungeon.renderOffset.y = 0;
+
+    // instantly snap camera into place
+    updateCamera();
 }

@@ -25,7 +25,7 @@ extern Star stars[MAX_STARS];
 extern int stageResetTimer;
 extern PlayerWeapons wpnList;
 
-void logic()
+void logicSurvivor()
 {
    
     doBackground();
@@ -56,7 +56,7 @@ void logic()
     }
 }
 
-void draw()
+void drawSurvivor()
 {
     drawBackground();
     drawStarfield();

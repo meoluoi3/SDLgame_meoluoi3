@@ -29,9 +29,9 @@ GameState previousState = GS_MENU;
     Mix_Music* music;
     PlayerWeapons wpnList;
     std::vector<SDL_Texture*> tiles;
-  
+    CameraGhost cameraghost;
     static int   currentFPS = 0;
-    static int   frameCount = 0;
+     int   frameCount = 0;
     static Uint32 fpsTimer = 0;
 
 

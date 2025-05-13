@@ -10,6 +10,8 @@ void blitRotated(SDL_Texture* texture, int x, int y, double angle);
 
 void drawBullets();
 void drawFighters();
-void drawHealthBar(SDL_Renderer* renderer, Entity* entity );
+
+void drawHealthBar(SDL_Renderer* renderer, Entity* entity, int screenX, int screenY);
+
 void drawHud(SDL_Renderer* renderer, int score, int highscore);
-void drawHealthText(SDL_Renderer* renderer, Entity* entity);
+void drawHealthText(SDL_Renderer* renderer, Entity* entity, int screenX, int screenY);

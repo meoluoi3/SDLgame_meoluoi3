@@ -25,9 +25,8 @@ int modeSelectionIndex = 0;
 
 const char* modeSelectionLabels[] = { "Survivor Mode", "Dungeon Mode" };
 
-void resetStage(void)
+void resetStage()
 {
-    // Free all entities
     Entity* e;
     Explosion* ex;
     Debris* d;
@@ -37,47 +36,36 @@ void resetStage(void)
         stage.fighterHead.next = e->next;
         delete e;
     }
+    stage.fighterTail = &stage.fighterHead;
 
     while ((e = stage.bulletHead.next))
     {
         stage.bulletHead.next = e->next;
         delete e;
     }
+    stage.bulletTail = &stage.bulletHead;
 
     while ((ex = stage.explosionHead.next))
     {
         stage.explosionHead.next = ex->next;
         delete ex;
     }
+    stage.explosionTail = &stage.explosionHead;
 
     while ((d = stage.debrisHead.next))
     {
         stage.debrisHead.next = d->next;
         delete d;
     }
-
-    // Reset pointers
-    stage.fighterHead.next = nullptr;
-    stage.fighterTail = &stage.fighterHead;
-
-    stage.bulletHead.next = nullptr;
-    stage.bulletTail = &stage.bulletHead;
-
-    stage.explosionTail = &stage.explosionHead;
     stage.debrisTail = &stage.debrisHead;
 
-    initPlayer();
-    //initMap();
-    initStarfield();
     resetWeapons();
-    
+    initStarfield();
+    stage.score = 0;
     enemySpawnTimer = 0;
     stageResetTimer = FPS * 3;
-    
-    stage.score = 0;
-    
-
 }
+
 
 
 void updateModeSelection(SDL_Event& e) {

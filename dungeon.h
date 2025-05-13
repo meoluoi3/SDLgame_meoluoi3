@@ -1,10 +1,14 @@
 #pragma once
 #include <string>
 #include "struct.h"
-void initMap(void);
-void loadTiles(void);
-void drawMapTiles(void);
+void initMap();
+void loadTiles();
+void drawMapTiles();
 bool loadMapFromCSV(const std::string& filename, Map& map);
-void logicDungeon(void);
-void drawDungeon(void);
-void drawFightersDungeon(void);
+void logicDungeon();
+void drawDungeon();
+void drawFightersDungeon();
+void initCameraGhost();
+void updateCamera();
+void resetDungeon();
+void drawBulletDungeon();
