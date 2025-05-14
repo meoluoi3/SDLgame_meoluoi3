@@ -109,7 +109,7 @@ void updateModeSelection(SDL_Event& e) {
 
             SDL_Rect menuItemRect = {
                 SCREEN_WIDTH / 2 - textW / 2,
-                SCREEN_HEIGHT / 2 + i * 40 - textH / 2,
+                SCREEN_HEIGHT / 2 + i * 50 - textH / 2,
                 textW,
                 textH
             };

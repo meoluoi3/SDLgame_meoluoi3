@@ -16,10 +16,10 @@ void initWeapons(PlayerWeapons& wpnList) {
 
 
 
-    Weapon ak = { WeaponType::AK, "AK", 30, 30, 0.13, 5000 };
+    Weapon ak = { WeaponType::AK, "AK", 30, 30, 0.13, 2000 };
     ak.lastFireTime = (now - static_cast<Uint32>(ak.fireRate * 1000)) / 1000.0;
 
-    Weapon pistol = { WeaponType::Pistol, "Pistol", 7, 7, 0.30, 2000 };
+    Weapon pistol = { WeaponType::Pistol, "Pistol", 7, 7, 0.30, 1000 };
     pistol.lastFireTime = (now - static_cast<Uint32>(pistol.fireRate * 1000)) / 1000.0;
 
     Weapon knife = { WeaponType::Knife, "Knife", 0, 0, 0.50, 0 };
@@ -46,7 +46,7 @@ void handleWeaponFire(PlayerWeapons& wpnList, Uint32 currentTime) {
             std::cerr << "ammo: " << w.ammo << "\n";
         }
 
-        w.lastFireTime = currentTime; // just use milliseconds
+        w.lastFireTime = currentTime; 
     }
 }
 bool forceReload(PlayerWeapons& wpnList, Uint32 currentTime) {
@@ -83,31 +83,44 @@ void updateWeaponReloads(PlayerWeapons& wpnList, Uint32 currentTime) {
         }
     }
 }
+void drawReloadText(SDL_Renderer* renderer, PlayerWeapons& wpnList) {
+    int idx = wpnList.currentIndex;
+    if (idx < 0 || idx >= (int)wpnList.list.size()) return;
+
+    const Weapon& w = wpnList.list[idx];
+    if (w.reloadtime == 0) return;  
+
+    
+     std::string msg = "Reloading...";
+    SDL_Color white = { 255, 255, 255, 255 };
+
+
+    renderText(renderer, msg, 250, 100, white);
+}
 
 void switchWeapon(PlayerWeapons& wpnList, int key)
 {
     int newIndex = -1;
 
-    // Determine the new weapon index based on the key input
     if (key == SDLK_1) newIndex = 0;
     else if (key == SDLK_2) newIndex = 1;
     else if (key == SDLK_3) newIndex = 2;
 
     if (newIndex != -1)
     {
-        // Only switch if the new index is different
+        
         if (wpnList.currentIndex != newIndex)
         {
-            // Reset the reload timer for the current weapon
+          
             if (wpnList.currentIndex >= 0 && wpnList.currentIndex < wpnList.list.size())
             {
                 wpnList.list[wpnList.currentIndex].reloadtime = 0;
             }
 
-            // Switch to the new weapon
+            
             wpnList.currentIndex = newIndex;
 
-            // Reset reloadtime for the new weapon as well
+            
             if (wpnList.currentIndex >= 0 && wpnList.currentIndex < wpnList.list.size())
             {
                 wpnList.list[wpnList.currentIndex].reloadtime = 0;
@@ -115,7 +128,7 @@ void switchWeapon(PlayerWeapons& wpnList, int key)
         }
         else
         {
-            // Optional: toggle off if the same weapon is selected
+            
             wpnList.currentIndex = -1;
             player->texture = playerStanding;
         }
@@ -130,11 +143,11 @@ void resetWeapons()
     {
         w.ammo = w.ammoCapacity;
         w.reloadtime = 0;
-        w.lastFireTime = 0.0;  // Reset the last fire time too
+        w.lastFireTime = 0.0;  
     }
 
-    // Optionally reset the active weapon to a default (e.g., AK)
-    wpnList.currentIndex = 0; // or any weapon index you prefer
+    
+    wpnList.currentIndex = 0; 
 }
 
 
@@ -172,7 +185,6 @@ void drawAmmoHUD(SDL_Renderer* renderer, const Weapon& currentWeapon) {
     SDL_Color white = { 255,255,255,255 };
     int ammoX = 100, ammoY = 100;
 
-    // Use the passed-in `renderer` here:
     renderText(renderer, ammoText, ammoX, ammoY, white, 1);
 }
 

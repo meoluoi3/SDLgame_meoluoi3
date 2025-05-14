@@ -24,7 +24,8 @@ void loadTutorial(SDL_Renderer* renderer) {
     const char* paths[] = {
         "img/slide1.png",
         "img/slide2.png",
-        
+        "img/slide3.png",
+        "img/slide4.png"
     };
     for (auto& p : paths) {
         tutorialSlides.push_back(IMG_LoadTexture(renderer, p));
@@ -60,6 +61,8 @@ void updateTutorial(SDL_Event& e) {
             }
         }
         else if (e.key.keysym.sym == SDLK_ESCAPE) {
+            resetStage();
+            currentSlide = 0;
             gameState = GS_MENU;
         }
         break;
@@ -91,7 +94,7 @@ void drawESC(SDL_Renderer* renderer) {
 
 bool play = false;
 void logicTutorial() {
-    if (currentSlide >= 1) {
+    if (currentSlide >= 1 ) {
         doPlayerMovement(wpnList);
         doFighters();
         doBullets();
@@ -99,13 +102,14 @@ void logicTutorial() {
         clipPlayer();
     }
 
-    if (currentSlide >= 2) {
+    if (currentSlide >= 2 ) {
         spawnEnemies();
+        
         doEnemies();
         doExplosions();
         doDebris();
     }
-
+   
     if (player == nullptr && --stageResetTimer <= 0) {
         SDL_Log("Calling resetStage()...\n");
         resetStage();
@@ -114,13 +118,17 @@ void logicTutorial() {
 
 void drawTutorial() {
     drawESC(app.renderer); // Draw the slide first
-    drawFighters();
+    if (currentSlide >= 1) {
+        drawFighters();
+    }
     drawBullets();
     drawDebris();
     drawExplosions();
     playerAndWeaponTexture(wpnList);
+    drawReloadText(app.renderer, wpnList);
     int idx = wpnList.currentIndex;
     if (idx >= 0 && idx < (int)wpnList.list.size()) {
         drawAmmoHUD(app.renderer, wpnList.list[idx]);
     }
 }
+

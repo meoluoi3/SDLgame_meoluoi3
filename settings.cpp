@@ -6,6 +6,7 @@
 #include <SDL_mixer.h>
 #include "draw.h"
 #include "text.h"
+#include "stage.h"
 
 
 using namespace std;

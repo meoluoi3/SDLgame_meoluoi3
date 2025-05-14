@@ -80,3 +80,4 @@ void spawnEnemies()
         enemySpawnTimer = 30 + (rand() % 60);  // Next spawn: 0.5–1.5s later
     }
 }
+

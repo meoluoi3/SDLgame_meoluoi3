@@ -67,7 +67,7 @@ void drawSurvivor()
 
     // Safe weapon texture assignment
     playerAndWeaponTexture(wpnList);
-
+    drawReloadText(app.renderer, wpnList);
     drawHud(app.renderer, stage.score, stage.highscore);
 
     // Safe ammo HUD

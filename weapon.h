@@ -52,3 +52,4 @@ void resetWeapons();
 void playerAndWeaponTexture(PlayerWeapons& wpnList);
 void drawAmmoHUD(SDL_Renderer* renderer, const Weapon& currentWeapon);
 bool forceReload(PlayerWeapons& wpnList, Uint32 currentTime);
+void drawReloadText(SDL_Renderer* renderer, PlayerWeapons& wpnList);

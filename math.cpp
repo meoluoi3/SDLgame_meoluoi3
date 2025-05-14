@@ -26,29 +26,29 @@ bool checkForQuitEvent() {
 
 void capFrameRate(long* then, float* remainder)
 {
-    // 1. Determine your target FPS from settings
+    //  target FPS from settings
     int targetFPS = fpsCapOptions[settings.fpsCapIndex];
-    // 2. Compute the ideal frame time in milliseconds
-    float idealFrameMs = 1000.0f / targetFPS;
+    
+    double idealFrameMs = 1000.0 / targetFPS;
 
-    // 3. Add the fractional remainder carried over from last frame
+    
     long wait = (long)idealFrameMs + (int)(*remainder);
     *remainder -= floorf(*remainder);
 
-    // 4. Subtract the time already spent this frame
+    
     long frameTime = SDL_GetTicks() - *then;
     wait -= frameTime;
 
-    // 5. Clamp so we never wait negative
+   
     if (wait < 1) wait = 1;
 
-    // 6. Wait that long
+    
     SDL_Delay(wait);
 
-    // 7. Carry over the leftover fraction to the next frame
+    
     *remainder += (idealFrameMs - floorf(idealFrameMs));
 
-    // 8. Reset the timer for the next frame
+    
     *then = SDL_GetTicks();
 }
 

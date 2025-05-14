@@ -45,7 +45,7 @@ GameState previousState = GS_MENU;
         initSDL();
         initStage();    
         initMenu(app.renderer);
-        loadTutorial(app.renderer);
+       loadTutorial(app.renderer);
         applySettings();
 
 
@@ -87,7 +87,7 @@ GameState previousState = GS_MENU;
                 tutorialInitialized = false; break;
             case GS_TUTORIAL:
                 if (!tutorialInitialized) {
-                    loadTutorial(app.renderer);
+                    resetStage();
                     initTutorial();
                     tutorialInitialized = true;
                 }

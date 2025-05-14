@@ -107,15 +107,15 @@ extern int frameCount;
 void updateCamera() {
     if (!player) return;
 
-    // 1) Build look‑ahead target
+    
     double tx = player->x + ((player->dx || player->dy) ? player->dx * 2.0 : 0.0);
     double ty = player->y + ((player->dx || player->dy) ? player->dy * 2.0 : 0.0);
 
-    // 2) Smooth the ghost toward that target
+    
     cameraghost.x += (tx - cameraghost.x) * cameraghost.smoothSpeed;
     cameraghost.y += (ty - cameraghost.y) * cameraghost.smoothSpeed;
 
-    // 3) Clamp the GHOST so centering never shows outside the world
+    
     const int halfW = SCREEN_WIDTH / 2 - player->w / 2;
     const int halfH = SCREEN_HEIGHT / 2 - player->h / 2;
     const int worldW = MAP_WIDTH * TILE_SIZE;
@@ -124,7 +124,7 @@ void updateCamera() {
     cameraghost.x = clamp(cameraghost.x, double(halfW), double(worldW - halfW));
     cameraghost.y = clamp(cameraghost.y, double(halfH), double(worldH - halfH));
 
-    // 4) Center the camera on the ghost — no final clamp here!
+   
     stage.dungeon.camera.x = int(cameraghost.x) - SCREEN_WIDTH / 2 + player->w / 2;
     stage.dungeon.camera.y = int(cameraghost.y) - SCREEN_HEIGHT / 2 + player->h / 2;
 }
@@ -174,7 +174,7 @@ void logicDungeon() {
 
 
 
-    // Update camera to follow the player
+    
     if (player) {
         updateCamera();
     }
@@ -191,24 +191,24 @@ void logicDungeon() {
 
 
 void drawDungeon() {
-    // Draw map
+    
     drawMapTiles();
 
 
 
-    // Draw all fighters (player, enemies, etc.)
+    
     drawFightersDungeon();
     drawBulletDungeon();
     drawDebris();
     drawExplosions();
 
-    // Draw the player and weapon texture
+    
     playerAndWeaponTexture(wpnList);
-
-    // Draw HUD elements
+    drawReloadText(app.renderer, wpnList);
+    
     drawHud(app.renderer, stage.score, stage.highscore);
 
-    // Draw weapon-specific HUD (ammo)
+   
     int idx = wpnList.currentIndex;
     if (idx >= 0 && idx < (int)wpnList.list.size()) {
         drawAmmoHUD(app.renderer, wpnList.list[idx]);
@@ -217,11 +217,11 @@ void drawDungeon() {
 void drawBulletDungeon() {
     Entity* bullet = stage.bulletHead.next;
     while (bullet) {
-        // In Dungeon mode, subtract camera position to get the correct on-screen position
+       
         int renderX = bullet->x - stage.dungeon.camera.x;
         int renderY = bullet->y - stage.dungeon.camera.y;
 
-        // Draw the bullet at the calculated position
+       
         SDL_Rect dstRect = { renderX, renderY, bullet->w, bullet->h };
         SDL_RenderCopy(app.renderer, bullet->texture, nullptr, &dstRect);
 
@@ -232,7 +232,7 @@ void drawBulletDungeon() {
 void drawFightersDungeon() {
     for (Entity* e = stage.fighterHead.next; e != nullptr; e = e->next) {
         std::cerr << "using drawFightersDungeon\n";
-        // Convert world (pixel) coords into screen coords:
+       
         int sx = int(e->x) - stage.dungeon.camera.x - e->w / 2;
         int sy = int(e->y) - stage.dungeon.camera.y - e->h / 2;
 
@@ -242,22 +242,22 @@ void drawFightersDungeon() {
         e->screenX = screenX;
         e->screenY = screenY;
 
-        // Rotate & blit
+      
         if (e == player) {
             int mouseX, mouseY;
             SDL_GetMouseState(&mouseX, &mouseY);
 
-            // Correct angle calculation: Use world coordinates (e->x, e->y) and mouse position
+            
             player->angle = getAngle(e->x, e->y, mouseX + stage.dungeon.camera.x, mouseY + stage.dungeon.camera.y);
             blitRotated(player->texture, sx, sy, player->angle);
         }
         else {
-            // For other entities, you can still use their world coordinates for angle calculation
+            
             e->angle = getAngle(e->x, e->y, screenX, screenY);
             blitRotated(e->texture, sx, sy, e->angle);
         }
 
-        // Draw health bars/text
+        
         drawHealthBar(app.renderer, e, screenX, screenY);
         drawHealthText(app.renderer, e, screenX, screenY);
     }
@@ -273,13 +273,13 @@ void initCameraGhost() {
     else {
         cameraghost.x = 0;
         cameraghost.y = 0;
-    }
-    cameraghost.smoothSpeed = 0.2f;      // tweak for your desired feel
+    } 
+    cameraghost.smoothSpeed = 0.10;
 
-    // zero any lingering offsets
+    
     stage.dungeon.renderOffset.x = 0;
     stage.dungeon.renderOffset.y = 0;
 
-    // instantly snap camera into place
+ 
     updateCamera();
 }
