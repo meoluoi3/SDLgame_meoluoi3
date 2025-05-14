@@ -33,7 +33,7 @@ GameState previousState = GS_MENU;
     static int   currentFPS = 0;
      int   frameCount = 0;
     static Uint32 fpsTimer = 0;
-
+    bool tutorialInitialized = false;
 
     int main(int argc, char* argv[]) {
         srand(static_cast<unsigned>(time(0)));
@@ -83,8 +83,19 @@ GameState previousState = GS_MENU;
 
             // Draw / logic by state...
             switch (gameState) {
-            case GS_MENU:     drawMainMenu(app.renderer); break;
-            case GS_TUTORIAL: drawTutorial(app.renderer); break;
+            case GS_MENU:     drawMainMenu(app.renderer); 
+                tutorialInitialized = false; break;
+            case GS_TUTORIAL:
+                if (!tutorialInitialized) {
+                    loadTutorial(app.renderer);
+                    initTutorial();
+                    tutorialInitialized = true;
+                }
+                prepareScene();
+                if (app.delegate.logic) app.delegate.logic();
+                if (app.delegate.draw)  app.delegate.draw();
+                presentScene();
+                break;
             case GS_SETTINGS: drawSettings(app.renderer); break;
             case GS_PLAYING:
                 prepareScene();

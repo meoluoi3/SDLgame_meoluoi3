@@ -10,6 +10,7 @@
 #include "settings.h"
 #include "weapon.h"
 #include "dungeon.h"
+#include "tutorial.h"
 extern App app;
 extern Stage stage;
 extern Entity* player;
@@ -105,7 +106,7 @@ void initStage() // Initialize the stage
 void initSurvivor() {
     resetStage();       // clear fighters, bullets, explosions, debris, weapons, starfield
 
-    initPlayer();       // spawn player in center
+   
     initStarfield();    // fresh starfield
 
     app.delegate.logic = logicSurvivor;
@@ -158,4 +159,10 @@ void initStarfield()
         stars[i].y = rand() % SCREEN_HEIGHT;
         stars[i].speed = 1 + rand() % 8;
     }
+}
+
+void initTutorial() {
+    resetStage();
+    app.delegate.logic = logicTutorial;
+    app.delegate.draw = drawTutorial;
 }

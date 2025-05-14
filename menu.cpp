@@ -38,7 +38,7 @@ bool initMenu(SDL_Renderer* renderer) {
 	menuIndex = 0;
 	if (!gFont) {
 		SDL_Log("Font not loaded! Mouse menu click functionality disabled.");
-	}
+	}	
 	return true;
 }
 void cleanupMenu() {

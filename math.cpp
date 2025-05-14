@@ -8,7 +8,7 @@
 using namespace std;
 extern Entity* player;
 extern Stage stage;
-
+extern bool isMelee;
 double getAngle(int x1, int y1, int x2, int y2)
 {
     double angle = -180 + atan2(y1 - y2, x1 - x2) * (180 / PI);
@@ -176,3 +176,5 @@ int playerHitEnemy(Entity* player)
 
     return 0;
 }
+
+

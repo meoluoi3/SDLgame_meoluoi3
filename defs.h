@@ -21,7 +21,7 @@
 
 #define MAX_TILES 538
 
-#define TILE_SIZE      64
+#define TILE_SIZE 50  
 
 
 #define MAP_RENDER_WIDTH   (SCREEN_WIDTH  / TILE_SIZE)   // = 1600/64 = 25

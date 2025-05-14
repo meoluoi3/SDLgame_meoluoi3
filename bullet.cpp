@@ -21,7 +21,7 @@ void fireBullet(PlayerWeapons& wpnList) {
     Uint32 fireDelay = static_cast<Uint32>(w.fireRate * 1000);
     if (currentTime - w.lastFireTime < fireDelay) return;
     if (w.type == WeaponType::Knife) {
-        // Implement knife attack logic here (e.g., melee damage)
+            
         w.lastFireTime = currentTime;  // Update last fire time for knife
         playSound(SND_PLAYER_FIRE, CH_PLAYER);
         return;

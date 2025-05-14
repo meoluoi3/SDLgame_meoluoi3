@@ -5,3 +5,4 @@ void initStage();
 void initStarfield();
 void initSurvivor();
 void initDungeon();
+void initTutorial();

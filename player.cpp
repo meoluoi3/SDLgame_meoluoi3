@@ -32,34 +32,34 @@ void doPlayerMovement(PlayerWeapons& wpnList)
 
         if (app.keyboard[SDL_SCANCODE_1] && !app.prevKeyboard[SDL_SCANCODE_1]) {
             switchWeapon(wpnList, SDLK_1);
-            app.prevKeyboard[SDL_SCANCODE_1] = true;  // Mark as pressed
+            app.prevKeyboard[SDL_SCANCODE_1] = true;  
         }
         else if (!app.keyboard[SDL_SCANCODE_1]) {
-            app.prevKeyboard[SDL_SCANCODE_1] = false;  // Mark as released
+            app.prevKeyboard[SDL_SCANCODE_1] = false;  
         }
 
         if (app.keyboard[SDL_SCANCODE_2] && !app.prevKeyboard[SDL_SCANCODE_2]) {
             switchWeapon(wpnList, SDLK_2);
-            app.prevKeyboard[SDL_SCANCODE_2] = true;  // Mark as pressed
+            app.prevKeyboard[SDL_SCANCODE_2] = true;  
         }
         else if (!app.keyboard[SDL_SCANCODE_2]) {
-            app.prevKeyboard[SDL_SCANCODE_2] = false;  // Mark as released
+            app.prevKeyboard[SDL_SCANCODE_2] = false;  
         }
 
         if (app.keyboard[SDL_SCANCODE_3] && !app.prevKeyboard[SDL_SCANCODE_3]) {
             switchWeapon(wpnList, SDLK_3);
-            app.prevKeyboard[SDL_SCANCODE_3] = true;  // Mark as pressed
+            app.prevKeyboard[SDL_SCANCODE_3] = true;  
         }
         else if (!app.keyboard[SDL_SCANCODE_3]) {
-            app.prevKeyboard[SDL_SCANCODE_3] = false;  // Mark as released
+            app.prevKeyboard[SDL_SCANCODE_3] = false;  
         }
 
         if (app.keyboard[SDL_SCANCODE_R] && !app.prevKeyboard[SDL_SCANCODE_R]) {
             forceReload(wpnList, SDL_GetTicks());
-            app.prevKeyboard[SDL_SCANCODE_R] = true;  // Mark as pressed
+            app.prevKeyboard[SDL_SCANCODE_R] = true;  
         }
         else if (!app.keyboard[SDL_SCANCODE_R]) {
-            app.prevKeyboard[SDL_SCANCODE_R] = false;  // Mark as released
+            app.prevKeyboard[SDL_SCANCODE_R] = false;  
         }
 
         // Fire input
@@ -103,6 +103,8 @@ void doFighters() {
         if (player != nullptr && playerHitEnemy(player)) {
             // e.g. player->health = 0;
         }
+        
+
 
         // Handle death
         if (e->health <= 0) {

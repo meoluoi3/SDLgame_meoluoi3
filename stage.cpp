@@ -61,6 +61,7 @@ void resetStage()
 
     resetWeapons();
     initStarfield();
+    initPlayer();
     stage.score = 0;
     enemySpawnTimer = 0;
     stageResetTimer = FPS * 3;

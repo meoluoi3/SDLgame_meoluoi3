@@ -2,6 +2,7 @@
 #include "input.h"
 #include "struct.h"
 #include "sound.h"
+#include "tutorial.h"
 
 extern App app;
 
@@ -37,8 +38,7 @@ void doInput()
 
 void doKeyDown(SDL_KeyboardEvent* event)
 {
-    if (event->repeat == 0 &&
-        event->keysym.scancode >= 0 &&
+    if (event->keysym.scancode >= 0 &&
         event->keysym.scancode < MAX_KEYBOARD_KEYS)
     {
         app.keyboard[event->keysym.scancode] = 1;
@@ -47,8 +47,7 @@ void doKeyDown(SDL_KeyboardEvent* event)
 
 void doKeyUp(SDL_KeyboardEvent* event)
 {
-    if (event->repeat == 0 &&
-        event->keysym.scancode >= 0 &&
+    if (event->keysym.scancode >= 0 &&
         event->keysym.scancode < MAX_KEYBOARD_KEYS)
     {
         app.keyboard[event->keysym.scancode] = 0;
@@ -80,6 +79,7 @@ void handleInputEvent(SDL_Event& e) {
 
     case SDL_KEYDOWN:
         doKeyDown(&e.key);
+        
         break;
 
     case SDL_KEYUP:

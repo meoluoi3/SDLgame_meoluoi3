@@ -96,7 +96,7 @@ void drawFighters()
     {
         // Draw the entity (player or enemy)
         
-        if (e != nullptr && e->texture != nullptr) {
+        if (e != nullptr && e->texture != nullptr) {    
             if (e == player) {
                 int mouseX, mouseY;
                 SDL_GetMouseState(&mouseX, &mouseY);
