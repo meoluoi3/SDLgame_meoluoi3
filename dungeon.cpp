@@ -55,8 +55,7 @@ void resetDungeon() {
 
     stage.dungeon.camera.x = 0;
     stage.dungeon.camera.y = 0;
-    stage.dungeon.renderOffset.x = (SCREEN_WIDTH - (MAP_RENDER_WIDTH * TILE_SIZE)) / 2;
-    stage.dungeon.renderOffset.y = (SCREEN_HEIGHT - (MAP_RENDER_HEIGHT * TILE_SIZE)) / 2;
+    
 
     cameraghost.x = 0;
     cameraghost.y = 0;
@@ -194,9 +193,6 @@ void drawDungeon() {
     
     drawMapTiles();
 
-
-
-    
     drawFightersDungeon();
     drawBulletDungeon();
     drawDebris();
@@ -277,8 +273,6 @@ void initCameraGhost() {
     cameraghost.smoothSpeed = 0.10;
 
     
-    stage.dungeon.renderOffset.x = 0;
-    stage.dungeon.renderOffset.y = 0;
 
  
     updateCamera();

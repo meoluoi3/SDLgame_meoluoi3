@@ -145,8 +145,8 @@ void drawModeSelection(SDL_Renderer* renderer) {
 
     int hoveredIndex = -1;
 
-    // Check if mouse is hovering over any of the buttons
-    for (int i = 0; i < 2; ++i) { // Two modes: Survivor Mode and Dungeon Mode
+   
+    for (int i = 0; i < 2; ++i) { 
         int textW = 0, textH = 0;
         if (gFont) {
             TTF_SizeText(gFont, modeSelectionLabels[i], &textW, &textH);
@@ -159,14 +159,14 @@ void drawModeSelection(SDL_Renderer* renderer) {
             textH
         };
 
-        // Check if the mouse is over the current button
+        
         if (mouseX >= menuItemRect.x && mouseX <= menuItemRect.x + menuItemRect.w &&
             mouseY >= menuItemRect.y && mouseY <= menuItemRect.y + menuItemRect.h) {
             hoveredIndex = i;
         }
     }
 
-    // Draw the menu items with proper color based on hover
+    
     for (int i = 0; i < 2; ++i) {
         SDL_Color color;
 

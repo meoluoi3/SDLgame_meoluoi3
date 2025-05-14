@@ -83,7 +83,7 @@ struct CameraGhost {
 };
 extern CameraGhost cameraghost;
 struct Dungeon {
-    SDL_Point renderOffset;
+   
     SDL_Point camera;
     
     Map map;

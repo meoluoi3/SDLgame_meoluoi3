@@ -22,18 +22,18 @@ void fireBullet(PlayerWeapons& wpnList) {
     if (currentTime - w.lastFireTime < fireDelay) return;
     if (w.type == WeaponType::Knife) {
             
-        w.lastFireTime = currentTime;  // Update last fire time for knife
+        w.lastFireTime = currentTime;  
         playSound(SND_PLAYER_FIRE, CH_PLAYER);
         return;
     }
 
     if (w.ammo > 0) {
-        w.ammo--;  // Decrease ammo count for gun
+        w.ammo--;  
 
-        // Play gunfire sound
+        
         playSound(SND_PLAYER_FIRE, CH_PLAYER);
 
-        // Create and spawn the bullet
+        
         Entity* bullet = new Entity();
         bullet->next = nullptr;
         int mouseX, mouseY;
