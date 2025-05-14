@@ -1,17 +1,17 @@
-#Game Bắn Súng 2D: Top-down shooter
-1. Thông tin Sinh viên
+# Game Bắn Súng 2D: Top-down shooter
+## 1. Thông tin Sinh viên
 
     Tên: Hoàng Đức Nhuận
 
     Mã sinh viên: 24021590
 
-2. Giới thiệu Game
+## 2. Giới thiệu Game
 
 Đây là một game bắn súng 2D cơ bản được phát triển bằng thư viện SDL2. Game cung cấp hai chế độ chơi chính để người chơi trải nghiệm: chế độ Sinh Tồn (Survivor) và chế độ Khám phá Hầm Ngục (Dungeon - chưa hoàn thiện).
-3. Ngưỡng điểm mục tiêu
+## 3. Ngưỡng điểm mục tiêu
 
 Tôi tin rằng project này xứng đáng đạt được mức điểm 9 - 9.5.
-4. Lý do bảo vệ ngưỡng điểm
+## 4. Lý do bảo vệ ngưỡng điểm
 
 Dựa trên barem đánh giá và các tính năng đã triển khai, tôi xin trình bày các lý do để bảo vệ mức điểm mục tiêu:
 
@@ -29,7 +29,7 @@ Dựa trên barem đánh giá và các tính năng đã triển khai, tôi xin t
 
     Tính năng mở rộng nổi bật: Hai chế độ chơi riêng biệt (Survivor, Dungeon), hệ thống Menu và Cài đặt đầy đủ tương tác bằng cả phím và chuột, Camera follow mượt mà trong chế độ Dungeon, Tutorial tương tác kết hợp hướng dẫn và thực hành.
 
-5. Nguồn tham khảo
+## 5. Nguồn tham khảo
 
     Tài liệu của giảng viên: Các bài giảng và tài liệu được cung cấp trong môn học.
 
@@ -59,7 +59,7 @@ Dựa trên barem đánh giá và các tính năng đã triển khai, tôi xin t
 
         Lưu ý: Tính năng "Load map từ file" được gợi ý từ chatbot nhưng chưa kịp triển khai vào project này.
 
-6. Điểm nổi bật để hướng tới điểm 9-10
+## 6. Điểm nổi bật để hướng tới điểm 9-10
 
 Để đạt được mức điểm cao, game của tôi có những điểm nổi bật sau:
 
